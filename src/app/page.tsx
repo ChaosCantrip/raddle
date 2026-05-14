@@ -1,3 +1,5 @@
+"use client";
+
 import GridTable from "@/components/GridTable";
 import GridRow from "@/components/GridRow";
 import GridCell from "@/components/GridCell";
@@ -5,8 +7,27 @@ import GridCell from "@/components/GridCell";
 import styles from "./page.module.css";
 import GridCellState from "@/components/GridCellState";
 
+import { useState } from "react";
+
 export default function HomePage() 
 {
+    const [rows, setRows] = useState([
+        [
+            GridCellState.Grey,
+            GridCellState.Grey,
+            GridCellState.Green,
+            GridCellState.Grey,
+            GridCellState.Yellow,
+            GridCellState.Yellow,
+        ],
+        [null, null, null, null, null, null]
+    ]);
+
+    function AddRow() 
+    {
+        setRows(prev => [...prev, [null, null, null, null, null, null]]);
+    }
+
     return (
         <div>
             <div>
@@ -14,23 +35,15 @@ export default function HomePage()
             </div>
             <div className={styles.gridTableWrapper}>
                 <GridTable>
-                    <GridRow>
-                        <GridCell state={GridCellState.Grey}></GridCell>
-                        <GridCell state={GridCellState.Grey}></GridCell>
-                        <GridCell state={GridCellState.Green}></GridCell>
-                        <GridCell state={GridCellState.Grey}></GridCell>
-                        <GridCell state={GridCellState.Yellow}></GridCell>
-                        <GridCell state={GridCellState.Yellow}></GridCell>
-                    </GridRow>
-                    <GridRow>
-                        <GridCell></GridCell>
-                        <GridCell></GridCell>
-                        <GridCell></GridCell>
-                        <GridCell></GridCell>
-                        <GridCell></GridCell>
-                        <GridCell></GridCell>
-                    </GridRow>
+                    {rows.map((row, rowIndex) => (
+                        <GridRow key={rowIndex}>
+                            {row.map((cellState, cellIndex) => (
+                                <GridCell key={cellIndex} state={cellState ?? undefined} />
+                            ))}
+                        </GridRow>
+                    ))}
                 </GridTable>
+                <button onClick={AddRow}>Add Row</button>
             </div>
         </div>
     );
