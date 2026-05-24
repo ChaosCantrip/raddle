@@ -5,7 +5,7 @@ import GridRow from "@/components/GridRow";
 import GridCell from "@/components/GridCell";
 
 import styles from "./page.module.css";
-import GridCellState from "@/components/GridCellState";
+import GridCellState from "@/app/models/GridCellState";
 
 import { useState } from "react";
 

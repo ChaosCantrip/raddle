@@ -1,5 +1,5 @@
 import styles from "./GridCell.module.css";
-import GridCellState from "./GridCellState";
+import GridCellState from "../app/models/GridCellState";
 
 export default function GridCell({ children, state = GridCellState.Empty }: { children?: React.ReactNode; state?: GridCellState })
 {
