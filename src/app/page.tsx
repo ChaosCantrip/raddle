@@ -7,11 +7,13 @@ import GridCell from "@/components/GridCell";
 import styles from "./page.module.css";
 import GridCellState from "@/app/models/GridCellState";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GuessEntryBox from "@/components/GuessEntryBox";
+import Encounter from "./models/Encounter";
 
 export default function HomePage() 
 {
+    const [encounters, setEncounters] = useState<Encounter[]>([]);
     const [rows, setRows] = useState([
         [
             GridCellState.Grey,
@@ -23,6 +25,33 @@ export default function HomePage()
         ],
         [null, null, null, null, null, null]
     ]);
+
+    // Load Encounters
+    useEffect(() => 
+    {
+        async function LoadEncounters() 
+        {
+            try 
+            {
+                const res = await fetch("/api/encounters");
+                if (!res.ok) 
+                {
+                    throw new Error(`Fetch failed: ${res.status}`);
+                }
+                const data = await res.json();
+
+                data.sort((a: Encounter, b: Encounter) => a.name.localeCompare(b.name));
+
+                setEncounters(Array.isArray(data) ? data : []);
+            }
+            catch (err) 
+            {
+                console.error("Error fetching encounters:", err);
+            }
+        }
+
+        LoadEncounters();
+    }, []);
 
     function AddRow() 
     {
@@ -40,7 +69,7 @@ export default function HomePage()
                 <h1>RaDdle</h1>
             </div>
             <div className={styles.guessEntryBoxWrapper}>
-                <GuessEntryBox callback={HandleGuessSubmit} />
+                <GuessEntryBox encounters={encounters} callback={HandleGuessSubmit} />
             </div>
             <div className={styles.gridTableWrapper}>
                 <GridTable>
