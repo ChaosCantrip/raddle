@@ -58,9 +58,9 @@ export default function HomePage()
         setRows(prev => [...prev, [null, null, null, null, null, null]]);
     }
 
-    function HandleGuessSubmit(guess: string) 
+    function HandleGuessSubmit(guess: Encounter) 
     {
-        alert(`You guessed: ${guess}`);
+        alert(`You guessed: ${guess.name}`); // Placeholder for actual guess handling logic
     }
 
     return (

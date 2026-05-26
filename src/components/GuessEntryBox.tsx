@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./GuessEntryBox.module.css";
 import Encounter from "@/app/models/Encounter";
 
-export default function GuessEntryBox({ encounters, callback }: { encounters: Encounter[]; callback: (guess: string) => void }) 
+export default function GuessEntryBox({ encounters, callback }: { encounters: Encounter[]; callback: (guess: Encounter) => void }) 
 {
     const [inputValue, setInputValue] = useState("");
     const [filteredEncounters, setFilteredEncounters] = useState<Encounter[]>([]);
@@ -27,7 +27,7 @@ export default function GuessEntryBox({ encounters, callback }: { encounters: En
 
     function HandleSubmit(encounter: Encounter) 
     {
-        callback(encounter.id);
+        callback(encounter);
         setInputValue("");
     }
 
