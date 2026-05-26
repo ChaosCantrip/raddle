@@ -8,6 +8,7 @@ import styles from "./page.module.css";
 import GridCellState from "@/app/models/GridCellState";
 
 import { useState } from "react";
+import GuessEntryBox from "@/components/GuessEntryBox";
 
 export default function HomePage() 
 {
@@ -28,10 +29,18 @@ export default function HomePage()
         setRows(prev => [...prev, [null, null, null, null, null, null]]);
     }
 
+    function HandleGuessSubmit(guess: string) 
+    {
+        alert(`You guessed: ${guess}`);
+    }
+
     return (
         <div className={styles.content}>
             <div>
                 <h1>RaDdle</h1>
+            </div>
+            <div className={styles.guessEntryBoxWrapper}>
+                <GuessEntryBox callback={HandleGuessSubmit} />
             </div>
             <div className={styles.gridTableWrapper}>
                 <GridTable>
