@@ -14,6 +14,7 @@ import Encounter from "./models/Encounter";
 export default function HomePage() 
 {
     const [encounters, setEncounters] = useState<Encounter[]>([]);
+    const [guesses, setGuesses] = useState<Encounter[]>([]);
     const [rows, setRows] = useState([
         [
             GridCellState.Grey,
@@ -60,6 +61,7 @@ export default function HomePage()
 
     function HandleGuessSubmit(guess: Encounter) 
     {
+        setGuesses(prev => [...prev, guess]);
         alert(`You guessed: ${guess.name}`); // Placeholder for actual guess handling logic
     }
 
@@ -69,7 +71,7 @@ export default function HomePage()
                 <h1>RaDdle</h1>
             </div>
             <div className={styles.guessEntryBoxWrapper}>
-                <GuessEntryBox encounters={encounters} callback={HandleGuessSubmit} />
+                <GuessEntryBox encounters={encounters} guesses={guesses} callback={HandleGuessSubmit} />
             </div>
             <div className={styles.gridTableWrapper}>
                 <GridTable>
