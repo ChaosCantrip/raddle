@@ -8,6 +8,7 @@ export default function GuessEntryBox({ encounters, callback }: { encounters: En
 {
     const [inputValue, setInputValue] = useState("");
     const [filteredEncounters, setFilteredEncounters] = useState<Encounter[]>([]);
+    const [inputFocused, setInputFocused] = useState(false);
 
     useEffect(() => 
     {
@@ -32,11 +33,10 @@ export default function GuessEntryBox({ encounters, callback }: { encounters: En
 
     return (
         <div className={styles.container}>
-            <input type="text" className={styles.input} placeholder="Search..." value={inputValue} onChange={(event) => setInputValue(event.target.value)}
-            />
-            <div className={styles.suggestions}>
+            <input type="text" className={styles.input} placeholder="Search..." value={inputValue} onChange={(event) => setInputValue(event.target.value)} onFocus={() => setInputFocused(true)} onBlur={() => setInputFocused(false)}/>
+            <div className={styles.suggestions + " " + ((filteredEncounters.length > 0 && inputFocused) ? styles.show : "")}>
                 {filteredEncounters.map(encounter => (
-                    <div key={encounter.id} className={styles.suggestion} onClick={() => HandleSubmit(encounter)}>
+                    <div key={encounter.id} className={styles.suggestion} onMouseDown={() => HandleSubmit(encounter)}>
                         {encounter.name}
                     </div>
                 ))}
