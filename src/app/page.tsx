@@ -145,6 +145,9 @@ export default function HomePage()
                     ))}
                 </GridTable>
             </div>
+            <footer className={styles.footer}>
+                <p className={styles.version_number}>RaDdle v{process.env.NEXT_PUBLIC_VERSION_NUMBER}</p>
+            </footer>
         </div>
     );
 }
