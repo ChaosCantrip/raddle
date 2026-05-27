@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    width: 100%;
 }
 
 .content {
@@ -16,4 +17,11 @@
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(12px);
     margin: 3rem 0;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.guessEntryBoxWrapper {
+    width: 100%;
 }

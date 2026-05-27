@@ -4,11 +4,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    width: 8rem;
-    height: 8rem;
+    aspect-ratio: 1 / 1;
     animation: slideRightFadeIn 0.5s ease-out forwards;
     animation-delay: var(--delay, 0ms);
+    flex: 1;
 
     border: 1px solid white;
 }
