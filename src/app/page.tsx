@@ -5,11 +5,11 @@ import GridRow from "@/components/GridRow";
 import GridCell from "@/components/GridCell";
 
 import styles from "./page.module.css";
-import GridCellState from "@/app/models/GridCellState";
+import GridCellState from "@/models/GridCellState";
 
 import { useEffect, useState } from "react";
 import GuessEntryBox from "@/components/GuessEntryBox";
-import Encounter from "./models/Encounter";
+import Encounter from "../models/Encounter";
 
 interface GuessPair {
     encounter: Encounter;

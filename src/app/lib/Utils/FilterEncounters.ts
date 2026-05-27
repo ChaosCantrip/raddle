@@ -1,4 +1,4 @@
-import Encounter from "@/app/models/Encounter";
+import Encounter from "@/models/Encounter";
 
 function FilterEncounters(inputValue: string, encounters: Encounter[], guesses: Encounter[]) 
 {
