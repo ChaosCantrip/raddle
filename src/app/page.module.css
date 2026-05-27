@@ -4,6 +4,8 @@
     align-items: center;
     gap: 1rem;
     width: 100%;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .content {
@@ -12,16 +14,20 @@
     align-self: center;
     align-items: center;
     padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 1.25rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(12px);
     margin: 3rem 0;
     max-width: 600px;
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
+    height: 100%;
 }
 
 .guessEntryBoxWrapper {
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
 }

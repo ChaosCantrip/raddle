@@ -15,8 +15,7 @@
     font-size: clamp(0.65rem, 1.2vw, 0.9rem);
     line-height: 1.2;
     text-align: center;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    overflow-wrap: break-word;
 
     border: 1px solid white;
 }
