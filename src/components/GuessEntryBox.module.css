@@ -4,7 +4,7 @@
     align-items: center;
     gap: 0.5rem;
     position: relative;
-    width: 30rem;
+    width: 100%;
 }
 
 .input {
