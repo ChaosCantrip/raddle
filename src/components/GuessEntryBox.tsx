@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./GuessEntryBox.module.css";
 import Encounter from "@/models/Encounter";
-import Utils from "@/app/lib/Utils";
+import Utils from "@/lib/Utils";
 
 export default function GuessEntryBox({ encounters, guesses, callback }: { encounters: Encounter[]; guesses: Encounter[]; callback: (guess: Encounter) => void }) 
 {
