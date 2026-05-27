@@ -17,7 +17,7 @@ export default function GuessEntryBox({ encounters, guesses, callback }: { encou
             const query = inputValue.toLowerCase();
 
             const startsWithMatches = encounters.filter(encounter => encounter.name.toLowerCase().startsWith(query) && !guesses.includes(encounter));
-            const includesMatches = encounters.filter(encounter => encounter.name.toLowerCase().includes(query) && !startsWithMatches.includes(encounter));
+            const includesMatches = encounters.filter(encounter => encounter.name.toLowerCase().includes(query) && !startsWithMatches.includes(encounter) && !guesses.includes(encounter));
 
             setFilteredEncounters([...startsWithMatches, ...includesMatches]);
         }
