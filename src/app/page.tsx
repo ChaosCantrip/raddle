@@ -22,6 +22,7 @@ export default function HomePage()
     const [guesses, setGuesses] = useState<Encounter[]>([]);
     const [guessPairs, setGuessPairs] = useState<GuessPair[]>([]);
     const [guessedCorrectly, setGuessedCorrectly] = useState(false);
+    const [demoAnswer, setDemoAnswer] = useState<Encounter | null>(null);
 
     // Load Encounters
     useEffect(() => 
@@ -50,16 +51,40 @@ export default function HomePage()
         LoadEncounters();
     }, []);
 
+    useEffect(() =>
+    {
+        async function LoadDemoAnswer() 
+        {
+            if (demoAnswer === null && encounters.length > 0)
+            {
+                const randomAnswer = encounters[Math.floor(Math.random() * encounters.length)];
+                setDemoAnswer(randomAnswer);
+            }
+        }
+
+        LoadDemoAnswer();
+    }, [encounters, demoAnswer]);
+
+    function ResetGame()
+    {
+        setGuesses([]);
+        setGuessPairs([]);
+        setGuessedCorrectly(false);
+        setDemoAnswer(null);
+    }
+
     async function HandleGuessSubmit(guess: Encounter) 
     {
         setGuesses(prev => [...prev, guess]);
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/guess`, {
+        console.log("Demo Answer:", demoAnswer);
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/guess_demo`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ guess_id: guess.id }),
+            body: JSON.stringify({ guess_id: guess.id, answer_id: demoAnswer!.id }),
         });
         const data = await response.json();
 
@@ -104,6 +129,7 @@ export default function HomePage()
             </div>
             <div className={styles.guessedCorrectlyMessage} hidden={!guessedCorrectly}>
                 <h2>Congratulations! You guessed correctly in {guesses.length} guesses!</h2>
+                <button onClick={ResetGame}>Play Again</button>
             </div>
             <div className={styles.gridTableWrapper}>
                 <GridTable>
