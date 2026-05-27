@@ -1,7 +1,7 @@
 .gridTable {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.6rem;
     width: 100%;
     flex: 1;
 }
@@ -9,16 +9,18 @@
 .columnHeaders {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 0.5rem;
-    font-weight: bold;
-    font-size: clamp(0.65rem, 1.2vw, 0.9rem);
+    gap: 0.6rem;
+    font-weight: 600;
+    font-size: clamp(0.65rem, 1.1vw, 0.85rem);
+    color:var(--muted);
 }
 
 .columnHeader {
-    border-bottom: 2px solid white;
-    padding-block: 0.5rem;
+    padding-block: 0.55rem;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    border-bottom:2px solid rgba(255,255,255,0.08);
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
 }
