@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./GuessEntryBox.module.css";
 import Encounter from "@/app/models/Encounter";
+import Utils from "@/app/lib/Utils";
 
 export default function GuessEntryBox({ encounters, guesses, callback }: { encounters: Encounter[]; guesses: Encounter[]; callback: (guess: Encounter) => void }) 
 {
@@ -12,17 +13,9 @@ export default function GuessEntryBox({ encounters, guesses, callback }: { encou
 
     useEffect(() => 
     {
-        function FilterEncounters() 
-        {
-            const query = inputValue.toLowerCase();
-
-            const startsWithMatches = encounters.filter(encounter => encounter.name.toLowerCase().startsWith(query) && !guesses.includes(encounter));
-            const includesMatches = encounters.filter(encounter => encounter.name.toLowerCase().includes(query) && !startsWithMatches.includes(encounter) && !guesses.includes(encounter));
-
-            setFilteredEncounters([...startsWithMatches, ...includesMatches]);
-        }
-
-        FilterEncounters();
+        // We suppress ESLint here as the logic is sound
+        //eslint-disable-next-line react-hooks/set-state-in-effect
+        setFilteredEncounters(Utils.FilterEncounters(inputValue, encounters, guesses));
     }, [inputValue, encounters, guesses]);
 
     function HandleSubmit(encounter: Encounter) 
