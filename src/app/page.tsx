@@ -11,6 +11,7 @@ import GridCellState from "@/models/GridCellState";
 import { useEffect, useState } from "react";
 import GuessEntryBox from "@/components/GuessEntryBox";
 import Encounter from "../models/Encounter";
+import Footer from "@/components/Footer";
 
 interface GuessPair {
     encounter: Encounter;
@@ -165,10 +166,7 @@ export default function HomePage()
                     ))}
                 </GridTable>
             </div>
-            <footer className={styles.footer}>
-                <p className={styles.version_number}>RaDdle v{process.env.NEXT_PUBLIC_VERSION_NUMBER}</p>
-                <p>by ChaosCantrip</p>
-            </footer>
+            <Footer />
         </div>
     );
 }

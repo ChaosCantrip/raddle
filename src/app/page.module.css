@@ -40,10 +40,3 @@
 .guessEntryBoxWrapper {
     width: 100%;
 }
-
-.footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
