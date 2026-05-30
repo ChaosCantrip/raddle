@@ -28,6 +28,7 @@ export default function HomePage()
     const [shifting, setShifting] = useState(false);
     const [guessedCorrectly, setGuessedCorrectly] = useState(false);
     const [demoAnswer, setDemoAnswer] = useState<Encounter | null>(null);
+    const [place, setPlace] = useState<number | null>(null);
 
     // Load Encounters
     useEffect(() => 
@@ -83,8 +84,6 @@ export default function HomePage()
         setGuesses(prev => [guess, ...prev]);
         setShifting(true);
 
-        console.log("Demo Answer:", demoAnswer);
-
         const response_body: DailyGuessRequest = {
             guess_id: guess.id,
         };
@@ -109,6 +108,7 @@ export default function HomePage()
 
         if (data.result === "correct") 
         {
+            setPlace(data.place);
             HandleCorrectGuess(guess);
             return;
         }
@@ -137,7 +137,7 @@ export default function HomePage()
     return (
         <div className={styles.content}>
             {guessedCorrectly ? (
-                <CongratulationsBox guessCount={guesses.length} onReset={ResetGame} />
+                <CongratulationsBox guessCount={guesses.length} onReset={ResetGame} place={place} />
             ) : (
                 <MainTextBox />
             )}
@@ -185,15 +185,36 @@ function MainTextBox()
     );
 }
 
-function CongratulationsBox({ guessCount, onReset }: { guessCount: number, onReset: () => void }) 
+function CongratulationsBox({ guessCount, place, onReset }: { guessCount: number, place: number | null, onReset: () => void }) 
 {
     return (
         <div className={styles.mainTextBox}>
             <p className={styles.mainText}>Congratulations!</p>
-            <p className={styles.subText}>You guessed the Encounter in {guessCount} guesses!</p>
+            <p className={styles.subText}>You guessed the Encounter in {guessCount} guess{guessCount !== 1 ? "es" : ""}!</p>
+            {place !== null && (
+                <p className={styles.subText}>You were the {place}{GetOrdinalSuffix(place)} person to guess correctly today!</p>
+            )}
             <button className={styles.resetButton} onClick={onReset}>
                 Play Again
             </button>
         </div>
     )
+}
+
+function GetOrdinalSuffix(n: number): string
+{
+    const j = n % 10, k = n % 100;
+    if (j === 1 && k !== 11) 
+    {
+        return "st";
+    }
+    if (j === 2 && k !== 12) 
+    {
+        return "nd";
+    }
+    if (j === 3 && k !== 13) 
+    {
+        return "rd";
+    }
+    return "th";
 }
