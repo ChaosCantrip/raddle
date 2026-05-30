@@ -83,7 +83,7 @@ export default function HomePage()
 
         console.log("Demo Answer:", demoAnswer);
 
-        const response = await fetch("/api/guess_demo", {
+        const response = await fetch("/api/guess_arcade", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
