@@ -4,7 +4,7 @@ import GetDailyAnswer from "@/lib/DailyAnswer";
 import CompareEncounters from "@/lib/CompareEncounters";
 import type DailyGuessRequest from "@/models/DailyGuessRequest";
 import { GuessResponse } from "@/models/GuessResponse";
-import clientPromise from "@/lib/MongoDB";
+import getMongoClient from "@/lib/MongoDB";
 
 export async function POST(request: NextRequest) 
 {
@@ -56,7 +56,7 @@ const COLLECTION_NAME = "daily_guesses";
 
 async function GetHowManyPeopleAnsweredToday() 
 {
-    const client = await clientPromise;
+    const client = await getMongoClient();
     const db = client.db(DB_NAME);
     const collection = db.collection(COLLECTION_NAME);
 
