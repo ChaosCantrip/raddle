@@ -11,6 +11,8 @@ import GridCellState from "@/models/GridCellState";
 import { useEffect, useState } from "react";
 import GuessEntryBox from "@/components/GuessEntryBox";
 import Encounter from "@/models/Encounter";
+import type ArcadeGuessRequest from "@/models/ArcadeGuessRequest";
+import type { ErrorResult, NonErrorResult } from "@/models/GuessResponse";
 
 interface GuessPair {
     encounter: Encounter;
@@ -83,21 +85,28 @@ export default function HomePage()
 
         console.log("Demo Answer:", demoAnswer);
 
+        const response_body: ArcadeGuessRequest = {
+            guess_id: guess.id,
+            answer_id: demoAnswer!.id,
+        };
+        
         const response = await fetch("/api/guess/arcade", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ guess_id: guess.id, answer_id: demoAnswer!.id }),
+            body: JSON.stringify(response_body),
         });
-        const data = await response.json();
 
         if (!response.ok)         
         {
+            const data = await response.json() as ErrorResult;
             console.error("Error submitting guess:", data.error || response.statusText);
             alert("Error submitting guess.");
             return;
         }
+
+        const data = await response.json() as NonErrorResult;
 
         if (data.result === "correct") 
         {
