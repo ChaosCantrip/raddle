@@ -8,7 +8,6 @@ const COLLECTION_NAME = "daily_answers";
 
 export default async function GetDailyAnswer(): Promise<Encounter>
 {
-    console.log("GetDailyAnswer called");
     const today = new Date().toISOString().split("T")[0];
 
     const client = await getMongoClient();
