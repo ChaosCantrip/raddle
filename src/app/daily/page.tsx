@@ -108,7 +108,7 @@ export default function HomePage()
 
         if (data.result === "correct") 
         {
-            setPlace(data.place);
+            setPlace(data.place!);
             HandleCorrectGuess(guess);
             return;
         }
