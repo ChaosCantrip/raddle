@@ -4,6 +4,7 @@ let clientPromise: Promise<MongoClient>;
 
 async function getMongoClient(): Promise<MongoClient> 
 {
+    console.log("getMongoClient called");
     if (!clientPromise) 
     {
         const MONGODB = {
