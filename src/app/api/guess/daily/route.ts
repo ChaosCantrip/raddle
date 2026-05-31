@@ -5,6 +5,7 @@ import CompareEncounters from "@/lib/CompareEncounters";
 import type DailyGuessRequest from "@/models/DailyGuessRequest";
 import { GuessResponse } from "@/models/GuessResponse";
 import getMongoClient from "@/lib/MongoDB";
+import { GetDateString } from "@/lib/Date";
 
 export async function POST(request: NextRequest) 
 {
@@ -60,7 +61,7 @@ async function GetHowManyPeopleAnsweredToday()
     const db = client.db(DB_NAME);
     const collection = db.collection(COLLECTION_NAME);
 
-    const today = new Date().toISOString().split("T")[0];
+    const today = GetDateString();
 
     const stats = await collection.findOneAndUpdate(
         { date: today },

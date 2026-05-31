@@ -13,6 +13,7 @@ import GuessEntryBox from "@/components/GuessEntryBox";
 import Encounter from "@/models/Encounter";
 import type { ErrorResult, NonErrorResult } from "@/models/GuessResponse";
 import DailyGuessRequest from "@/models/DailyGuessRequest";
+import { GetTimeUntilNextReset, TimeDeltaToString } from "@/lib/Date";
 
 interface GuessPair {
     encounter: Encounter;
@@ -29,6 +30,7 @@ export default function HomePage()
     const [guessedCorrectly, setGuessedCorrectly] = useState(false);
     const [demoAnswer, setDemoAnswer] = useState<Encounter | null>(null);
     const [place, setPlace] = useState<number | null>(null);
+    const [timeUntilReset, setTimeUntilReset] = useState<string>("");
 
     // Load Encounters
     useEffect(() => 
@@ -70,6 +72,20 @@ export default function HomePage()
 
         LoadDemoAnswer();
     }, [encounters, demoAnswer]);
+
+    useEffect(() =>
+    {
+        function UpdateTimeUntilReset()
+        {
+            const delta = GetTimeUntilNextReset();
+            setTimeUntilReset(TimeDeltaToString(delta));
+        }
+
+        UpdateTimeUntilReset();
+        const interval = setInterval(UpdateTimeUntilReset, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     function ResetGame()
     {
@@ -137,7 +153,7 @@ export default function HomePage()
     return (
         <div className={styles.content}>
             {guessedCorrectly ? (
-                <CongratulationsBox guessCount={guesses.length} onReset={ResetGame} place={place} />
+                <CongratulationsBox guessCount={guesses.length} onReset={ResetGame} place={place} timeUntilReset={timeUntilReset} />
             ) : (
                 <MainTextBox />
             )}
@@ -185,15 +201,14 @@ function MainTextBox()
     );
 }
 
-function CongratulationsBox({ guessCount, place, onReset }: { guessCount: number, place: number | null, onReset: () => void }) 
+function CongratulationsBox({ guessCount, place, onReset, timeUntilReset }: { guessCount: number, place: number | null, onReset: () => void, timeUntilReset: string }) 
 {
     return (
         <div className={styles.mainTextBox}>
             <p className={styles.mainText}>Congratulations!</p>
             <p className={styles.subText}>You guessed the Encounter in {guessCount} guess{guessCount !== 1 ? "es" : ""}!</p>
-            {place !== null && (
-                <p className={styles.subText}>You were the {place}{GetOrdinalSuffix(place)} person to guess correctly today!</p>
-            )}
+            <p className={styles.subText}>You were the {place}{GetOrdinalSuffix(place!)} person to guess correctly today!</p>
+            <p className={styles.subText}>Check back in {timeUntilReset} for tomorrow&apos;s Encounter!</p>
             <button className={styles.resetButton} onClick={onReset}>
                 Play Again
             </button>
