@@ -13,7 +13,7 @@ import GuessEntryBox from "@/components/GuessEntryBox";
 import Encounter from "@/models/Encounter";
 import type { ErrorResult, NonErrorResult } from "@/models/GuessResponse";
 import DailyGuessRequest from "@/models/DailyGuessRequest";
-import { GetTimeUntilNextReset, TimeDeltaToString } from "@/lib/Date";
+import { GetDateString, GetDaysSinceEpoch, GetTimeUntilNextReset, TimeDeltaToString } from "@/lib/Date";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
@@ -191,6 +191,7 @@ function MainTextBox()
     return (
         <div className={styles.mainTextBox}>
             <p className={styles.mainText}>Guess today&apos;s Raid or Dungeon Encounter!</p>
+            <p className={styles.subText}>RaDdle #{GetDaysSinceEpoch()} ({GetDateString()})</p>
             <p className={styles.subText}>Type any Encounter Name to start...</p>
         </div>
     );

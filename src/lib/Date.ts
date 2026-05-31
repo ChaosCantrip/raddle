@@ -47,3 +47,13 @@ export function TimeDeltaToString(delta: number): string
     result += `${seconds}s`;
     return result;
 }
+
+const BEGINNING_DATE = new Date("2026-06-02T00:00:00Z");
+
+export function GetDaysSinceEpoch(): number
+{
+    const epoch = BEGINNING_DATE;
+    const today = GetDate();
+    const diff = today.getTime() - epoch.getTime();
+    return Math.floor(diff / (1000 * 60 * 60 * 24));
+}
