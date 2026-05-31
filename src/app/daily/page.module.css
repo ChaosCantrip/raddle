@@ -44,6 +44,7 @@
     gap: 0.5rem;
     padding: 1rem;
     text-align: center;
+    width: 100%;
 }
 
 .mainText {
@@ -57,20 +58,52 @@
     color: var(--muted);
 }
 
-.arcadeLink {
+.buttons_container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.button {
+    flex: 1;
     border-radius:8px;
     border:1px solid rgba(255,255,255,0.14);
-    background: linear-gradient(180deg, rgba(255,184,77,0.22), rgba(255,184,77,0.12));
-    box-shadow: 0 10px 26px rgba(255,184,77,0.06), 0 0 12px rgba(255,184,77,0.08);
     color: var(--text);
-    padding: 0.6rem 1.2rem;
+    padding: 1rem 1.2rem;
     font-size: 1.2rem;
     cursor: pointer;
-    text-decoration: none;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    text-wrap: nowrap;
+}
+
+.button .icon {
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.arcadeLink {
+    background: linear-gradient(180deg, rgba(71,192,121,0.16), rgba(71,192,121,0.06));
+    box-shadow: 0 10px 26px rgba(71,192,121,0.06), 0 0 12px rgba(71,192,121,0.08);
 }
 
 .arcadeLink:hover {
+    background: linear-gradient(180deg, rgba(71,192,121,0.22), rgba(71,192,121,0.12));
+    border:1px solid rgba(71,192,121,0.34);
+    box-shadow: 0 12px 30px rgba(71,192,121,0.10), 0 0 14px rgba(71,192,121,0.14);
+}
+
+.shareButton {
+    background: linear-gradient(180deg, rgba(255,184,77,0.22), rgba(255,184,77,0.12));
+    box-shadow: 0 10px 26px rgba(255,184,77,0.06), 0 0 12px rgba(255,184,77,0.08);
+}
+
+.shareButton:hover {
     background: linear-gradient(180deg, rgba(255,184,77,0.22), rgba(255,184,77,0.12));
     border:1px solid rgba(255,184,77,0.34);
     box-shadow: 0 12px 30px rgba(255,184,77,0.10), 0 0 14px rgba(255,184,77,0.14);

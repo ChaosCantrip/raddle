@@ -15,7 +15,7 @@ import type { ErrorResult, NonErrorResult } from "@/models/GuessResponse";
 import DailyGuessRequest from "@/models/DailyGuessRequest";
 import { GetDateString, GetDaysSinceEpoch, GetTimeUntilNextReset, TimeDeltaToString } from "@/lib/Date";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { faCaretRight, faShare } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 interface GuessPair {
@@ -144,11 +144,16 @@ export default function HomePage()
         setTimeout(() => setShifting(false), 450);
         setGuessedCorrectly(true);
     }
+    
+    function HandleShare() 
+    {
+        alert("Lol I didn't implement this yet");
+    }
 
     return (
         <div className={styles.content}>
             {guessedCorrectly ? (
-                <CongratulationsBox guessCount={guesses.length} place={place} timeUntilReset={timeUntilReset} />
+                <CongratulationsBox guessCount={guesses.length} place={place} timeUntilReset={timeUntilReset} onShare={HandleShare} />
             ) : (
                 <MainTextBox />
             )}
@@ -197,7 +202,7 @@ function MainTextBox()
     );
 }
 
-function CongratulationsBox({ guessCount, place, timeUntilReset }: { guessCount: number, place: number | null, timeUntilReset: string }) 
+function CongratulationsBox({ guessCount, place, timeUntilReset, onShare }: { guessCount: number, place: number | null, timeUntilReset: string, onShare: () => void }) 
 {
     return (
         <div className={styles.mainTextBox}>
@@ -205,9 +210,14 @@ function CongratulationsBox({ guessCount, place, timeUntilReset }: { guessCount:
             <p className={styles.subText}>You guessed the Encounter in {guessCount} guess{guessCount !== 1 ? "es" : ""}!</p>
             <p className={styles.subText}>You were the {place}{GetOrdinalSuffix(place!)} person to guess correctly today!</p>
             <p className={styles.subText}>Check back in {timeUntilReset} for tomorrow&apos;s Encounter!</p>
-            <Link className={styles.arcadeLink} href="/arcade">
+            <div className={styles.buttons_container}>
+                <Link className={styles.button + " " + styles.arcadeLink} href="/arcade">
                 Play Arcade Mode <CaretRightIcon />
-            </Link>
+                </Link>
+                <button className={styles.button + " " + styles.shareButton} onClick={onShare}>
+                    <ShareIcon /> Share
+                </button>
+            </div>
         </div>
     )
 }
@@ -233,4 +243,9 @@ function GetOrdinalSuffix(n: number): string
 function CaretRightIcon()
 {
     return <FontAwesomeIcon icon={faCaretRight} className={styles.caretIcon} />;
+}
+
+function ShareIcon()
+{
+    return <FontAwesomeIcon icon={faShare} className={styles.icon + " " + styles.shareIcon} />
 }
