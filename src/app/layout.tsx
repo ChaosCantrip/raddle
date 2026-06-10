@@ -5,7 +5,7 @@ import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import PageContainer from "@/components/Page";
+import PageContainer from "@/components/PageContainer";
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
