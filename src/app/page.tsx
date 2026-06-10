@@ -11,21 +11,17 @@ import { useEffect, useState } from "react";
 import GuessEntryBox from "@/components/GuessEntryBox";
 import Encounter from "./models/Encounter";
 
+interface GuessPair {
+    encounter: Encounter;
+    cellStates: GridCellState[];
+}
+
 export default function HomePage() 
 {
     const [encounters, setEncounters] = useState<Encounter[]>([]);
     const [guesses, setGuesses] = useState<Encounter[]>([]);
-    const [rows, setRows] = useState([
-        [
-            GridCellState.Grey,
-            GridCellState.Grey,
-            GridCellState.Green,
-            GridCellState.Grey,
-            GridCellState.Yellow,
-            GridCellState.Yellow,
-        ],
-        [null, null, null, null, null, null]
-    ]);
+    const [guessPairs, setGuessPairs] = useState<GuessPair[]>([]);
+    const [guessedCorrectly, setGuessedCorrectly] = useState(false);
 
     // Load Encounters
     useEffect(() => 
@@ -54,15 +50,48 @@ export default function HomePage()
         LoadEncounters();
     }, []);
 
-    function AddRow() 
-    {
-        setRows(prev => [...prev, [null, null, null, null, null, null]]);
-    }
-
-    function HandleGuessSubmit(guess: Encounter) 
+    async function HandleGuessSubmit(guess: Encounter) 
     {
         setGuesses(prev => [...prev, guess]);
-        alert(`You guessed: ${guess.name}`); // Placeholder for actual guess handling logic
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/guess`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ guess_id: guess.id }),
+        });
+        const data = await response.json();
+
+        if (!response.ok)         
+        {
+            console.error("Error submitting guess:", data.error || response.statusText);
+            alert("Error submitting guess.");
+            return;
+        }
+
+        if (data.result === "correct") 
+        {
+            HandleCorrectGuess(guess);
+            return;
+        }
+
+        const cellStates: GridCellState[] = [
+            data.comparisons.name,
+            data.comparisons.activity_type,
+            data.comparisons.activity,
+            data.comparisons.enemy_types,
+            data.comparisons.encounters,
+            data.comparisons.expansion,
+        ]
+        
+        setGuessPairs(prev => [...prev, { encounter: guess, cellStates: cellStates }]);
+    }
+
+    function HandleCorrectGuess(guess: Encounter) 
+    {
+        setGuessPairs(prev => [...prev, { encounter: guess, cellStates: [GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green] }]);
+        setGuessedCorrectly(true);
     }
 
     return (
@@ -70,20 +99,25 @@ export default function HomePage()
             <div>
                 <h1>RaDdle</h1>
             </div>
-            <div className={styles.guessEntryBoxWrapper}>
+            <div className={styles.guessEntryBoxWrapper} hidden={guessedCorrectly}>
                 <GuessEntryBox encounters={encounters} guesses={guesses} callback={HandleGuessSubmit} />
+            </div>
+            <div className={styles.guessedCorrectlyMessage} hidden={!guessedCorrectly}>
+                <h2>Congratulations! You guessed correctly in {guesses.length} guesses!</h2>
             </div>
             <div className={styles.gridTableWrapper}>
                 <GridTable>
-                    {rows.map((row, rowIndex) => (
-                        <GridRow key={rowIndex}>
-                            {row.map((cellState, cellIndex) => (
-                                <GridCell key={cellIndex} state={cellState ?? undefined} />
-                            ))}
+                    {guessPairs.map((pair, pairIndex) => (
+                        <GridRow key={pairIndex}>
+                            <GridCell state={pair.cellStates[0] ?? undefined}>{pair.encounter.name}</GridCell>
+                            <GridCell state={pair.cellStates[1] ?? undefined}>{pair.encounter.activity_type}</GridCell>
+                            <GridCell state={pair.cellStates[2] ?? undefined}>{pair.encounter.activity}</GridCell>
+                            <GridCell state={pair.cellStates[3] ?? undefined}>{pair.encounter.enemy_types.join(", ")}</GridCell>
+                            <GridCell state={pair.cellStates[4] ?? undefined}>{pair.encounter.encounters.join(", ")}</GridCell>
+                            <GridCell state={pair.cellStates[5] ?? undefined}>{pair.encounter.expansion}</GridCell>
                         </GridRow>
                     ))}
                 </GridTable>
-                <button onClick={AddRow}>Add Row</button>
             </div>
         </div>
     );
