@@ -7,7 +7,7 @@ import { GuessResponse } from "@/models/GuessResponse";
 
 export async function POST(request: NextRequest) 
 {
-    const todays_answer = GetDailyAnswer();
+    const todays_answer = await GetDailyAnswer();
 
     let guess_id: string;
 
