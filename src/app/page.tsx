@@ -133,6 +133,19 @@ export default function HomePage()
             </div>
             <div className={styles.gridTableWrapper}>
                 <GridTable>
+                    {
+                        guessPairs.length === 0 &&
+                        <div className={styles.noGuessesMessage}>
+                            <GridRow>
+                                <GridCell state={GridCellState.Empty} />
+                                <GridCell state={GridCellState.Empty} />
+                                <GridCell state={GridCellState.Empty} />
+                                <GridCell state={GridCellState.Empty} />
+                                <GridCell state={GridCellState.Empty} />
+                                <GridCell state={GridCellState.Empty} />
+                            </GridRow>
+                        </div>
+                    }
                     {guessPairs.map((pair, pairIndex) => (
                         <GridRow key={pairIndex}>
                             <GridCell state={pair.cellStates[0] ?? undefined}>{pair.encounter.name}</GridCell>
@@ -147,6 +160,7 @@ export default function HomePage()
             </div>
             <footer className={styles.footer}>
                 <p className={styles.version_number}>RaDdle v{process.env.NEXT_PUBLIC_VERSION_NUMBER}</p>
+                <p>by ChaosCantrip</p>
             </footer>
         </div>
     );
