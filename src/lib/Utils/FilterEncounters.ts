@@ -4,8 +4,22 @@ function FilterEncounters(inputValue: string, encounters: Encounter[], guesses: 
 {
     const query = inputValue.toLowerCase();
 
-    const startsWithMatches = encounters.filter(encounter => encounter.name.toLowerCase().startsWith(query) && !guesses.includes(encounter));
-    const includesMatches = encounters.filter(encounter => encounter.name.toLowerCase().includes(query) && !startsWithMatches.includes(encounter));
+    const guessedIds = new Set(guesses.map(g => g.id));
+
+    const startsWithMatches = encounters.filter(encounter => 
+    {
+        const name = encounter.name.toLowerCase();
+        if (guessedIds.has(encounter.id)) return false;
+        return name.startsWith(query);
+    });
+
+    const includesMatches = encounters.filter(encounter => 
+    {
+        const name = encounter.name.toLowerCase();
+        if (guessedIds.has(encounter.id)) return false;
+        if (startsWithMatches.includes(encounter)) return false;
+        return name.includes(query);
+    });
 
     return [...startsWithMatches, ...includesMatches];
 }

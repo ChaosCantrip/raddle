@@ -5,3 +5,13 @@
     width: 100%;
     align-items: stretch;
 }
+
+@keyframes rowShiftDown {
+    0% { transform: translateY(-2.8rem); opacity: 0.98; }
+    60% { transform: translateY(0.4rem); }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.shiftDown {
+    animation: rowShiftDown 420ms cubic-bezier(.2,.9,.3,1) forwards;
+}

@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     aspect-ratio: 1 / 1;
-    animation: slideRightFadeIn 0.5s ease-out forwards;
+    animation: slideDownFadeIn 0.5s cubic-bezier(.2,.9,.3,1) forwards;
     animation-delay: var(--delay, 0ms);
     flex: 1;
     min-width: 0;
@@ -48,17 +48,17 @@
   border:1px solid rgba(255,255,255,0.06);
 }
 
-@keyframes slideRightFadeIn {
+@keyframes slideDownFadeIn {
   0% {
     opacity: 0;
-    transform: translateX(-5rem);
+    transform: translateY(-2.5rem) scale(0.98);
   }
-  90% {
-    transform: translateX(0.5rem);
+  80% {
+    transform: translateY(0.25rem) scale(1.005);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0) scale(1);
   }
 }
 

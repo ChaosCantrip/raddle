@@ -2,6 +2,7 @@
 
 import GridTable from "@/components/GridTable";
 import GridRow from "@/components/GridRow";
+import gridRowStyles from "@/components/GridRow.module.css";
 import GridCell from "@/components/GridCell";
 
 import styles from "./page.module.css";
@@ -14,6 +15,7 @@ import Encounter from "../models/Encounter";
 interface GuessPair {
     encounter: Encounter;
     cellStates: GridCellState[];
+    id?: number;
 }
 
 export default function HomePage() 
@@ -21,6 +23,7 @@ export default function HomePage()
     const [encounters, setEncounters] = useState<Encounter[]>([]);
     const [guesses, setGuesses] = useState<Encounter[]>([]);
     const [guessPairs, setGuessPairs] = useState<GuessPair[]>([]);
+    const [shifting, setShifting] = useState(false);
     const [guessedCorrectly, setGuessedCorrectly] = useState(false);
     const [demoAnswer, setDemoAnswer] = useState<Encounter | null>(null);
 
@@ -75,7 +78,8 @@ export default function HomePage()
 
     async function HandleGuessSubmit(guess: Encounter) 
     {
-        setGuesses(prev => [...prev, guess]);
+        setGuesses(prev => [guess, ...prev]);
+        setShifting(true);
 
         console.log("Demo Answer:", demoAnswer);
 
@@ -110,12 +114,15 @@ export default function HomePage()
             data.comparisons.expansion,
         ]
         
-        setGuessPairs(prev => [...prev, { encounter: guess, cellStates: cellStates }]);
+        setGuessPairs(prev => [{ encounter: guess, cellStates: cellStates, id: Date.now() }, ...prev]);
+        setTimeout(() => setShifting(false), 450);
     }
 
     function HandleCorrectGuess(guess: Encounter) 
     {
-        setGuessPairs(prev => [...prev, { encounter: guess, cellStates: [GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green] }]);
+        setGuessPairs(prev => [{ encounter: guess, cellStates: [GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green], id: Date.now() }, ...prev]);
+        setShifting(true);
+        setTimeout(() => setShifting(false), 450);
         setGuessedCorrectly(true);
     }
 
@@ -147,7 +154,7 @@ export default function HomePage()
                         </div>
                     }
                     {guessPairs.map((pair, pairIndex) => (
-                        <GridRow key={pairIndex}>
+                        <GridRow key={pair.id ?? pairIndex} className={shifting && pairIndex > 0 ? gridRowStyles.shiftDown : undefined}>
                             <GridCell state={pair.cellStates[0] ?? undefined}>{pair.encounter.name}</GridCell>
                             <GridCell state={pair.cellStates[1] ?? undefined}>{pair.encounter.activity_type}</GridCell>
                             <GridCell state={pair.cellStates[2] ?? undefined}>{pair.encounter.activity}</GridCell>
