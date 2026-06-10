@@ -14,7 +14,7 @@ import Encounter from "../models/Encounter";
 import Footer from "@/components/Footer";
 
 import Image from "next/image";
-import BannerImage from "@/../public/banner.webp";
+import BannerImage from "@/../public/banner.png";
 
 interface GuessPair {
     encounter: Encounter;
