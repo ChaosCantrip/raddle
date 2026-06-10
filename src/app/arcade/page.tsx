@@ -27,7 +27,7 @@ export default function HomePage()
     const [guessPairs, setGuessPairs] = useState<GuessPair[]>([]);
     const [shifting, setShifting] = useState(false);
     const [guessedCorrectly, setGuessedCorrectly] = useState(false);
-    const [demoAnswer, setDemoAnswer] = useState<Encounter | null>(null);
+    const [answer, setAnswer] = useState<Encounter | null>(null);
 
     // Load Encounters
     useEffect(() => 
@@ -49,7 +49,7 @@ export default function HomePage()
             }
             catch (err) 
             {
-                console.error("Error fetching encounters:", err);
+                throw new Error("Failed to load encounters.", { cause: err });
             }
         }
 
@@ -58,24 +58,24 @@ export default function HomePage()
 
     useEffect(() =>
     {
-        async function LoadDemoAnswer() 
+        async function LoadAnswer() 
         {
-            if (demoAnswer === null && encounters.length > 0)
+            if (answer === null && encounters.length > 0)
             {
                 const randomAnswer = encounters[Math.floor(Math.random() * encounters.length)];
-                setDemoAnswer(randomAnswer);
+                setAnswer(randomAnswer);
             }
         }
 
-        LoadDemoAnswer();
-    }, [encounters, demoAnswer]);
+        LoadAnswer();
+    }, [encounters, answer]);
 
     function ResetGame()
     {
         setGuesses([]);
         setGuessPairs([]);
         setGuessedCorrectly(false);
-        setDemoAnswer(null);
+        setAnswer(null);
     }
 
     async function HandleGuessSubmit(guess: Encounter) 
@@ -83,11 +83,9 @@ export default function HomePage()
         setGuesses(prev => [guess, ...prev]);
         setShifting(true);
 
-        console.log("Demo Answer:", demoAnswer);
-
         const response_body: ArcadeGuessRequest = {
             guess_id: guess.id,
-            answer_id: demoAnswer!.id,
+            answer_id: answer!.id,
         };
         
         const response = await fetch("/api/guess/arcade", {
@@ -101,9 +99,7 @@ export default function HomePage()
         if (!response.ok)         
         {
             const data = await response.json() as ErrorResult;
-            console.error("Error submitting guess:", data.error || response.statusText);
-            alert("Error submitting guess.");
-            return;
+            throw new Error(`Error submitting guess: ${data.error}`);
         }
 
         const data = await response.json() as NonErrorResult;
