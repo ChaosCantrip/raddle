@@ -1,4 +1,5 @@
 .gridCell {
+    opacity: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,6 +7,8 @@
     padding: 1rem;
     width: 8rem;
     height: 8rem;
+    animation: slideRightFadeIn 0.5s ease-out forwards;
+    animation-delay: var(--delay, 0ms);
 
     border: 1px solid white;
 }
@@ -29,3 +32,24 @@
     background-color: grey;
     color: white;
 }
+
+@keyframes slideRightFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-5rem);
+  }
+  90% {
+    transform: translateX(0.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.gridCell:nth-child(1) { animation-delay: 0ms; }
+.gridCell:nth-child(2) { animation-delay: 50ms; }
+.gridCell:nth-child(3) { animation-delay: 100ms; }
+.gridCell:nth-child(4) { animation-delay: 150ms; }
+.gridCell:nth-child(5) { animation-delay: 200ms; }
+.gridCell:nth-child(6) { animation-delay: 250ms; }
