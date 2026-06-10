@@ -15,7 +15,7 @@ import type { ErrorResult, NonErrorResult } from "@/models/GuessResponse";
 import DailyGuessRequest from "@/models/DailyGuessRequest";
 import { GetDateString, GetDaysSinceEpoch, GetTimeUntilNextReset, TimeDeltaToString } from "@/lib/Date";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretRight, faShare } from "@fortawesome/free-solid-svg-icons";
+import { faCaretRight, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 interface GuessPair {
@@ -53,6 +53,7 @@ export default function HomePage()
     const [guesses, setGuesses] = useState<Encounter[]>(initialDailyState?.guesses ?? []);
     const [guessPairs, setGuessPairs] = useState<GuessPair[]>(initialDailyState?.guessPairs ?? []);
     const [shifting, setShifting] = useState(false);
+    const [screenshotMode, setScreenshotMode] = useState(false);
     const [guessedCorrectly, setGuessedCorrectly] = useState(initialDailyState?.guessedCorrectly ?? false);
     const [demoAnswer, setDemoAnswer] = useState<Encounter | null>(null);
     const [place, setPlace] = useState<number | null>(initialDailyState?.place ?? null);
@@ -186,15 +187,15 @@ export default function HomePage()
         setGuessedCorrectly(true);
     }
     
-    function HandleShare() 
+    function ToggleScreenshotMode() 
     {
-        alert("Lol I didn't implement this yet");
+        setScreenshotMode(prev => !prev);
     }
 
     return (
         <div className={styles.content}>
             {guessedCorrectly ? (
-                <CongratulationsBox guessCount={guesses.length} place={place} timeUntilReset={timeUntilReset} onShare={HandleShare} />
+                <CongratulationsBox guessCount={guesses.length} place={place} timeUntilReset={timeUntilReset} onToggleScreenshotMode={ToggleScreenshotMode} screenshotMode={screenshotMode} />
             ) : (
                 <MainTextBox />
             )}
@@ -218,12 +219,12 @@ export default function HomePage()
                     }
                     {guessPairs.map((pair, pairIndex) => (
                         <GridRow key={pair.id ?? pairIndex} className={shifting && pairIndex > 0 ? gridRowStyles.shiftDown : undefined}>
-                            <GridCell state={pair.cellStates[0] ?? undefined}>{pair.encounter.name}</GridCell>
-                            <GridCell state={pair.cellStates[1] ?? undefined}>{pair.encounter.activity_type}</GridCell>
-                            <GridCell state={pair.cellStates[2] ?? undefined}>{pair.encounter.activity}</GridCell>
-                            <GridCell state={pair.cellStates[3] ?? undefined}>{pair.encounter.enemy_types.join(", ")}</GridCell>
-                            <GridCell state={pair.cellStates[4] ?? undefined}>{pair.encounter.encounters.join(", ")}</GridCell>
-                            <GridCell state={pair.cellStates[5] ?? undefined}>{pair.encounter.expansion}</GridCell>
+                            <GridCell state={pair.cellStates[0] ?? undefined} hideText={screenshotMode}>{pair.encounter.name}</GridCell>
+                            <GridCell state={pair.cellStates[1] ?? undefined} hideText={screenshotMode}>{pair.encounter.activity_type}</GridCell>
+                            <GridCell state={pair.cellStates[2] ?? undefined} hideText={screenshotMode}>{pair.encounter.activity}</GridCell>
+                            <GridCell state={pair.cellStates[3] ?? undefined} hideText={screenshotMode}>{pair.encounter.enemy_types.join(", ")}</GridCell>
+                            <GridCell state={pair.cellStates[4] ?? undefined} hideText={screenshotMode}>{pair.encounter.encounters.join(", ")}</GridCell>
+                            <GridCell state={pair.cellStates[5] ?? undefined} hideText={screenshotMode}>{pair.encounter.expansion}</GridCell>
                         </GridRow>
                     ))}
                 </GridTable>
@@ -243,7 +244,7 @@ function MainTextBox()
     );
 }
 
-function CongratulationsBox({ guessCount, place, timeUntilReset, onShare }: { guessCount: number, place: number | null, timeUntilReset: string, onShare: () => void }) 
+function CongratulationsBox({ guessCount, place, timeUntilReset, onToggleScreenshotMode, screenshotMode }: { guessCount: number, place: number | null, timeUntilReset: string, onToggleScreenshotMode: () => void, screenshotMode: boolean }) 
 {
     return (
         <div className={styles.mainTextBox}>
@@ -255,8 +256,8 @@ function CongratulationsBox({ guessCount, place, timeUntilReset, onShare }: { gu
                 <Link className={styles.button + " " + styles.arcadeLink} href="/arcade">
                 Play Arcade Mode <CaretRightIcon />
                 </Link>
-                <button className={styles.button + " " + styles.shareButton} onClick={onShare}>
-                    <ShareIcon /> Share
+                <button className={styles.button + " " + styles.shareButton} onClick={onToggleScreenshotMode} aria-pressed={screenshotMode}>
+                    {screenshotMode ? <ShowTextIcon /> : <HideTextIcon />} {screenshotMode ? "Show Text" : "Hide Text"}
                 </button>
             </div>
         </div>
@@ -286,7 +287,12 @@ function CaretRightIcon()
     return <FontAwesomeIcon icon={faCaretRight} className={styles.caretIcon} />;
 }
 
-function ShareIcon()
+function HideTextIcon()
 {
-    return <FontAwesomeIcon icon={faShare} className={styles.icon + " " + styles.shareIcon} />
+    return <FontAwesomeIcon icon={faEyeSlash} className={styles.icon + " " + styles.shareIcon} />
+}
+
+function ShowTextIcon()
+{
+    return <FontAwesomeIcon icon={faEye} className={styles.icon + " " + styles.shareIcon} />
 }

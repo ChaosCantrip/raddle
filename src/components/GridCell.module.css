@@ -70,3 +70,8 @@
 .gridCell:nth-child(6) { animation-delay: 250ms; }
 
 .gridCell:hover{transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,0.6);}
+
+.textHidden {
+  color: transparent !important;
+  text-shadow: none;
+}
