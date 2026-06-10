@@ -55,5 +55,5 @@ export function GetDaysSinceEpoch(): number
     const epoch = BEGINNING_DATE;
     const today = GetDate();
     const diff = today.getTime() - epoch.getTime();
-    return Math.floor(diff / (1000 * 60 * 60 * 24));
+    return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
 }
