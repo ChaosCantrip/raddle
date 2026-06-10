@@ -186,7 +186,8 @@ function MainTextBox()
 {
     return (
         <div className={styles.mainTextBox}>
-            <p className={styles.mainText}>Guess today&apos;s Raid or Dungeon Encounter!</p>
+            <p className={styles.mainText}>Arcade Mode</p>
+            <p className={styles.mainText}>Guess the Raid or Dungeon Encounter!</p>
             <p className={styles.subText}>Type any Encounter Name to start...</p>
         </div>
     );
