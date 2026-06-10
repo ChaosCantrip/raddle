@@ -21,7 +21,7 @@ body::before {
   background-image: url("../../../public/background.jpg");
   background-size: cover;
   background-position: center;
-  filter: blur(12px) brightness(0.6);
+    filter: blur(12px) brightness(0.28);
   transform: scale(1.1);
   z-index: -1;
 }
@@ -32,4 +32,12 @@ main {
     flex-direction: column;
     align-items: center;
     height: 100%;
+}
+
+.panel{
+    background: linear-gradient(180deg, var(--panel-dark), rgba(7,16,26,0.86));
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 12px 48px rgba(2,6,23,0.9), 0 1px 0 rgba(255,255,255,0.02) inset;
+    backdrop-filter: blur(6px) saturate(1.05);
 }
