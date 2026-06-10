@@ -19,7 +19,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url("../../../public/background.jpg");
+  background-image: url("../../../public/background.webp");
   background-size: cover;
   background-position: center;
     filter: blur(12px) brightness(0.28);
