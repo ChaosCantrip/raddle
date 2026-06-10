@@ -8,7 +8,7 @@ import GridCell from "@/components/GridCell";
 import styles from "./page.module.css";
 import GridCellState from "@/models/GridCellState";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import GuessEntryBox from "@/components/GuessEntryBox";
 import Encounter from "@/models/Encounter";
 import type ArcadeGuessRequest from "@/models/ArcadeGuessRequest";
@@ -23,14 +23,37 @@ interface GuessPair {
     id?: number;
 }
 
+interface ArcadeState {
+    answer: Encounter | null;
+    guesses: Encounter[];
+    guessPairs: GuessPair[];
+    guessedCorrectly: boolean;
+}
+
 export default function HomePage() 
 {
     const [encounters, setEncounters] = useState<Encounter[]>([]);
-    const [guesses, setGuesses] = useState<Encounter[]>([]);
-    const [guessPairs, setGuessPairs] = useState<GuessPair[]>([]);
+    const arcadeStorageKey = "raddle-arcade-state";
+    const initialArcadeState = useMemo<ArcadeState | null>(() => 
+    {
+        if (typeof window === "undefined") return null;
+
+        try
+        {
+            const raw = window.localStorage.getItem(arcadeStorageKey);
+            return raw ? JSON.parse(raw) as ArcadeState : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }, [arcadeStorageKey]);
+
+    const [guesses, setGuesses] = useState<Encounter[]>(initialArcadeState?.guesses ?? []);
+    const [guessPairs, setGuessPairs] = useState<GuessPair[]>(initialArcadeState?.guessPairs ?? []);
     const [shifting, setShifting] = useState(false);
-    const [guessedCorrectly, setGuessedCorrectly] = useState(false);
-    const [answer, setAnswer] = useState<Encounter | null>(null);
+    const [guessedCorrectly, setGuessedCorrectly] = useState(initialArcadeState?.guessedCorrectly ?? false);
+    const [answer, setAnswer] = useState<Encounter | null>(initialArcadeState?.answer ?? null);
 
     // Load Encounters
     useEffect(() => 
@@ -61,6 +84,24 @@ export default function HomePage()
 
     useEffect(() =>
     {
+        try
+        {
+            const state: ArcadeState = {
+                answer,
+                guesses,
+                guessPairs,
+                guessedCorrectly,
+            };
+            window.localStorage.setItem(arcadeStorageKey, JSON.stringify(state));
+        }
+        catch (err)
+        {
+            console.warn("Unable to save arcade game state:", err);
+        }
+    }, [answer, guesses, guessPairs, guessedCorrectly, arcadeStorageKey]);
+
+    useEffect(() =>
+    {
         async function LoadAnswer() 
         {
             if (answer === null && encounters.length > 0)
@@ -75,6 +116,7 @@ export default function HomePage()
 
     function ResetGame()
     {
+        window.localStorage.removeItem(arcadeStorageKey);
         setGuesses([]);
         setGuessPairs([]);
         setGuessedCorrectly(false);

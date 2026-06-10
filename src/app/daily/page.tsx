@@ -8,7 +8,7 @@ import GridCell from "@/components/GridCell";
 import styles from "./page.module.css";
 import GridCellState from "@/models/GridCellState";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import GuessEntryBox from "@/components/GuessEntryBox";
 import Encounter from "@/models/Encounter";
 import type { ErrorResult, NonErrorResult } from "@/models/GuessResponse";
@@ -24,15 +24,38 @@ interface GuessPair {
     id?: number;
 }
 
+interface DailyState {
+    guesses: Encounter[];
+    guessPairs: GuessPair[];
+    guessedCorrectly: boolean;
+    place: number | null;
+}
+
 export default function HomePage() 
 {
     const [encounters, setEncounters] = useState<Encounter[]>([]);
-    const [guesses, setGuesses] = useState<Encounter[]>([]);
-    const [guessPairs, setGuessPairs] = useState<GuessPair[]>([]);
+    const dailyStorageKey = `raddle-daily-state-${GetDateString()}`;
+    const initialDailyState = useMemo<DailyState | null>(() => 
+    {
+        if (typeof window === "undefined") return null;
+
+        try
+        {
+            const raw = window.localStorage.getItem(dailyStorageKey);
+            return raw ? JSON.parse(raw) as DailyState : null;
+        }
+        catch
+        {
+            return null;
+        }
+    }, [dailyStorageKey]);
+
+    const [guesses, setGuesses] = useState<Encounter[]>(initialDailyState?.guesses ?? []);
+    const [guessPairs, setGuessPairs] = useState<GuessPair[]>(initialDailyState?.guessPairs ?? []);
     const [shifting, setShifting] = useState(false);
-    const [guessedCorrectly, setGuessedCorrectly] = useState(false);
+    const [guessedCorrectly, setGuessedCorrectly] = useState(initialDailyState?.guessedCorrectly ?? false);
     const [demoAnswer, setDemoAnswer] = useState<Encounter | null>(null);
-    const [place, setPlace] = useState<number | null>(null);
+    const [place, setPlace] = useState<number | null>(initialDailyState?.place ?? null);
     const [timeUntilReset, setTimeUntilReset] = useState<string>("");
 
     // Load Encounters
@@ -61,6 +84,24 @@ export default function HomePage()
 
         LoadEncounters();
     }, []);
+
+    useEffect(() =>
+    {
+        try
+        {
+            const state: DailyState = {
+                guesses,
+                guessPairs,
+                guessedCorrectly,
+                place,
+            };
+            window.localStorage.setItem(dailyStorageKey, JSON.stringify(state));
+        }
+        catch (err)
+        {
+            console.warn("Unable to save daily game state:", err);
+        }
+    }, [guesses, guessPairs, guessedCorrectly, place, dailyStorageKey]);
 
     useEffect(() =>
     {
