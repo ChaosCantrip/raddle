@@ -197,7 +197,7 @@ export default function HomePage()
             {guessedCorrectly ? (
                 <CongratulationsBox guessCount={guesses.length} place={place} timeUntilReset={timeUntilReset} onToggleScreenshotMode={ToggleScreenshotMode} screenshotMode={screenshotMode} />
             ) : (
-                <MainTextBox />
+                <MainTextBox timeUntilReset={timeUntilReset} />
             )}
             <div className={styles.guessEntryBoxWrapper} hidden={guessedCorrectly}>
                 <GuessEntryBox encounters={encounters} guesses={guesses} callback={HandleGuessSubmit} />
@@ -233,12 +233,13 @@ export default function HomePage()
     );
 }
 
-function MainTextBox() 
+function MainTextBox({ timeUntilReset }: { timeUntilReset: string }) 
 {
     return (
         <div className={styles.mainTextBox}>
             <p className={styles.mainText}>Guess today&apos;s Raid or Dungeon Encounter!</p>
             <p className={styles.subText}>RaDdle #{GetDaysSinceEpoch()} ({GetDateString()})</p>
+            <p className={styles.timerText}>Time left to complete today&apos;s RaDdle: {timeUntilReset || "--:--:--"}</p>
             <p className={styles.subText}>Type any Encounter Name to start...</p>
         </div>
     );
