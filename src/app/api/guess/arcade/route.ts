@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import Encounters from "@/lib/Encounters";
 import CompareEncounters from "@/lib/CompareEncounters";
+import type ArcadeGuessRequest from "@/models/ArcadeGuessRequest";
+import { GuessResponse } from "@/models/GuessResponse";
 
 export async function POST(request: NextRequest) 
 {
@@ -9,7 +11,7 @@ export async function POST(request: NextRequest)
 
     try 
     {
-        const body = await request.json();
+        const body = await request.json() as ArcadeGuessRequest;
 
         if (!body || typeof body.guess_id !== "string" || typeof body.answer_id !== "string")
         {
@@ -34,14 +36,17 @@ export async function POST(request: NextRequest)
 
     if (guess.id === answer.id) 
     {
-        return NextResponse.json({ result: "correct" });
+        const response: GuessResponse = { result: "correct" };
+        return NextResponse.json(response);
     }
 
     const result = CompareEncounters(guess, answer);
 
-    return NextResponse.json({
+    const response: GuessResponse = {
         result: "incorrect",
         comparisons: result
-    });
+    };
+
+    return NextResponse.json(response);
 }
     
