@@ -13,6 +13,9 @@ import GuessEntryBox from "@/components/GuessEntryBox";
 import Encounter from "../models/Encounter";
 import Footer from "@/components/Footer";
 
+import Image from "next/image";
+import BannerImage from "@/../public/banner.webp";
+
 interface GuessPair {
     encounter: Encounter;
     cellStates: GridCellState[];
@@ -130,7 +133,7 @@ export default function HomePage()
     return (
         <div className={styles.content}>
             <div>
-                <h1>RaDdle</h1>
+                <Image src={BannerImage} className={styles.banner} alt="RaDdle"/>
             </div>
             <div className={styles.guessEntryBoxWrapper} hidden={guessedCorrectly}>
                 <GuessEntryBox encounters={encounters} guesses={guesses} callback={HandleGuessSubmit} />
