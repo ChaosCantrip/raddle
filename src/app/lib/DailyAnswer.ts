@@ -1,5 +1,5 @@
 import Encounters from "@/app/lib/Encounters";
-import Encounter from "@/app/models/Encounter";
+import Encounter from "@/models/Encounter";
 
 export default function GetDailyAnswer() 
 {

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Encounters from "@/app/lib/Encounters";
 import GetDailyAnswer from "@/app/lib/DailyAnswer";
-import GridCellState from "@/app/models/GridCellState";
+import GridCellState from "@/models/GridCellState";
 
 export async function POST(request: NextRequest) 
 {
