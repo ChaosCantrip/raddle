@@ -2,7 +2,7 @@ import EncounterComparisonResult from "@/models/EncounterComparisonResult";
 
 export interface CorrectResult {
     result: "correct";
-    place: number;
+    place?: number;
 }
 
 export interface IncorrectResult {
