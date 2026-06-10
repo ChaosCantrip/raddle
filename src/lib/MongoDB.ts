@@ -1,31 +1,32 @@
 import { MongoClient } from "mongodb";
 
-const MONGODB = {
-    USER: process.env.MONGODB_USER,
-    PASS: process.env.MONGODB_PASS,
-    HOST: process.env.MONGODB_HOST,
-    PORT: process.env.MONGODB_PORT
-}
-
-if (!MONGODB.USER || !MONGODB.PASS || !MONGODB.HOST || !MONGODB.PORT) 
-{
-    throw new Error("Invalid MONGODB Environment Variables!");
-}
-
-const uri = `mongodb://${MONGODB.USER}:${MONGODB.PASS}@${MONGODB.HOST}:${MONGODB.PORT}/`
-
-const options = {};
-
-let client;
 let clientPromise: Promise<MongoClient>;
 
-if (!global._mongoClientPromise) 
+async function getMongoClient(): Promise<MongoClient> 
 {
-    client = new MongoClient(uri, options);
-    global._mongoClientPromise = client.connect();
+    if (!clientPromise) 
+    {
+        const MONGODB = {
+            USER: process.env.MONGODB_USER,
+            PASS: process.env.MONGODB_PASS,
+            HOST: process.env.MONGODB_HOST,
+            PORT: process.env.MONGODB_PORT
+        }
+
+        if (!MONGODB.USER || !MONGODB.PASS || !MONGODB.HOST || !MONGODB.PORT) 
+        {
+            throw new Error("Invalid MONGODB Environment Variables!");
+        }
+
+        const uri = `mongodb://${MONGODB.USER}:${MONGODB.PASS}@${MONGODB.HOST}:${MONGODB.PORT}/`
+
+        const options = {};
+
+        const client = new MongoClient(uri, options);
+        clientPromise = client.connect();
+    }
+
+    return clientPromise;
 }
 
-// eslint-disable-next-line prefer-const
-clientPromise = global._mongoClientPromise;
-
-export default clientPromise;
+export default getMongoClient;
