@@ -4,6 +4,7 @@ import GetDailyAnswer from "@/lib/DailyAnswer";
 import CompareEncounters from "@/lib/CompareEncounters";
 import type DailyGuessRequest from "@/models/DailyGuessRequest";
 import { GuessResponse } from "@/models/GuessResponse";
+import clientPromise from "@/lib/MongoDB";
 
 export async function POST(request: NextRequest) 
 {
@@ -36,7 +37,7 @@ export async function POST(request: NextRequest)
 
     if (guess.id === todays_answer.id) 
     {
-        const response: GuessResponse = { result: "correct" };
+        const response: GuessResponse = { result: "correct", place: await GetHowManyPeopleAnsweredToday() };
         return NextResponse.json(response);
     }
 
@@ -48,4 +49,24 @@ export async function POST(request: NextRequest)
     };
 
     return NextResponse.json(response);
+}
+
+const DB_NAME = process.env.MONGODB_DB_NAME || "raddle";
+const COLLECTION_NAME = "daily_guesses";
+
+async function GetHowManyPeopleAnsweredToday() 
+{
+    const client = await clientPromise;
+    const db = client.db(DB_NAME);
+    const collection = db.collection(COLLECTION_NAME);
+
+    const today = new Date().toISOString().split("T")[0];
+
+    const stats = await collection.findOneAndUpdate(
+        { date: today },
+        { $inc: { count: 1 } },
+        { upsert: true, returnDocument: "after" }
+    );
+
+    return stats!.count;
 }
