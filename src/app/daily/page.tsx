@@ -14,6 +14,9 @@ import Encounter from "@/models/Encounter";
 import type { ErrorResult, NonErrorResult } from "@/models/GuessResponse";
 import DailyGuessRequest from "@/models/DailyGuessRequest";
 import { GetTimeUntilNextReset, TimeDeltaToString } from "@/lib/Date";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 interface GuessPair {
     encounter: Encounter;
@@ -87,14 +90,6 @@ export default function HomePage()
         return () => clearInterval(interval);
     }, []);
 
-    function ResetGame()
-    {
-        setGuesses([]);
-        setGuessPairs([]);
-        setGuessedCorrectly(false);
-        setDemoAnswer(null);
-    }
-
     async function HandleGuessSubmit(guess: Encounter) 
     {
         setGuesses(prev => [guess, ...prev]);
@@ -153,7 +148,7 @@ export default function HomePage()
     return (
         <div className={styles.content}>
             {guessedCorrectly ? (
-                <CongratulationsBox guessCount={guesses.length} onReset={ResetGame} place={place} timeUntilReset={timeUntilReset} />
+                <CongratulationsBox guessCount={guesses.length} place={place} timeUntilReset={timeUntilReset} />
             ) : (
                 <MainTextBox />
             )}
@@ -201,7 +196,7 @@ function MainTextBox()
     );
 }
 
-function CongratulationsBox({ guessCount, place, onReset, timeUntilReset }: { guessCount: number, place: number | null, onReset: () => void, timeUntilReset: string }) 
+function CongratulationsBox({ guessCount, place, timeUntilReset }: { guessCount: number, place: number | null, timeUntilReset: string }) 
 {
     return (
         <div className={styles.mainTextBox}>
@@ -209,9 +204,9 @@ function CongratulationsBox({ guessCount, place, onReset, timeUntilReset }: { gu
             <p className={styles.subText}>You guessed the Encounter in {guessCount} guess{guessCount !== 1 ? "es" : ""}!</p>
             <p className={styles.subText}>You were the {place}{GetOrdinalSuffix(place!)} person to guess correctly today!</p>
             <p className={styles.subText}>Check back in {timeUntilReset} for tomorrow&apos;s Encounter!</p>
-            <button className={styles.resetButton} onClick={onReset}>
-                Play Again
-            </button>
+            <Link className={styles.arcadeLink} href="/arcade">
+                Play Arcade Mode <CaretRightIcon />
+            </Link>
         </div>
     )
 }
@@ -232,4 +227,9 @@ function GetOrdinalSuffix(n: number): string
         return "rd";
     }
     return "th";
+}
+
+function CaretRightIcon()
+{
+    return <FontAwesomeIcon icon={faCaretRight} className={styles.caretIcon} />;
 }
