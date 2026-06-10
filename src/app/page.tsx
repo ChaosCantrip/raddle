@@ -79,7 +79,7 @@ export default function HomePage()
 
         console.log("Demo Answer:", demoAnswer);
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/guess_demo`, {
+        const response = await fetch("/api/guess_demo", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
