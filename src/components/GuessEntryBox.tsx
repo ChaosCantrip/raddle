@@ -4,37 +4,10 @@ import { useEffect, useState } from "react";
 import styles from "./GuessEntryBox.module.css";
 import Encounter from "@/app/models/Encounter";
 
-export default function GuessEntryBox({ callback }: { callback: (guess: string) => void }) 
+export default function GuessEntryBox({ encounters, callback }: { encounters: Encounter[]; callback: (guess: string) => void }) 
 {
     const [inputValue, setInputValue] = useState("");
-    const [encounters, setEncounters] = useState<Encounter[]>([]);
     const [filteredEncounters, setFilteredEncounters] = useState<Encounter[]>([]);
-
-    useEffect(() => 
-    {
-        async function LoadEncounters() 
-        {
-            try 
-            {
-                const res = await fetch("/api/encounters");
-                if (!res.ok) 
-                {
-                    throw new Error(`Fetch failed: ${res.status}`);
-                }
-                const data = await res.json();
-
-                data.sort((a: Encounter, b: Encounter) => a.name.localeCompare(b.name));
-
-                setEncounters(Array.isArray(data) ? data : []);
-            }
-            catch (err) 
-            {
-                console.error("Error fetching encounters:", err);
-            }
-        }
-
-        LoadEncounters();
-    }, []);
 
     useEffect(() => 
     {
