@@ -56,7 +56,6 @@ const COLLECTION_NAME = "daily_guesses";
 
 async function GetHowManyPeopleAnsweredToday() 
 {
-    console.log("GetHowManyPeopleAnsweredToday called");
     const client = await getMongoClient();
     const db = client.db(DB_NAME);
     const collection = db.collection(COLLECTION_NAME);
