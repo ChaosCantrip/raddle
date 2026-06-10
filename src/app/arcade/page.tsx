@@ -14,6 +14,9 @@ import Encounter from "@/models/Encounter";
 import type ArcadeGuessRequest from "@/models/ArcadeGuessRequest";
 import type { ErrorResult, NonErrorResult } from "@/models/GuessResponse";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShare, faArrowRotateLeft } from "@fortawesome/free-solid-svg-icons";
+
 interface GuessPair {
     encounter: Encounter;
     cellStates: GridCellState[];
@@ -78,6 +81,13 @@ export default function HomePage()
         setAnswer(null);
     }
 
+    function HandleShare() 
+    {
+        if (!answer) return;
+
+        alert("Lol I didn't implement this yet");
+    }
+
     async function HandleGuessSubmit(guess: Encounter) 
     {
         setGuesses(prev => [guess, ...prev]);
@@ -134,7 +144,7 @@ export default function HomePage()
     return (
         <div className={styles.content}>
             {guessedCorrectly ? (
-                <CongratulationsBox guessCount={guesses.length} onReset={ResetGame} />
+                <CongratulationsBox guessCount={guesses.length} onReset={ResetGame} onShare={HandleShare} />
             ) : (
                 <MainTextBox />
             )}
@@ -182,15 +192,30 @@ function MainTextBox()
     );
 }
 
-function CongratulationsBox({ guessCount, onReset }: { guessCount: number, onReset: () => void }) 
+function CongratulationsBox({ guessCount, onReset, onShare }: { guessCount: number, onReset: () => void, onShare: () => void }) 
 {
     return (
         <div className={styles.mainTextBox}>
             <p className={styles.mainText}>Congratulations!</p>
             <p className={styles.subText}>You guessed the Encounter in {guessCount} guesses!</p>
-            <button className={styles.resetButton} onClick={onReset}>
-                Play Again
-            </button>
+            <div className={styles.buttons_container}>
+                <button className={styles.button + " " + styles.resetButton} onClick={onReset}>
+                    <PlayAgainIcon /> Play Again
+                </button>
+                <button className={styles.button + " " + styles.shareButton} onClick={onShare}>
+                    <ShareIcon /> Share
+                </button>
+            </div>
         </div>
     )
+}
+
+function ShareIcon()
+{
+    return <FontAwesomeIcon icon={faShare} className={styles.icon + " " + styles.shareIcon} />
+}
+
+function PlayAgainIcon()
+{
+    return <FontAwesomeIcon icon={faArrowRotateLeft} className={styles.icon + " " + styles.playAgainIcon} />
 }
