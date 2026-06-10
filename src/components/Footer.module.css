@@ -1,22 +1,22 @@
 .footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 0 0 auto;
-    padding: 1rem;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 1rem;
+  width: 100%;
 }
 
 .user_icon {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .footer a {
-    color: var(--muted);
-    font-weight: bold;
-    text-decoration: none;
+  color: var(--muted);
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .footer a:hover {
-    color: var(--text);
+  color: var(--text);
 }
