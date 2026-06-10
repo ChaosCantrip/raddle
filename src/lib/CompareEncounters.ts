@@ -85,9 +85,13 @@ function CompareEncounterNumber(guess: number[], answer: number[]): GridCellStat
     const answerSet = new Set(answer);
     const intersection = new Set([...guessSet].filter(x => answerSet.has(x)));
 
-    if (intersection.size > 0) 
+    if (intersection.size === answerSet.size && intersection.size === guessSet.size) 
     {
         return GridCellState.Green;
+    } 
+    else if (intersection.size > 0) 
+    {
+        return GridCellState.Yellow;
     }
 
     return GridCellState.Grey;
