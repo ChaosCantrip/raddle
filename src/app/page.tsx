@@ -29,7 +29,7 @@ export default function HomePage()
     }
 
     return (
-        <div>
+        <div className={styles.content}>
             <div>
                 <h1>RaDdle</h1>
             </div>
