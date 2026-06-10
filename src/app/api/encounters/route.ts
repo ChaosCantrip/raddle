@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Encounters from "@/app/lib/Encounters";
+import Encounters from "@/lib/Encounters";
 
 export async function GET() 
 {
