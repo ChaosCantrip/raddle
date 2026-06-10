@@ -135,12 +135,13 @@ export default function HomePage()
             <div>
                 <Image src={BannerImage} className={styles.banner} alt="RaDdle"/>
             </div>
+            {guessedCorrectly ? (
+                <CongratulationsBox guessCount={guesses.length} onReset={ResetGame} />
+            ) : (
+                <MainTextBox />
+            )}
             <div className={styles.guessEntryBoxWrapper} hidden={guessedCorrectly}>
                 <GuessEntryBox encounters={encounters} guesses={guesses} callback={HandleGuessSubmit} />
-            </div>
-            <div className={styles.guessedCorrectlyMessage} hidden={!guessedCorrectly}>
-                <h2>Congratulations! You guessed correctly in {guesses.length} guesses!</h2>
-                <button onClick={ResetGame}>Play Again</button>
             </div>
             <div className={styles.gridTableWrapper}>
                 <GridTable>
@@ -172,4 +173,27 @@ export default function HomePage()
             <Footer />
         </div>
     );
+}
+
+function MainTextBox() 
+{
+    return (
+        <div className={styles.mainTextBox}>
+            <p className={styles.mainText}>Guess today&apos;s Raid or Dungeon Encounter!</p>
+            <p className={styles.subText}>Type any Encounter Name to start...</p>
+        </div>
+    );
+}
+
+function CongratulationsBox({ guessCount, onReset }: { guessCount: number, onReset: () => void }) 
+{
+    return (
+        <div className={styles.mainTextBox}>
+            <p className={styles.mainText}>Congratulations!</p>
+            <p className={styles.subText}>You guessed the Encounter in {guessCount} guesses!</p>
+            <button className={styles.resetButton} onClick={onReset}>
+                Play Again
+            </button>
+        </div>
+    )
 }
