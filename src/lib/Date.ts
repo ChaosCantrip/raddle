@@ -48,7 +48,7 @@ export function TimeDeltaToString(delta: number): string
     return result;
 }
 
-const BEGINNING_DATE = new Date("2026-06-02T00:00:00Z");
+const BEGINNING_DATE = new Date("2026-06-09T00:00:00Z");
 
 export function GetDaysSinceEpoch(): number
 {
