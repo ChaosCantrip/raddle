@@ -6,4 +6,5 @@ export default interface Encounter {
     activity: string;
     expansion: string;
     encounters: number[];
+    search_terms: string[];
 }
