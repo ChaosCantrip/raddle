@@ -1,27 +1,32 @@
 import Encounter from "@/models/Encounter";
 
+type Condition = (encounter: Encounter, query: string) => boolean;
+
+const conditions: Condition[] = [
+    (encounter, query) => encounter.name.toLowerCase().startsWith(query),
+    (encounter, query) => encounter.name.toLowerCase().includes(query),
+    (encounter, query) => encounter.search_terms.some(term => term.startsWith(query)),
+    (encounter, query) => encounter.search_terms.some(term => term.includes(query))
+]
+
 function FilterEncounters(inputValue: string, encounters: Encounter[], guesses: Encounter[]) 
 {
-    const query = inputValue.toLowerCase();
+    const query = inputValue.toLowerCase().trim();
 
-    const guessedIds = new Set(guesses.map(g => g.id));
+    const filteredGuesses = encounters.filter(encounter => !guesses.includes(encounter));
 
-    const startsWithMatches = encounters.filter(encounter => 
+    const filteredConditions: Encounter[] = [];
+
+    for (const condition of conditions) 
     {
-        const name = encounter.name.toLowerCase();
-        if (guessedIds.has(encounter.id)) return false;
-        return name.startsWith(query);
-    });
+        filteredConditions.push(...filteredGuesses.filter(encounter => condition(encounter, query)));
+    }
 
-    const includesMatches = encounters.filter(encounter => 
-    {
-        const name = encounter.name.toLowerCase();
-        if (guessedIds.has(encounter.id)) return false;
-        if (startsWithMatches.includes(encounter)) return false;
-        return name.includes(query);
-    });
+    const unique = [
+        ...new Map(filteredConditions.map(encounter => [encounter.id, encounter])).values()
+    ]
 
-    return [...startsWithMatches, ...includesMatches];
+    return unique;
 }
 
 export default FilterEncounters;
