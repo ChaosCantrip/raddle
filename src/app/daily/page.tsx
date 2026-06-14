@@ -17,6 +17,7 @@ import { GetDateString, GetDaysSinceEpoch, GetTimeUntilNextReset, TimeDeltaToStr
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import Utils from "@/lib/Utils";
 
 interface GuessPair {
     encounter: Encounter;
@@ -251,7 +252,7 @@ function CongratulationsBox({ guessCount, place, timeUntilReset, onToggleScreens
         <div className={styles.mainTextBox}>
             <p className={styles.mainText}>Congratulations!</p>
             <p className={styles.subText}>You guessed the Encounter in {guessCount} guess{guessCount !== 1 ? "es" : ""}!</p>
-            <p className={styles.subText}>You were the {place}{GetOrdinalSuffix(place!)} person to guess correctly today!</p>
+            <p className={styles.subText}>You were the {place}{Utils.GetOrdinalSuffix(place!)} person to guess correctly today!</p>
             <p className={styles.subText}>Check back in {timeUntilReset} for tomorrow&apos;s Encounter!</p>
             <div className={styles.buttons_container}>
                 <Link className={styles.button + " " + styles.arcadeLink} href="/arcade">
@@ -263,24 +264,6 @@ function CongratulationsBox({ guessCount, place, timeUntilReset, onToggleScreens
             </div>
         </div>
     )
-}
-
-function GetOrdinalSuffix(n: number): string
-{
-    const j = n % 10, k = n % 100;
-    if (j === 1 && k !== 11) 
-    {
-        return "st";
-    }
-    if (j === 2 && k !== 12) 
-    {
-        return "nd";
-    }
-    if (j === 3 && k !== 13) 
-    {
-        return "rd";
-    }
-    return "th";
 }
 
 function CaretRightIcon()
