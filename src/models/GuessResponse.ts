@@ -1,4 +1,4 @@
-import EncounterComparisonResult from "@/models/EncounterComparisonResult";
+import { EncounterComparisonResult } from "@/models";
 
 export interface CorrectResult {
     result: "correct";

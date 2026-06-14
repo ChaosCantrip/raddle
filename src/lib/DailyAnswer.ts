@@ -1,8 +1,8 @@
-import Encounters from "@/lib/Encounters";
-import Encounter from "@/models/Encounter";
-import getMongoClient from "@/lib/MongoDB";
-import GenerateRandomEncounter from "@/lib/GenerateRandomEncounter";
+import { Encounters, GenerateRandomEncounter } from "@/lib";
+
+import { Encounter } from "@/models";
 import { GetDateString } from "./Date";
+import getMongoClient from "./MongoDB";
 
 const DB_NAME = process.env.MONGODB_DB_NAME || "raddle";
 const COLLECTION_NAME = "daily_answers";

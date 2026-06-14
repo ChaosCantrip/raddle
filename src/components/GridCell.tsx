@@ -1,7 +1,14 @@
-import styles from "./GridCell.module.css";
-import GridCellState from "../models/GridCellState";
+import { GridCellState } from "@/models";
 
-export default function GridCell({ children, state = GridCellState.Empty, hideText = false }: { children?: React.ReactNode; state?: GridCellState; hideText?: boolean })
+import styles from "./GridCell.module.css";
+
+type GridCellProps = {
+    state?: GridCellState;
+    hideText?: boolean;
+    children?: React.ReactNode;
+}
+
+export default function GridCell({ state = GridCellState.Empty, hideText = false, children }: GridCellProps)
 {
     const colourStyle = getColourStyle(state);
 

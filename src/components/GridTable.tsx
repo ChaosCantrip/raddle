@@ -1,6 +1,10 @@
 import styles from "./GridTable.module.css";
 
-export default function GridTable({ children }: { children: React.ReactNode })
+type GridTableProps = {
+    children: React.ReactNode;
+}
+
+export default function GridTable({ children }: GridTableProps)
 {
     return (
         <div className={styles.gridTable}>

@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import Encounters from "@/lib/Encounters";
-import CompareEncounters from "@/lib/CompareEncounters";
-import type ArcadeGuessRequest from "@/models/ArcadeGuessRequest";
-import { GuessResponse } from "@/models/GuessResponse";
+import { Encounters, CompareEncounters } from "@/lib";
+import type { ArcadeGuessRequest, GuessResponse } from "@/models";
 
 export async function POST(request: NextRequest) 
 {

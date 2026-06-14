@@ -1,6 +1,5 @@
-import Encounter from "@/models/Encounter";
 import GridCellState from "@/models/GridCellState";
-import type EncounterComparisonResult from "@/models/EncounterComparisonResult";
+import type { Encounter, EncounterComparisonResult } from "@/models";
 
 export default function CompareEncounters(guess: Encounter, answer: Encounter): EncounterComparisonResult
 {
@@ -13,7 +12,6 @@ export default function CompareEncounters(guess: Encounter, answer: Encounter): 
         expansion: CompareExpansion(guess.expansion, answer.expansion)
     }
 }
-
 
 function CompareName(guess: string, answer: string): GridCellState
 {

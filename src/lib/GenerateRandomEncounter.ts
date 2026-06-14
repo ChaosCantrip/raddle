@@ -1,5 +1,5 @@
-import type Encounter from "@/models/Encounter";
-import Encounters from "@/lib/Encounters";
+import type { Encounter } from "@/models";
+import { Encounters } from "@/lib";
 
 export default function GenerateRandomEncounter(): Encounter
 {

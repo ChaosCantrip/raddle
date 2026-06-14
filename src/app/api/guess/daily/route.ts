@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import Encounters from "@//lib/Encounters";
+
+import { Encounters, CompareEncounters } from "@/lib";
 import GetDailyAnswer from "@/lib/DailyAnswer";
-import CompareEncounters from "@/lib/CompareEncounters";
-import type DailyGuessRequest from "@/models/DailyGuessRequest";
-import { GuessResponse } from "@/models/GuessResponse";
 import getMongoClient from "@/lib/MongoDB";
 import { GetDateString } from "@/lib/Date";
+import type { DailyGuessRequest, GuessResponse } from "@/models";
 
 export async function POST(request: NextRequest) 
 {

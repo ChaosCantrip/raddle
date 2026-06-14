@@ -1,12 +1,13 @@
-import "@/styles/global/master.css";
 import { Metadata } from "next";
 
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import PageContainer from "@/components/PageContainer";
+
+import { Footer, Header, PageContainer } from "@/components";
+
 config.autoAddCss = false;
+
+import "@/styles/global/master.css";
 
 export const metadata: Metadata = {
     title: "RaDdle",

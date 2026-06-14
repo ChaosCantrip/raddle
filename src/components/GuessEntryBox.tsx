@@ -1,11 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "./GuessEntryBox.module.css";
-import Encounter from "@/models/Encounter";
-import Utils from "@/lib/Utils";
 
-export default function GuessEntryBox({ encounters, guesses, callback }: { encounters: Encounter[]; guesses: Encounter[]; callback: (guess: Encounter) => void }) 
+import type { Encounter } from "@/models";
+import { Utils } from "@/lib";
+
+import styles from "./GuessEntryBox.module.css";
+
+type GuessEntryBoxProps = {
+    encounters: Encounter[];
+    guesses: Encounter[];
+    callback: (guess: Encounter) => void;
+}
+
+export default function GuessEntryBox({ encounters, guesses, callback }: GuessEntryBoxProps) 
 {
     const [inputValue, setInputValue] = useState("");
     const [filteredEncounters, setFilteredEncounters] = useState<Encounter[]>([]);
