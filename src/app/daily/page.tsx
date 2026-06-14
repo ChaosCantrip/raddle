@@ -15,7 +15,8 @@ import type { ErrorResult, NonErrorResult } from "@/models/GuessResponse";
 import DailyGuessRequest from "@/models/DailyGuessRequest";
 import { GetDateString, GetDaysSinceEpoch, GetTimeUntilNextReset, TimeDeltaToString } from "@/lib/Date";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretRight, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faCaretRight, faEye, faEyeSlash, faShare } from "@fortawesome/free-solid-svg-icons";
+import SharePopup from "./SharePopup";
 import Link from "next/link";
 import Utils from "@/lib/Utils";
 import GuessPair from "@/models/GuessPair";
@@ -54,6 +55,7 @@ export default function HomePage()
     const [demoAnswer, setDemoAnswer] = useState<Encounter | null>(null);
     const [place, setPlace] = useState<number | null>(initialDailyState?.place ?? null);
     const [timeUntilReset, setTimeUntilReset] = useState<string>("");
+    const [sharePopupOpen, setSharePopupOpen] = useState<boolean>(false);
 
     // Load Encounters
     useEffect(() => 
@@ -188,10 +190,15 @@ export default function HomePage()
         setScreenshotMode(prev => !prev);
     }
 
+    function handleOpenSharePopup() 
+    {
+        setSharePopupOpen(true);
+    }
+
     return (
         <div className={styles.content}>
             {guessedCorrectly ? (
-                <CongratulationsBox guessCount={guesses.length} place={place} timeUntilReset={timeUntilReset} onToggleScreenshotMode={ToggleScreenshotMode} screenshotMode={screenshotMode} />
+                <CongratulationsBox guessCount={guesses.length} place={place} timeUntilReset={timeUntilReset} onToggleScreenshotMode={ToggleScreenshotMode} screenshotMode={screenshotMode} handleOpenSharePopup={handleOpenSharePopup} />
             ) : (
                 <MainTextBox timeUntilReset={timeUntilReset} />
             )}
@@ -225,6 +232,7 @@ export default function HomePage()
                     ))}
                 </GridTable>
             </div>
+            <SharePopup open={sharePopupOpen} setOpen={setSharePopupOpen} guessPairs={guessPairs} />
         </div>
     );
 }
@@ -241,7 +249,16 @@ function MainTextBox({ timeUntilReset }: { timeUntilReset: string })
     );
 }
 
-function CongratulationsBox({ guessCount, place, timeUntilReset, onToggleScreenshotMode, screenshotMode }: { guessCount: number, place: number | null, timeUntilReset: string, onToggleScreenshotMode: () => void, screenshotMode: boolean }) 
+type CongratulationsBoxProps = {
+    guessCount: number;
+    place: number | null;
+    timeUntilReset: string;
+    onToggleScreenshotMode: () => void;
+    screenshotMode: boolean;
+    handleOpenSharePopup: () => void;
+}
+
+function CongratulationsBox({ guessCount, place, timeUntilReset, onToggleScreenshotMode, screenshotMode, handleOpenSharePopup }: CongratulationsBoxProps) 
 {
     return (
         <div className={styles.mainTextBox}>
@@ -251,10 +268,13 @@ function CongratulationsBox({ guessCount, place, timeUntilReset, onToggleScreens
             <p className={styles.subText}>Check back in {timeUntilReset} for tomorrow&apos;s Encounter!</p>
             <div className={styles.buttons_container}>
                 <Link className={styles.button + " " + styles.arcadeLink} href="/arcade">
-                Play Arcade Mode <CaretRightIcon />
+                Arcade Mode <CaretRightIcon />
                 </Link>
                 <button className={styles.button + " " + styles.shareButton} onClick={onToggleScreenshotMode} aria-pressed={screenshotMode}>
                     {screenshotMode ? <ShowTextIcon /> : <HideTextIcon />} {screenshotMode ? "Show Text" : "Hide Text"}
+                </button>
+                <button className={styles.button + " " + styles.shareButton} onClick={handleOpenSharePopup}>
+                    <ShareIcon /> Share
                 </button>
             </div>
         </div>
@@ -274,4 +294,9 @@ function HideTextIcon()
 function ShowTextIcon()
 {
     return <FontAwesomeIcon icon={faEye} className={styles.icon + " " + styles.shareIcon} />
+}
+
+function ShareIcon() 
+{
+    return <FontAwesomeIcon icon={faShare} className={styles.icon + " " + styles.shareIcon} />
 }
