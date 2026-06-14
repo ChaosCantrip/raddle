@@ -18,12 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Utils from "@/lib/Utils";
-
-interface GuessPair {
-    encounter: Encounter;
-    cellStates: GridCellState[];
-    id?: number;
-}
+import GuessPair from "@/models/GuessPair";
 
 interface DailyState {
     guesses: Encounter[];
