@@ -45,16 +45,15 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-COPY --from=builder --chown=node:node /app/apps/website/public ./public
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
-RUN mkdir .next
-RUN chown node:node .next
+COPY --from=builder --chown=nextjs:nodejs /app/apps/website/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/apps/website/public ./apps/website/public
+COPY --from=builder --chown=nextjs:nodejs /app/apps/website/.next/static ./apps/website/.next/static
 
-COPY --from=builder --chown=node:node /app/apps/website/.next/standalone ./
-COPY --from=builder --chown=node:node /app/apps/website/.next/static ./.next/static
-
-USER node
+USER nextjs
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["node", "apps/website/server.js"]
