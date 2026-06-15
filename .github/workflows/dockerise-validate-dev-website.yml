@@ -3,9 +3,6 @@ name: Validate "raddle-website" Builds on "dev" push
 on:
   push:
     branches: [ "dev" ]
-    paths:
-      - "apps/website/**"
-      - "packages/**"
 
 jobs:
   build:
