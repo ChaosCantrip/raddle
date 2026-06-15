@@ -1,0 +1,26 @@
+name: Build and Push to GHCR
+
+on:
+  push:
+    branches: [ "dev" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        env:
+          MONGODB_USER: dummy
+          MONGODB_PASS: dummy
+          MONGODB_HOST: dummy
+          MONGODB_PORT: dummy
+        with:
+          context: .
+          push: false
