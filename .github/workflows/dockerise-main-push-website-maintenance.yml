@@ -4,8 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - "apps/website-maintenance/**"
-      - "packages/**"
+      - "apps/website-maintenance/package.json"
 
 env:
   REGISTRY: ghcr.io
