@@ -1,0 +1,21 @@
+:root {
+  --bg: #05060a;
+  --bg-2: #07101a;
+  --panel: rgba(255, 255, 255, 0.08);
+  --glass: rgba(255, 255, 255, 0.07);
+  --accent: #00c4ff;
+  --accent-2: #ffb84d;
+  --accent-3: #9b5cff;
+  --yellow: #ffb84d;
+  --green: #47c079;
+  --muted: #9fb0bf;
+  --grid-border: rgba(255, 255, 255, 0.14);
+  --text: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --panel-dark: rgba(7, 16, 26, 0.92);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
