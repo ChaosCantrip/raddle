@@ -1,14 +1,14 @@
-name: Build and Push "raddle-website" on "main" push
+name: Build and Push "raddle-website-maintenance" on "main" push
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - "apps/website/package.json"
+      - "apps/website-maintenance/package.json"
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: raddle-website
+  IMAGE_NAME: raddle-website-maintenance
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Get Version
         id: version
-        run: echo "version=$(node -p "require('./apps/website/package.json').version")" >> $GITHUB_OUTPUT
+        run: echo "version=$(node -p "require('./apps/website-maintenance/package.json').version")" >> $GITHUB_OUTPUT
 
       - name: Docker Metadata
         id: meta
@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: apps/website/Dockerfile
+          file: apps/website-maintenance/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

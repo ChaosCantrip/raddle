@@ -1,8 +1,7 @@
-name: Validate "raddle-website" Builds on "dev" push
+name: Validate "raddle-website-maintenance" Builds
 
 on:
-  push:
-    branches: [ "dev" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -21,7 +20,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: apps/website/Dockerfile
+          file: apps/website-maintenance/Dockerfile
           push: false
           cache-from: type=gha
           cache-to: type=gha,mode=max

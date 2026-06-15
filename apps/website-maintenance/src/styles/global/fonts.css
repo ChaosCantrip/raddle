@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700&display=swap");
+
+html,
+body {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Orbitron, Inter, system-ui;
+  letter-spacing: 0.02em;
+}
+body {
+  font-size: 16px;
+}
