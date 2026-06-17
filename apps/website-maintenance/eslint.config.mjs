@@ -1,6 +1,7 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
+import { baseESLintConfig } from "@raddle/config/eslint";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -13,20 +14,7 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
-  {
-    rules: {
-      "brace-style": ["warn", "allman"],
-      "quotes": ["warn", "double"],
-      "indent": ["warn", 4, { "SwitchCase": 1 }],
-      "eol-last": ["warn", "always"]
-    }
-  },
-  {
-    files: ["**/*.{mjs,mts}"],
-    rules: {
-      "indent": ["warn", 2, { "SwitchCase": 1 }]
-    }
-  }
+  ...baseESLintConfig
 ]);
 
 export default eslintConfig;
