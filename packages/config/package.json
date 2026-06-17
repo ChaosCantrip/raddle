@@ -2,6 +2,10 @@
   "name": "@raddle/config",
   "private": true,
   "type": "module",
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
   "exports": {
     "./eslint": "./eslint/index.mjs"
   },
