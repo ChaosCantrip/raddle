@@ -1,4 +1,4 @@
-import Encounter from "@/models/Encounter";
+import { Encounter } from "@/models";
 
 type Condition = (encounter: Encounter, query: string) => boolean;
 

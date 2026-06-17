@@ -1,4 +1,4 @@
-export default interface Encounter {
+export interface Encounter {
     id: string;
     name: string;
     enemy_types: string[];

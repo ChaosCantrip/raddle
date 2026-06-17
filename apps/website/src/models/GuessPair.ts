@@ -1,10 +1,8 @@
-import Encounter from "./Encounter";
-import GridCellState from "./GridCellState";
+import type { Encounter } from "./Encounter";
+import type { GridCellState } from "./GridCellState";
 
-interface GuessPair {
+export interface GuessPair {
     encounter: Encounter;
     cellStates: GridCellState[];
     id?: number;
 }
-
-export default GuessPair;

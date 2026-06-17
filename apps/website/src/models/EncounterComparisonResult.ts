@@ -1,6 +1,6 @@
-import GridCellState from "./GridCellState";
+import type { GridCellState } from "./GridCellState";
 
-interface EncounterComparisonResult {
+export interface EncounterComparisonResult {
     name: GridCellState,
     activity_type: GridCellState,
     activity: GridCellState,
@@ -8,5 +8,3 @@ interface EncounterComparisonResult {
     encounters: GridCellState,
     expansion: GridCellState
 }
-
-export default EncounterComparisonResult;

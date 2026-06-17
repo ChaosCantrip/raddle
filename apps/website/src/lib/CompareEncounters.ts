@@ -1,4 +1,4 @@
-import GridCellState from "@/models/GridCellState";
+import { GridCellState } from "@/models";
 import type { Encounter, EncounterComparisonResult } from "@/models";
 
 export default function CompareEncounters(guess: Encounter, answer: Encounter): EncounterComparisonResult

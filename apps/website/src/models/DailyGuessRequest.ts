@@ -1,5 +1,3 @@
-interface DailyGuessRequest {
+export interface DailyGuessRequest {
     guess_id: string;
 }
-
-export default DailyGuessRequest;

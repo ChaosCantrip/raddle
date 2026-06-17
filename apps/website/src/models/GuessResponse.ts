@@ -1,4 +1,4 @@
-import { EncounterComparisonResult } from "@/models";
+import type { EncounterComparisonResult } from "@/models";
 
 export interface CorrectResult {
     result: "correct";
@@ -16,5 +16,4 @@ export interface ErrorResult {
 
 export type NonErrorResult = CorrectResult | IncorrectResult;
 
-export type GuessResponse = CorrectResult | IncorrectResult | ErrorResult;
-export default GuessResponse;
+export type GuessResponse = NonErrorResult | ErrorResult;
