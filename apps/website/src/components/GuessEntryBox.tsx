@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import type { Encounter } from "@/models";
+import type { Encounter } from "@raddle/types";
 import { Utils } from "@/lib";
 
 import styles from "./GuessEntryBox.module.css";

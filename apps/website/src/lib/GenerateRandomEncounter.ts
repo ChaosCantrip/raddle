@@ -1,4 +1,4 @@
-import type { Encounter } from "@/models";
+import type { Encounter } from "@raddle/types";
 import { Encounters } from "@/lib";
 
 export default function GenerateRandomEncounter(): Encounter

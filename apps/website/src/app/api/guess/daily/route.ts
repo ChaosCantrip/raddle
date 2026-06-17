@@ -1,10 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest} from "next/server";
+import { NextResponse } from "next/server";
 
 import { Encounters, CompareEncounters } from "@/lib";
 import GetDailyAnswer from "@/lib/DailyAnswer";
 import getMongoClient from "@/lib/MongoDB";
 import { GetDateString } from "@/lib/Date";
-import type { DailyGuessRequest, GuessResponse } from "@/models";
+import type { DailyGuessRequest, GuessResponse } from "@raddle/types";
 
 export async function POST(request: NextRequest) 
 {

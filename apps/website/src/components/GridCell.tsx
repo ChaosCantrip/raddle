@@ -1,4 +1,4 @@
-import { GridCellState } from "@/models";
+import { GridCellState } from "@raddle/types";
 
 import styles from "./GridCell.module.css";
 
