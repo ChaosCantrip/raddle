@@ -1,0 +1,5 @@
+{
+  "name": "@raddle/config",
+  "private": true,
+  "type": "module"
+}
