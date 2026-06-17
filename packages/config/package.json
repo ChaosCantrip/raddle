@@ -1,5 +1,8 @@
 {
   "name": "@raddle/config",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "exports": {
+    "./eslint": "./eslint/index.mjs"
+  }
 }
