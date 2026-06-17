@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
 import Popup from "@/components/Popup";
-import { GridCellState } from "@/models";
-import type { GuessPair } from "@/models";
+import { GridCellState } from "@raddle/types";
+import type { GuessPair } from "@raddle/types";
 import Toast from "@/components/Toast";
 
 import styles from "./SharePopup.module.css";

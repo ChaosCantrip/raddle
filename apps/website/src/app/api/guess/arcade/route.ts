@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Encounters, CompareEncounters } from "@/lib";
-import type { ArcadeGuessRequest, GuessResponse } from "@/models";
+import type { ArcadeGuessRequest, GuessResponse } from "@raddle/types";
 
 export async function POST(request: NextRequest) 
 {

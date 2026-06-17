@@ -1,4 +1,4 @@
-import { Encounter } from "@/models";
+import { Encounter } from "@raddle/types";
 
 type Condition = (encounter: Encounter, query: string) => boolean;
 

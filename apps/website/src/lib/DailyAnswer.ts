@@ -1,6 +1,6 @@
 import { Encounters, GenerateRandomEncounter } from "@/lib";
 
-import { Encounter } from "@/models";
+import { Encounter } from "@raddle/types";
 import { GetDateString } from "./Date";
 import getMongoClient from "./MongoDB";
 

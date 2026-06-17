@@ -1,5 +1,5 @@
-import { GridCellState } from "@/models";
-import type { Encounter, EncounterComparisonResult } from "@/models";
+import { GridCellState } from "@raddle/types";
+import type { Encounter, EncounterComparisonResult } from "@raddle/types";
 
 export default function CompareEncounters(guess: Encounter, answer: Encounter): EncounterComparisonResult
 {

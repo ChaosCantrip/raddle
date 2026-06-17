@@ -7,8 +7,8 @@ import { faCaretRight, faEye, faEyeSlash, faShare } from "@fortawesome/free-soli
 
 import { GridTable, GridRow, GridCell, GuessEntryBox } from "@/components";
 
-import { GridCellState } from "@/models";
-import type { Encounter, ErrorResult, NonErrorResult, DailyGuessRequest, GuessPair } from "@/models";
+import { GridCellState } from "@raddle/types";
+import type { Encounter, ErrorResult, NonErrorResult, DailyGuessRequest, GuessPair } from "@raddle/types";
 
 import { GetDateString, GetDaysSinceEpoch, GetTimeUntilNextReset, TimeDeltaToString } from "@/lib/Date";
 import { Utils } from "@/lib";

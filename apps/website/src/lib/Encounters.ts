@@ -1,5 +1,5 @@
 import encounters_data from "@/../public/encounters.json";
-import { Encounter } from "@/models";
+import { Encounter } from "@raddle/types";
 
 const Encounters: Encounter[] = encounters_data as Encounter[];
 
