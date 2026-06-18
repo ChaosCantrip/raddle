@@ -10,6 +10,7 @@
     ".": "./src/index.ts"
   },
   "devDependencies": {
-    "@raddle/config": "*"
+    "@raddle/config": "*",
+    "typescript": "^5.9.3"
   }
 }
