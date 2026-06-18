@@ -2,6 +2,11 @@
   "name": "@raddle/api",
   "version": "0.1.0",
   "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
   "dependencies": {
     "@raddle/config": "*",
     "@raddle/types": "*",
