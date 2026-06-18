@@ -1,42 +1,38 @@
-# =========================
-# 1. Dependencies
-# =========================
-FROM node:20-alpine AS deps
+ARG NODE_VERSION=24.13.0-slim
+
+FROM node:${NODE_VERSION} AS dependencies
 WORKDIR /app
 
-# Install deps separately for better caching
-COPY package.json package-lock.json* ./
-RUN npm ci
+COPY package.json package-lock.json ./
+COPY apps/api/package.json apps/api/
+COPY packages packages
 
-# =========================
-# 2. Builder
-# =========================
-FROM node:20-alpine AS builder
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --no-audit --no-fund
+
+FROM node:${NODE_VERSION} AS builder
 WORKDIR /app
 
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
-# Build TypeScript
+ENV NODE_ENV=production
+WORKDIR /app/apps/api
 RUN npm run build
 
-# =========================
-# 3. Runner (minimal)
-# =========================
-FROM node:20-alpine AS runner
+FROM node:${NODE_VERSION} AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV PORT=3000
 
-# Only copy what's needed
-COPY --from=builder /app/dist ./dist
-COPY package.json package-lock.json* ./
+COPY --from=builder /app/apps/api/dist ./dist
+COPY --from=builder /app/apps/api/package.json ./package.json
+COPY --from=dependencies /app/node_modules ./node_modules
 
-# Install only production deps
-RUN npm ci --omit=dev
+RUN addgroup --system --gid 1001 expressg
+RUN adduser --system --uid 1001 expressu
+USER expressu
 
-# Expose port (optional but good practice)
 EXPOSE 3000
-
-# Run compiled app
 CMD ["node", "dist/server.js"]
