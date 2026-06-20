@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 
-import { Footer, Header, PageContainer } from "@/components";
+import { Footer, PageContainer } from "@/components";
+import Header from "@/components/Header";
 
 config.autoAddCss = false;
 
