@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 
 
 export default function HomePage() 
@@ -19,6 +20,10 @@ export default function HomePage()
                 <Link href="/arcade" className={styles.button + " " + styles.arcadeLink}>
                     Play Arcade <CaretRightIcon />
                 </Link>
+                <p className={styles.subText}>Join our Discord to chat with other RaDdlers, and help shape the future of RaDdle!</p>
+                <a href="https://discord.raddle.online" className={styles.button + " " + styles.discordLink} target="_blank"rel="noopener noreferrer">
+                    <DiscordIcon /> Join our Discord
+                </a>
             </div>
         </div>
     );
@@ -27,4 +32,9 @@ export default function HomePage()
 function CaretRightIcon()
 {
     return <FontAwesomeIcon icon={faCaretRight} className={styles.caretIcon} />;
+}
+
+function DiscordIcon() 
+{
+    return <FontAwesomeIcon icon={faDiscord} calcMode={styles.discordIcon} />;
 }

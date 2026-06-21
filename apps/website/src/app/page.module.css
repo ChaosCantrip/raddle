@@ -84,3 +84,26 @@
     0 12px 30px rgba(255, 184, 77, 0.1),
     0 0 14px rgba(255, 184, 77, 0.14);
 }
+
+.discordLink {
+  background: linear-gradient(
+    180deg,
+    rgba(88, 101, 242, 0.22),
+    rgba(88, 101, 242, 0.12)
+  );
+  box-shadow:
+    0 10px 26px rgba(88, 101, 242, 0.06),
+    0 0 12px rgba(88, 101, 242, 0.08);
+}
+
+.discordLink:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(88, 101, 242, 0.22),
+    rgba(88, 101, 242, 0.12)
+  );
+  border: 1px solid rgba(88, 101, 242, 0.34);
+  box-shadow:
+    0 12px 30px rgba(88, 101, 242, 0.1),
+    0 0 14px rgba(88, 101, 242, 0.14);
+}
