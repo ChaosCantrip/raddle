@@ -7,7 +7,8 @@
     "lint:fix": "eslint --fix"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./requests": "./src/requests/index.ts"
   },
   "peerDependencies": {
     "mongodb": "^7.2.0",
