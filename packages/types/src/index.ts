@@ -6,3 +6,4 @@ export * from "./GridCellState";
 export * from "./GuessPair";
 export * from "./GuessResponse";
 export * from "./GuessResult";
+export * from "./Game";
