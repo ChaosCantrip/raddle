@@ -9,6 +9,14 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "peerDependencies": {
+    "mongodb": "^7.2.0"
+  },
+  "peerDependenciesMeta": {
+    "mongodb": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@raddle/config": "*",
     "typescript": "^5.9.3"
