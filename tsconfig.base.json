@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./apps/website" },
+    { "path": "./apps/website-maintenance" },
+    { "path": "./packages/types" }
+  ]
+}
