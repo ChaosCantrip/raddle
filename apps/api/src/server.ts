@@ -1,4 +1,4 @@
-import { setupProcessErrorHandlers } from "./process-error-handlers/index.js";
+import { setupProcessErrorHandlers } from"@/process-error-handlers";
 setupProcessErrorHandlers();
 
 import { createApp } from "./app.js";
