@@ -1,3 +1,6 @@
+import { setupProcessErrorHandlers } from "./process-error-handlers/index.js";
+setupProcessErrorHandlers();
+
 import { createApp } from "./app.js";
 
 const app = createApp();
