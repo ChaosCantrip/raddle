@@ -1,16 +1,16 @@
 import type { Request, Response, NextFunction } from "express";
 import type { ZodType } from "zod";
 
-export const ValidateRequestQuery = (schema: ZodType) => 
+export const validateRequestBody = (schema: ZodType) => 
 {
     return async (req: Request, res: Response, next: NextFunction) => 
     {
-        const result = await schema.safeParseAsync(req.query);
+        const result = await schema.safeParseAsync(req.body);
 
         if (!result.success) 
         {
             return res.status(422).json({
-                error: "Request Query Schema Validation Failed",
+                error: "Request Body Schema Validation Failed",
                 details: result.error.issues.map((e) => ({
                     field: e.path.join("."),
                     issue: e.message
@@ -18,8 +18,7 @@ export const ValidateRequestQuery = (schema: ZodType) =>
             });
         }
 
-         
-        res.locals.parsedQuery = result.data;
+        res.locals.parsedBody = result.data;
 
         next();
     }

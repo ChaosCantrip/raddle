@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import type { ZodType } from "zod";
 
-export const ValidateRequestCookies = (schema: ZodType) => 
+export const validateRequestCookies = (schema: ZodType) => 
 {
     return async (req: Request, res: Response, next: NextFunction) => 
     {

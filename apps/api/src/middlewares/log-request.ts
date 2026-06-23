@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 
-export const LogRequest = (req: Request, res: Response, next: NextFunction) => 
+export const logRequest = (req: Request, res: Response, next: NextFunction) => 
 {
     const now = process.hrtime();
 

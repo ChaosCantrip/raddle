@@ -1,7 +1,7 @@
 import express from "express";
 import { router } from "./routes/index.js";
 import cookieParser from "cookie-parser";
-import { LogRequest } from "./middlewares/index.js";
+import { logRequest } from "./middlewares/index.js";
 import { handleMalformedJSON, handleNotFound, handleUncaughtErrors } from "./error-handlers/index.js";
 
 export const createApp = () => 
@@ -13,7 +13,7 @@ export const createApp = () =>
     app.use(cookieParser());
 
     // Custom middleware
-    app.use(LogRequest);
+    app.use(logRequest);
 
     // Routes
     app.use("/api", router);
