@@ -1,0 +1,16 @@
+{
+  "name": "@raddle/common",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "devDependencies": {
+    "@raddle/config": "*",
+    "typescript": "^5.9.3"
+  }
+}
