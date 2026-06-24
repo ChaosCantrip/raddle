@@ -1,0 +1,1769 @@
+[
+  {
+    "name": "Royal Pools",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Leviathan",
+    "expansion": "Launch Year",
+    "id": "royal_pools",
+    "encounters": [
+      1,
+      2,
+      3
+    ],
+    "search_terms": [
+      "royal pools",
+      "leviathan"
+    ]
+  },
+  {
+    "name": "Pleasure Gardens",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Leviathan",
+    "expansion": "Launch Year",
+    "id": "pleasure_gardens",
+    "encounters": [
+      1,
+      2,
+      3
+    ],
+    "search_terms": [
+      "pleasure gardens",
+      "leviathan"
+    ]
+  },
+  {
+    "name": "The Gauntlet",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Leviathan",
+    "expansion": "Launch Year",
+    "id": "the_gauntlet",
+    "encounters": [
+      1,
+      2,
+      3
+    ],
+    "search_terms": [
+      "the gauntlet",
+      "leviathan"
+    ]
+  },
+  {
+    "name": "Emperor Calus",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Leviathan",
+    "expansion": "Launch Year",
+    "id": "emperor_calus",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "emperor calus",
+      "leviathan"
+    ]
+  },
+  {
+    "name": "Defeat the Loyalists",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Eater of Worlds",
+    "expansion": "Launch Year",
+    "id": "defeat_the_loyalists",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "defeat the loyalists",
+      "eater of worlds"
+    ]
+  },
+  {
+    "name": "Break the Barrier",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Eater of Worlds",
+    "expansion": "Launch Year",
+    "id": "break_the_barrier",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "break the barrier",
+      "eater of worlds"
+    ]
+  },
+  {
+    "name": "Argos",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Eater of Worlds",
+    "expansion": "Launch Year",
+    "id": "argos",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "argos",
+      "eater of worlds"
+    ]
+  },
+  {
+    "name": "Statue Garden",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Spire of Stars",
+    "expansion": "Launch Year",
+    "id": "statue_garden",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "statue garden",
+      "spire of stars"
+    ]
+  },
+  {
+    "name": "Destroy the Ships",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Spire of Stars",
+    "expansion": "Launch Year",
+    "id": "destroy_the_ships",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "destroy the ships",
+      "spire of stars"
+    ]
+  },
+  {
+    "name": "Val Ca\ufffdour",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Spire of Stars",
+    "expansion": "Launch Year",
+    "id": "val_ca\ufffdour",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "val ca\ufffdour",
+      "spire of stars"
+    ]
+  },
+  {
+    "name": "Kalli",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Last Wish",
+    "expansion": "Forsaken",
+    "id": "kalli",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "kalli",
+      "last wish"
+    ]
+  },
+  {
+    "name": "Shuro Chi",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Last Wish",
+    "expansion": "Forsaken",
+    "id": "shuro_chi",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "shuro chi",
+      "last wish"
+    ]
+  },
+  {
+    "name": "Morgeth",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Last Wish",
+    "expansion": "Forsaken",
+    "id": "morgeth",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "morgeth",
+      "last wish"
+    ]
+  },
+  {
+    "name": "The Vault",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Last Wish",
+    "expansion": "Forsaken",
+    "id": "the_vault",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "the vault",
+      "last wish"
+    ]
+  },
+  {
+    "name": "Riven",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Last Wish",
+    "expansion": "Forsaken",
+    "id": "riven",
+    "encounters": [
+      5
+    ],
+    "search_terms": [
+      "riven",
+      "last wish"
+    ]
+  },
+  {
+    "name": "Queenswalk",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Last Wish",
+    "expansion": "Forsaken",
+    "id": "queenswalk",
+    "encounters": [
+      6
+    ],
+    "search_terms": [
+      "queenswalk",
+      "last wish"
+    ]
+  },
+  {
+    "name": "Erebus",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "The Shattered Throne",
+    "expansion": "Forsaken",
+    "id": "erebus",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "erebus",
+      "the shattered throne"
+    ]
+  },
+  {
+    "name": "Vorgeth",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "The Shattered Throne",
+    "expansion": "Forsaken",
+    "id": "vorgeth",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "vorgeth",
+      "the shattered throne"
+    ]
+  },
+  {
+    "name": "Dul Incaru",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "The Shattered Throne",
+    "expansion": "Forsaken",
+    "id": "dul_incaru",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "dul incaru",
+      "the shattered throne"
+    ]
+  },
+  {
+    "name": "Botza District",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Raid",
+    "activity": "Scourge of the Past",
+    "expansion": "Forsaken",
+    "id": "botza_district",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "botza district",
+      "scourge of the past"
+    ]
+  },
+  {
+    "name": "Ablazed Glory",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Raid",
+    "activity": "Scourge of the Past",
+    "expansion": "Forsaken",
+    "id": "ablazed_glory",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "ablazed glory",
+      "scourge of the past"
+    ]
+  },
+  {
+    "name": "Vault Access",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Raid",
+    "activity": "Scourge of the Past",
+    "expansion": "Forsaken",
+    "id": "vault_access",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "vault access",
+      "scourge of the past"
+    ]
+  },
+  {
+    "name": "INSURRECTION PRIME",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Raid",
+    "activity": "Scourge of the Past",
+    "expansion": "Forsaken",
+    "id": "insurrection_prime",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "insurrection prime",
+      "scourge of the past"
+    ]
+  },
+  {
+    "name": "Dispel The Hive Ward",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Raid",
+    "activity": "Crown of Sorrow",
+    "expansion": "Forsaken",
+    "id": "dispel_the_hive_ward",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "dispel the hive ward",
+      "crown of sorrow"
+    ]
+  },
+  {
+    "name": "Kingdom of Sorrow",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Raid",
+    "activity": "Crown of Sorrow",
+    "expansion": "Forsaken",
+    "id": "kingdom_of_sorrow",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "kingdom of sorrow",
+      "crown of sorrow"
+    ]
+  },
+  {
+    "name": "Gahlran's Deception",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Raid",
+    "activity": "Crown of Sorrow",
+    "expansion": "Forsaken",
+    "id": "gahlrans_deception",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "gahlrans deception",
+      "crown of sorrow"
+    ]
+  },
+  {
+    "name": "Gahlran",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Raid",
+    "activity": "Crown of Sorrow",
+    "expansion": "Forsaken",
+    "id": "gahlran",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "gahlran",
+      "crown of sorrow"
+    ]
+  },
+  {
+    "name": "Evade the Consecrated Mind",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Garden of Salvation",
+    "expansion": "Shadowkeep",
+    "id": "evade_the_consecrated_mind",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "evade the consecrated mind",
+      "garden of salvation"
+    ]
+  },
+  {
+    "name": "Summon the Consecrated Mind",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Garden of Salvation",
+    "expansion": "Shadowkeep",
+    "id": "summon_the_consecrated_mind",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "summon the consecrated mind",
+      "garden of salvation"
+    ]
+  },
+  {
+    "name": "Consecrated Mind",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Garden of Salvation",
+    "expansion": "Shadowkeep",
+    "id": "consecrated_mind",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "consecrated mind",
+      "garden of salvation"
+    ]
+  },
+  {
+    "name": "Sanctified Mind",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Garden of Salvation",
+    "expansion": "Shadowkeep",
+    "id": "sanctified_mind",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "sanctified mind",
+      "garden of salvation"
+    ]
+  },
+  {
+    "name": "Necropolis",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Pit of Heresy",
+    "expansion": "Shadowkeep",
+    "id": "necropolis",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "necropolis",
+      "pit of heresy"
+    ]
+  },
+  {
+    "name": "Chamber of Suffering",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Pit of Heresy",
+    "expansion": "Shadowkeep",
+    "id": "chamber_of_suffering",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "chamber of suffering",
+      "pit of heresy"
+    ]
+  },
+  {
+    "name": "Zulmak",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Pit of Heresy",
+    "expansion": "Shadowkeep",
+    "id": "zulmak",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "zulmak",
+      "pit of heresy"
+    ]
+  },
+  {
+    "name": "Phalanx Echo",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Prophecy",
+    "expansion": "Shadowkeep",
+    "id": "phalanx_echo",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "phalanx echo",
+      "prophecy"
+    ]
+  },
+  {
+    "name": "Hexahedron",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Prophecy",
+    "expansion": "Shadowkeep",
+    "id": "hexahedron",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "hexahedron",
+      "prophecy"
+    ]
+  },
+  {
+    "name": "Kell Echo",
+    "enemy_types": [
+      "Taken"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Prophecy",
+    "expansion": "Shadowkeep",
+    "id": "kell_echo",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "kell echo",
+      "prophecy"
+    ]
+  },
+  {
+    "name": "Crypt Security",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Raid",
+    "activity": "Deep Stone Crypt",
+    "expansion": "Beyond Light",
+    "id": "crypt_security",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "crypt security",
+      "deep stone crypt"
+    ]
+  },
+  {
+    "name": "Atraks-1",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Raid",
+    "activity": "Deep Stone Crypt",
+    "expansion": "Beyond Light",
+    "id": "atraks-1",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "atraks-1",
+      "deep stone crypt"
+    ]
+  },
+  {
+    "name": "Nuclear Descent",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Raid",
+    "activity": "Deep Stone Crypt",
+    "expansion": "Beyond Light",
+    "id": "nuclear_descent",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "nuclear descent",
+      "deep stone crypt"
+    ]
+  },
+  {
+    "name": "Taniks",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Raid",
+    "activity": "Deep Stone Crypt",
+    "expansion": "Beyond Light",
+    "id": "taniks",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "taniks",
+      "deep stone crypt"
+    ]
+  },
+  {
+    "name": "Confluxes",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Vault of Glass",
+    "expansion": "Beyond Light",
+    "id": "confluxes",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "confluxes",
+      "vault of glass"
+    ]
+  },
+  {
+    "name": "Oracles",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Vault of Glass",
+    "expansion": "Beyond Light",
+    "id": "oracles",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "oracles",
+      "vault of glass"
+    ]
+  },
+  {
+    "name": "Templar",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Vault of Glass",
+    "expansion": "Beyond Light",
+    "id": "templar",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "templar",
+      "vault of glass"
+    ]
+  },
+  {
+    "name": "Gatekeepers",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Vault of Glass",
+    "expansion": "Beyond Light",
+    "id": "gatekeepers",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "gatekeepers",
+      "vault of glass"
+    ]
+  },
+  {
+    "name": "Atheon",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Vault of Glass",
+    "expansion": "Beyond Light",
+    "id": "atheon",
+    "encounters": [
+      5
+    ],
+    "search_terms": [
+      "atheon",
+      "vault of glass"
+    ]
+  },
+  {
+    "name": "Phry'zhia",
+    "enemy_types": [
+      "Fallen",
+      "Hive"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Grasp of Avarice",
+    "expansion": "Beyond Light",
+    "id": "phryzhia",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "phryzhia",
+      "grasp of avarice"
+    ]
+  },
+  {
+    "name": "Fallen Shield",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Grasp of Avarice",
+    "expansion": "Beyond Light",
+    "id": "fallen_shield",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "fallen shield",
+      "grasp of avarice"
+    ]
+  },
+  {
+    "name": "Captain Avarokk",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Grasp of Avarice",
+    "expansion": "Beyond Light",
+    "id": "captain_avarokk",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "captain avarokk",
+      "grasp of avarice"
+    ]
+  },
+  {
+    "name": "Acquisition",
+    "enemy_types": [
+      "Scorn",
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Vow of the Disciple",
+    "expansion": "Witch Queen",
+    "id": "acquisition",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "acquisition",
+      "vow of the disciple"
+    ]
+  },
+  {
+    "name": "Caretaker",
+    "enemy_types": [
+      "Scorn",
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Vow of the Disciple",
+    "expansion": "Witch Queen",
+    "id": "caretaker",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "caretaker",
+      "vow of the disciple"
+    ]
+  },
+  {
+    "name": "Exhibition",
+    "enemy_types": [
+      "Scorn",
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Vow of the Disciple",
+    "expansion": "Witch Queen",
+    "id": "exhibition",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "exhibition",
+      "vow of the disciple"
+    ]
+  },
+  {
+    "name": "Rhulk",
+    "enemy_types": [
+      "Scorn",
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Vow of the Disciple",
+    "expansion": "Witch Queen",
+    "id": "rhulk",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "rhulk",
+      "vow of the disciple"
+    ]
+  },
+  {
+    "name": "Nightmare of Gahlran",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Duality",
+    "expansion": "Witch Queen",
+    "id": "nightmare_of_gahlran",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "nightmare of gahlran",
+      "duality"
+    ]
+  },
+  {
+    "name": "The Mind Vault",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Duality",
+    "expansion": "Witch Queen",
+    "id": "the_mind_vault",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "the mind vault",
+      "duality"
+    ]
+  },
+  {
+    "name": "Nightmare of Caiatl",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Duality",
+    "expansion": "Witch Queen",
+    "id": "nightmare_of_caiatl",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "nightmare of caiatl",
+      "duality"
+    ]
+  },
+  {
+    "name": "Basilica",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Raid",
+    "activity": "King's Fall",
+    "expansion": "Witch Queen",
+    "id": "basilica",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "basilica",
+      "kings fall",
+      "king's fall"
+    ]
+  },
+  {
+    "name": "Warpriest",
+    "enemy_types": [
+      "Hive",
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "King's Fall",
+    "expansion": "Witch Queen",
+    "id": "warpriest",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "warpriest",
+      "kings fall",
+      "king's fall"
+    ]
+  },
+  {
+    "name": "Golgoroth",
+    "enemy_types": [
+      "Hive",
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "King's Fall",
+    "expansion": "Witch Queen",
+    "id": "golgoroth",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "golgoroth",
+      "kings fall",
+      "king's fall"
+    ]
+  },
+  {
+    "name": "Daughters",
+    "enemy_types": [
+      "Hive",
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "King's Fall",
+    "expansion": "Witch Queen",
+    "id": "daughters",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "daughters",
+      "kings fall",
+      "king's fall"
+    ]
+  },
+  {
+    "name": "Oryx",
+    "enemy_types": [
+      "Hive",
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "King's Fall",
+    "expansion": "Witch Queen",
+    "id": "oryx",
+    "encounters": [
+      5
+    ],
+    "search_terms": [
+      "oryx",
+      "kings fall",
+      "king's fall"
+    ]
+  },
+  {
+    "name": "Ascend the Spire",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Spire of the Watcher",
+    "expansion": "Witch Queen",
+    "id": "ascend_the_spire",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "ascend the spire",
+      "spire of the watcher"
+    ]
+  },
+  {
+    "name": "Akelous",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Spire of the Watcher",
+    "expansion": "Witch Queen",
+    "id": "akelous",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "akelous",
+      "spire of the watcher"
+    ]
+  },
+  {
+    "name": "Persys",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Spire of the Watcher",
+    "expansion": "Witch Queen",
+    "id": "persys",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "persys",
+      "spire of the watcher"
+    ]
+  },
+  {
+    "name": "Cataclysm",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Root of Nightmares",
+    "expansion": "Lightfall",
+    "id": "cataclysm",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "cataclysm",
+      "root of nightmares"
+    ]
+  },
+  {
+    "name": "Scission",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Root of Nightmares",
+    "expansion": "Lightfall",
+    "id": "scission",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "scission",
+      "root of nightmares"
+    ]
+  },
+  {
+    "name": "Zo'aurc",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Root of Nightmares",
+    "expansion": "Lightfall",
+    "id": "zoaurc",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "zoaurc",
+      "root of nightmares"
+    ]
+  },
+  {
+    "name": "Nezarec",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Root of Nightmares",
+    "expansion": "Lightfall",
+    "id": "nezarec",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "nezarec",
+      "root of nightmares"
+    ]
+  },
+  {
+    "name": "Break the Ritual",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Ghosts of the Deep",
+    "expansion": "Lightfall",
+    "id": "break_the_ritual",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "break the ritual",
+      "ghosts of the deep"
+    ]
+  },
+  {
+    "name": "Ecthar",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Ghosts of the Deep",
+    "expansion": "Lightfall",
+    "id": "ecthar",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "ecthar",
+      "ghosts of the deep"
+    ]
+  },
+  {
+    "name": "Simmumah Ur-Nokru",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Ghosts of the Deep",
+    "expansion": "Lightfall",
+    "id": "simmumah_ur-nokru",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "simmumah ur-nokru",
+      "ghosts of the deep"
+    ]
+  },
+  {
+    "name": "The Abyss",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Raid",
+    "activity": "Crota's End",
+    "expansion": "Lightfall",
+    "id": "the_abyss",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "the abyss",
+      "crotas end",
+      "crota's end"
+    ]
+  },
+  {
+    "name": "The Bridge",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Raid",
+    "activity": "Crota's End",
+    "expansion": "Lightfall",
+    "id": "the_bridge",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "the bridge",
+      "crotas end",
+      "crota's end"
+    ]
+  },
+  {
+    "name": "Ir Yut",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Raid",
+    "activity": "Crota's End",
+    "expansion": "Lightfall",
+    "id": "ir_yut",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "ir yut",
+      "crotas end",
+      "crota's end"
+    ]
+  },
+  {
+    "name": "Crota",
+    "enemy_types": [
+      "Hive"
+    ],
+    "activity_type": "Raid",
+    "activity": "Crota's End",
+    "expansion": "Lightfall",
+    "id": "crota",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "crota",
+      "crotas end",
+      "crota's end"
+    ]
+  },
+  {
+    "name": "Rathil",
+    "enemy_types": [
+      "Scorn",
+      "Taken"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Warlord's Ruin",
+    "expansion": "Lightfall",
+    "id": "rathil",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "rathil",
+      "warlords ruin",
+      "warlord's ruin"
+    ]
+  },
+  {
+    "name": "Locus of Wailing Grief",
+    "enemy_types": [
+      "Scorn",
+      "Taken"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Warlord's Ruin",
+    "expansion": "Lightfall",
+    "id": "locus_of_wailing_grief",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "locus of wailing grief",
+      "warlords ruin",
+      "warlord's ruin"
+    ]
+  },
+  {
+    "name": "Hefnd's Vengence",
+    "enemy_types": [
+      "Scorn",
+      "Taken"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Warlord's Ruin",
+    "expansion": "Lightfall",
+    "id": "hefnds_vengence",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "hefnds vengence",
+      "warlords ruin",
+      "warlord's ruin"
+    ]
+  },
+  {
+    "name": "Substratum",
+    "enemy_types": [
+      "Dread",
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "Salvation's Edge",
+    "expansion": "The Final Shape",
+    "id": "substratum",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "substratum",
+      "salvations edge",
+      "salvation's edge"
+    ]
+  },
+  {
+    "name": "Herald of Finality",
+    "enemy_types": [
+      "Dread",
+      "Taken"
+    ],
+    "activity_type": "Raid",
+    "activity": "Salvation's Edge",
+    "expansion": "The Final Shape",
+    "id": "herald_of_finality",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "herald of finality",
+      "salvations edge",
+      "salvation's edge"
+    ]
+  },
+  {
+    "name": "Repository",
+    "enemy_types": [
+      "Dread",
+      "Cabal"
+    ],
+    "activity_type": "Raid",
+    "activity": "Salvation's Edge",
+    "expansion": "The Final Shape",
+    "id": "repository",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "repository",
+      "salvations edge",
+      "salvation's edge"
+    ]
+  },
+  {
+    "name": "Verity",
+    "enemy_types": [
+      "Dread",
+      "Hive"
+    ],
+    "activity_type": "Raid",
+    "activity": "Salvation's Edge",
+    "expansion": "The Final Shape",
+    "id": "verity",
+    "encounters": [
+      4
+    ],
+    "search_terms": [
+      "verity",
+      "salvations edge",
+      "salvation's edge"
+    ]
+  },
+  {
+    "name": "The Witness",
+    "enemy_types": [
+      "Dread",
+      "Scorn"
+    ],
+    "activity_type": "Raid",
+    "activity": "Salvation's Edge",
+    "expansion": "The Final Shape",
+    "id": "the_witness",
+    "encounters": [
+      5
+    ],
+    "search_terms": [
+      "the witness",
+      "salvations edge",
+      "salvation's edge"
+    ]
+  },
+  {
+    "name": "Reawaken the Station",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Vesper's Host",
+    "expansion": "The Final Shape",
+    "id": "reawaken_the_station",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "reawaken the station",
+      "vespers host",
+      "vesper's host"
+    ]
+  },
+  {
+    "name": "Raneiks",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Vesper's Host",
+    "expansion": "The Final Shape",
+    "id": "raneiks",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "raneiks",
+      "vespers host",
+      "vesper's host"
+    ]
+  },
+  {
+    "name": "Corrupted Puppeteer",
+    "enemy_types": [
+      "Fallen"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Vesper's Host",
+    "expansion": "The Final Shape",
+    "id": "corrupted_puppeteer",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "corrupted puppeteer",
+      "vespers host",
+      "vesper's host"
+    ]
+  },
+  {
+    "name": "Flooded Inspection",
+    "enemy_types": [
+      "Dread"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Sundered Doctrine",
+    "expansion": "The Final Shape",
+    "id": "flooded_inspection",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "flooded inspection",
+      "sundered doctrine"
+    ]
+  },
+  {
+    "name": "Zoetic Lockset",
+    "enemy_types": [
+      "Dread",
+      "Hive"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Sundered Doctrine",
+    "expansion": "The Final Shape",
+    "id": "zoetic_lockset",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "zoetic lockset",
+      "sundered doctrine"
+    ]
+  },
+  {
+    "name": "Kerrev",
+    "enemy_types": [
+      "Dread",
+      "Hive"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Sundered Doctrine",
+    "expansion": "The Final Shape",
+    "id": "kerrev",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "kerrev",
+      "sundered doctrine"
+    ]
+  },
+  {
+    "name": "Epoptes",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "The Desert Perpetual",
+    "expansion": "Year of Prophecy",
+    "id": "epoptes",
+    "encounters": [
+      1,
+      2,
+      3
+    ],
+    "search_terms": [
+      "epoptes",
+      "the desert perpetual"
+    ]
+  },
+  {
+    "name": "Iatros",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "The Desert Perpetual",
+    "expansion": "Year of Prophecy",
+    "id": "iatros",
+    "encounters": [
+      1,
+      2,
+      3
+    ],
+    "search_terms": [
+      "iatros",
+      "the desert perpetual"
+    ]
+  },
+  {
+    "name": "Agraios",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "The Desert Perpetual",
+    "expansion": "Year of Prophecy",
+    "id": "agraios",
+    "encounters": [
+      1,
+      2,
+      3
+    ],
+    "search_terms": [
+      "agraios",
+      "the desert perpetual"
+    ]
+  },
+  {
+    "name": "Koregos",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "The Desert Perpetual",
+    "expansion": "Year of Prophecy",
+    "id": "koregos",
+    "encounters": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "search_terms": [
+      "koregos",
+      "the desert perpetual"
+    ]
+  },
+  {
+    "name": "Epoptes (Epic)",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "The Desert Perpetual (Epic)",
+    "expansion": "Year of Prophecy",
+    "id": "epoptes_epic",
+    "encounters": [
+      1,
+      2,
+      3
+    ],
+    "search_terms": [
+      "epoptes epic",
+      "the desert perpetual epic",
+      "the desert perpetual (epic)"
+    ]
+  },
+  {
+    "name": "Iatros (Epic)",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "The Desert Perpetual (Epic)",
+    "expansion": "Year of Prophecy",
+    "id": "iatros_epic",
+    "encounters": [
+      1,
+      2,
+      3
+    ],
+    "search_terms": [
+      "iatros epic",
+      "the desert perpetual epic",
+      "the desert perpetual (epic)"
+    ]
+  },
+  {
+    "name": "Agraios (Epic)",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "The Desert Perpetual (Epic)",
+    "expansion": "Year of Prophecy",
+    "id": "agraios_epic",
+    "encounters": [
+      1,
+      2,
+      3
+    ],
+    "search_terms": [
+      "agraios epic",
+      "the desert perpetual epic",
+      "the desert perpetual (epic)"
+    ]
+  },
+  {
+    "name": "Koregos (Epic)",
+    "enemy_types": [
+      "Vex"
+    ],
+    "activity_type": "Raid",
+    "activity": "The Desert Perpetual (Epic)",
+    "expansion": "Year of Prophecy",
+    "id": "koregos_epic",
+    "encounters": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "search_terms": [
+      "koregos epic",
+      "the desert perpetual epic",
+      "the desert perpetual (epic)"
+    ]
+  },
+  {
+    "name": "Harvester",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Equilibrium",
+    "expansion": "Year of Prophecy",
+    "id": "harvester",
+    "encounters": [
+      1
+    ],
+    "search_terms": [
+      "harvester",
+      "equilibrium"
+    ]
+  },
+  {
+    "name": "Dredgen Harrow",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Equilibrium",
+    "expansion": "Year of Prophecy",
+    "id": "dredgen_harrow",
+    "encounters": [
+      2
+    ],
+    "search_terms": [
+      "dredgen harrow",
+      "equilibrium"
+    ]
+  },
+  {
+    "name": "Dredgen Sere",
+    "enemy_types": [
+      "Cabal"
+    ],
+    "activity_type": "Dungeon",
+    "activity": "Equilibrium",
+    "expansion": "Year of Prophecy",
+    "id": "dredgen_sere",
+    "encounters": [
+      3
+    ],
+    "search_terms": [
+      "dredgen sere",
+      "equilibrium"
+    ]
+  }
+]

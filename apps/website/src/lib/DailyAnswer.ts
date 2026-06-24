@@ -1,4 +1,5 @@
-import { Encounters, GenerateRandomEncounter } from "@/lib";
+import { GenerateRandomEncounter } from "@/lib";
+import { Encounters } from "@raddle/common";
 
 import type { Encounter } from "@raddle/types";
 import { GetDateString } from "./Date";
