@@ -1,5 +1,5 @@
 import express from "express";
-import { router } from "./routes/index.js";
+import { setupRootRouter } from "./routes/index.js";
 import cookieParser from "cookie-parser";
 import { logRequest } from "./middlewares/index.js";
 import { handleMalformedJSON, handleNotFound, handleUncaughtErrors } from "./error-handlers/index.js";
@@ -16,7 +16,11 @@ export const createApp = () =>
     app.use(logRequest);
 
     // Routes
-    app.use("/api", router);
+    const rootRouter = express.Router();
+
+    setupRootRouter(rootRouter);
+
+    app.use("/", rootRouter);
 
     // Error Handlers
     app.use(handleNotFound);

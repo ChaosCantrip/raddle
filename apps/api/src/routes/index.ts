@@ -1,8 +1,12 @@
-import { Router } from "express";
+import type { Router, Request, Response } from "express";
+import { setupEncountersRouter } from "./encounters/index.js";
 
-export const router = Router();
-
-router.get("/health", (_req, res) => 
+export function setupRootRouter(router: Router)
 {
-    res.json({ status: "ok" });
-});
+    setupEncountersRouter(router);
+
+    router.get("/health", (_req: Request, res: Response) => 
+    {
+        res.json({ status: "ok" });
+    });
+}
