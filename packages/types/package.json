@@ -2,13 +2,16 @@
   "name": "@raddle/types",
   "private": true,
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
+    "build": "tsc -p tsconfig.json",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./requests": "./src/requests/index.ts"
+    ".": "./dist/index.js",
+    "./requests": "./dist/requests/index.js"
   },
   "peerDependencies": {
     "mongodb": "^7.2.0",

@@ -1,1 +1,1 @@
-export * from "./MakeGuessRequest";
+export * from "./MakeGuessRequest.js";

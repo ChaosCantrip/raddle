@@ -1,12 +1,10 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES2017",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "strict": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "declaration": true
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "composite": true
   },
   "include": ["src/**/*"]
 }

@@ -20,7 +20,8 @@ const nextConfig: NextConfig = {
                 ]
             }
         ];
-    }
+    },
+    transpilePackages: ["@raddle/types"]
 };
 
 export default nextConfig;
