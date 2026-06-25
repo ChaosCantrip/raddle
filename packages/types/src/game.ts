@@ -1,5 +1,4 @@
 import { z } from "zod";
-import type { ObjectId } from "mongodb";
 import { encounterIdSchema } from "./encounter.js";
 import { gameModeSchema } from "./game-mode.js";
 import { gameStateSchema } from "./game-state.js";
@@ -17,7 +16,6 @@ const arcadeExtension = {
 };
 
 export const baseGameSchema = z.object({
-    _id: z.custom<ObjectId>(),
     id: gameIdSchema,
     gameMode: gameModeSchema,
     gameState: gameStateSchema,
