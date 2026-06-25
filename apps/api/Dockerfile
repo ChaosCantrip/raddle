@@ -17,8 +17,9 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV=production
-WORKDIR /app/apps/api
-RUN npm run build
+RUN npm run build --workspace=@raddle/types
+RUN npm run build --workspace=@raddle/common
+RUN npm run build --workspace=@raddle/api
 
 FROM node:${NODE_VERSION}-alpine AS prod-deps
 WORKDIR /app
@@ -39,6 +40,8 @@ ENV NODE_ENV=production
 ENV PORT=3000
 
 COPY --from=prod-deps /app/node_modules ./node_modules
+COPY --from=builder /app/packages/common/dist ./packages/common/dist
+COPY --from=builder /app/packages/types/dist ./packages/types/dist
 COPY --from=builder /app/apps/api/dist ./dist
 
 RUN addgroup -S -g 1001 expressg && adduser -S -u 1001 -G expressg expressu
