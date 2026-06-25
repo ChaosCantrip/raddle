@@ -4,7 +4,7 @@ import { gameModeSchema } from "./game-mode.js";
 import { gameStateSchema } from "./game-state.js";
 import { guessSchema } from "./guess.js";
 
-export const gameIdSchema = z.string();
+export const gameIdSchema = z.uuid();
 
 const dailyExtension = {
     gameMode: z.literal("daily"),
