@@ -4,7 +4,6 @@ export * from "./encounter-comparison-result.js";
 export * from "./encounter.js";
 export * from "./game-mode.js";
 export * from "./game-state.js";
-export * from "./game-with-guesses.js";
 export * from "./game.js";
 export * from "./grid-cell-state.js";
 export * from "./guess-pair.js";

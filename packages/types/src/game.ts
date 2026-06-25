@@ -3,6 +3,7 @@ import type { ObjectId } from "mongodb";
 import { encounterIdSchema } from "./encounter.js";
 import { gameModeSchema } from "./game-mode.js";
 import { gameStateSchema } from "./game-state.js";
+import { guessSchema } from "./guess.js";
 
 export const gameIdSchema = z.string();
 
@@ -21,6 +22,7 @@ export const baseGameSchema = z.object({
     gameMode: gameModeSchema,
     gameState: gameStateSchema,
     answerId: encounterIdSchema,
+    guesses: z.array(guessSchema),
     createdAt: z.date(),
     updatedAt: z.date(),
 });
