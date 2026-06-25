@@ -1,6 +1,6 @@
 import type { ObjectId } from "mongodb";
-import type { Encounter } from "./Encounter";
-import type { GuessResult } from "./GuessResult";
+import type { Encounter } from "./Encounter.js";
+import type { GuessResult } from "./GuessResult.js";
 
 export type GameMode = "daily" | "arcade";
 export type GameState = "complete" | "incomplete" | "abandoned";

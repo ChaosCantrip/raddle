@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Encounters } from "@/lib";
+import { Encounters } from "@raddle/common";
 
 export async function GET() 
 {
