@@ -17,18 +17,9 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV=production
+RUN npm run build --workspace=@raddle/types
+RUN npm run build --workspace=@raddle/common
 RUN npm run build --workspace=@raddle/website
-
-FROM node:${NODE_VERSION}-alpine AS prod-deps
-WORKDIR /app
-
-ENV NODE_ENV=production
-COPY package.json package-lock.json ./
-COPY apps/website/package.json apps/website/
-COPY packages packages
-
-RUN --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev --workspace=@raddle/website --no-audit --no-fund
 
 FROM node:${NODE_VERSION}-alpine AS runner
 WORKDIR /app

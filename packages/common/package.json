@@ -1,5 +1,5 @@
 {
-  "name": "@raddle/types",
+  "name": "@raddle/common",
   "private": true,
   "type": "module",
   "main": "./dist/index.js",
@@ -10,20 +10,7 @@
     "lint:fix": "eslint --fix"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./requests": "./dist/requests/index.js"
-  },
-  "peerDependencies": {
-    "mongodb": "^7.2.0",
-    "zod": "^4.4.3"
-  },
-  "peerDependenciesMeta": {
-    "mongodb": {
-      "optional": true
-    },
-    "zod": {
-      "optional": true
-    }
+    ".": "./dist/index.js"
   },
   "devDependencies": {
     "@raddle/config": "*",

@@ -19,17 +19,6 @@ COPY . .
 ENV NODE_ENV=production
 RUN npm run build --workspace=@raddle/website-maintenance
 
-FROM node:${NODE_VERSION}-alpine AS prod-deps
-WORKDIR /app
-
-ENV NODE_ENV=production
-COPY package.json package-lock.json ./
-COPY apps/website-maintenance/package.json apps/website-maintenance/
-COPY packages packages
-
-RUN --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev --workspace=@raddle/website-maintenance --no-audit --no-fund
-
 FROM node:${NODE_VERSION}-alpine AS runner
 WORKDIR /app
 

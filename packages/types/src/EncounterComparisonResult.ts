@@ -1,4 +1,4 @@
-import type { GridCellState } from "./GridCellState";
+import type { GridCellState } from "./GridCellState.js";
 
 export interface EncounterComparisonResult {
     name: GridCellState,

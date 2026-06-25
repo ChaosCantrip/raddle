@@ -1,5 +1,5 @@
-import type { Encounter } from "./Encounter";
-import type { GridCellState } from "./GridCellState";
+import type { Encounter } from "./Encounter.js";
+import type { GridCellState } from "./GridCellState.js";
 
 export interface GuessPair {
     encounter: Encounter;
