@@ -1,18 +1,18 @@
 import { z } from "zod";
 import { encounterIdSchema } from "./encounter.js";
-import { gameModeSchema } from "./game-mode.js";
-import { gameStateSchema } from "./game-state.js";
+import { GameMode, gameModeSchema } from "./game-mode.js";
+import { GameState, gameStateSchema } from "./game-state.js";
 import { guessSchema } from "./guess.js";
 
 export const gameIdSchema = z.uuid();
 
 const dailyExtension = {
-    gameMode: z.literal("daily"),
+    gameMode: z.literal(GameMode.daily),
     dailyDate: z.string(),
 };
 
 const arcadeExtension = {
-    gameMode: z.literal("arcade"),
+    gameMode: z.literal(GameMode.arcade),
 };
 
 export const baseGameSchema = z.object({
@@ -26,16 +26,16 @@ export const baseGameSchema = z.object({
 });
 
 export const completedGameSchema = baseGameSchema.extend({
-    gameState: z.literal("complete"),
+    gameState: z.literal(GameState.complete),
     completedAt: z.date(),
 });
 
 export const incompleteGameSchema = baseGameSchema.extend({
-    gameState: z.literal("incomplete"),
+    gameState: z.literal(GameState.incomplete),
 });
 
 export const abandonedGameSchema = baseGameSchema.extend({
-    gameState: z.literal("abandoned"),
+    gameState: z.literal(GameState.abandoned),
     abandonedAt: z.date(),
 });
 
