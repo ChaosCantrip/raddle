@@ -2,7 +2,7 @@ import { GenerateRandomEncounter } from "@/lib";
 import { Encounters } from "@raddle/common";
 
 import type { Encounter } from "@raddle/types";
-import { GetDateString } from "./Date";
+import { getDateString } from "@raddle/common/date";
 import getMongoClient from "./MongoDB";
 
 const DB_NAME = process.env.MONGODB_DB_NAME || "raddle";
@@ -10,7 +10,7 @@ const COLLECTION_NAME = "daily_answers";
 
 export default async function GetDailyAnswer(): Promise<Encounter>
 {
-    const today = GetDateString();
+    const today = getDateString();
 
     const client = await getMongoClient();
     const db = client.db(DB_NAME);

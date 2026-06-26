@@ -10,7 +10,7 @@ import { GridTable, GridRow, GridCell, GuessEntryBox } from "@/components";
 import { GridCellState } from "@raddle/types";
 import type { Encounter, ErrorResult, NonErrorResult, DailyGuessRequest, GuessPair } from "@raddle/types";
 
-import { GetDateString, GetDaysSinceEpoch, GetTimeUntilNextReset, TimeDeltaToString } from "@/lib/Date";
+import { getDateString, getDaysSinceBeginning, getTimeUntilNextReset, timeDeltaToString } from "@raddle/common/date";
 import { Utils } from "@/lib";
 
 import SharePopup from "./SharePopup";
@@ -28,7 +28,7 @@ interface DailyState {
 export default function HomePage() 
 {
     const [encounters, setEncounters] = useState<Encounter[]>([]);
-    const dailyStorageKey = `raddle-daily-state-${GetDateString()}`;
+    const dailyStorageKey = `raddle-daily-state-${getDateString()}`;
     const initialDailyState = useMemo<DailyState | null>(() => 
     {
         if (typeof window === "undefined") return null;
@@ -117,8 +117,8 @@ export default function HomePage()
     {
         function UpdateTimeUntilReset()
         {
-            const delta = GetTimeUntilNextReset();
-            setTimeUntilReset(TimeDeltaToString(delta));
+            const delta = getTimeUntilNextReset();
+            setTimeUntilReset(timeDeltaToString(delta));
         }
 
         UpdateTimeUntilReset();
@@ -239,7 +239,7 @@ function MainTextBox({ timeUntilReset }: { timeUntilReset: string })
     return (
         <div className={styles.mainTextBox}>
             <p className={styles.mainText}>Guess today&apos;s Raid or Dungeon Encounter!</p>
-            <p className={styles.subText}>RaDdle #{GetDaysSinceEpoch()} ({GetDateString()})</p>
+            <p className={styles.subText}>RaDdle #{getDaysSinceBeginning()} ({getDateString()})</p>
             <p className={styles.timerText}>Time left to complete today&apos;s RaDdle: {timeUntilReset || "--:--:--"}</p>
             <p className={styles.subText}>Type any Encounter Name to start...</p>
         </div>

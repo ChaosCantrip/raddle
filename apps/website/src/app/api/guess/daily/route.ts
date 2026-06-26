@@ -5,7 +5,7 @@ import { CompareEncounters } from "@/lib";
 import { Encounters } from "@raddle/common";
 import GetDailyAnswer from "@/lib/DailyAnswer";
 import getMongoClient from "@/lib/MongoDB";
-import { GetDateString } from "@/lib/Date";
+import { getDateString } from "@raddle/common/date";
 import type { DailyGuessRequest, GuessResponse } from "@raddle/types";
 
 export async function POST(request: NextRequest) 
@@ -62,7 +62,7 @@ async function GetHowManyPeopleAnsweredToday()
     const db = client.db(DB_NAME);
     const collection = db.collection(COLLECTION_NAME);
 
-    const today = GetDateString();
+    const today = getDateString();
 
     const stats = await collection.findOneAndUpdate(
         { date: today },

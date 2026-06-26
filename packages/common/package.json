@@ -10,7 +10,8 @@
     "lint:fix": "eslint --fix"
   },
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./date": "./dist/date/index.js"
   },
   "devDependencies": {
     "@raddle/config": "*",
