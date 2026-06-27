@@ -2,7 +2,7 @@ import type { Request, Response, Router } from "express";
 import crypto from "crypto";
 
 import { HttpStatus, GameState, GameMode } from "@raddle/types";
-import type { CompletedGame, Encounter, EncounterComparisonResult, Game, Guess } from "@raddle/types";
+import type { CompletedGame, CompletionDetails, DailyGame, Encounter, EncounterComparisonResult, Game, Guess } from "@raddle/types";
 import { MakeGuessRequestSchema } from "@raddle/types/requests";
 import type { MakeGuessRequest } from "@raddle/types/requests";
 import { Encounters } from "@raddle/common";
@@ -44,7 +44,7 @@ export function setupPostGuessEndpoint(router: Router)
         if (guessEncounter.id === answerEncounter.id) 
         {
             game.gameState = GameState.complete;
-            (game as CompletedGame).completedAt = new Date();
+            (game as CompletedGame).completionDetails = await getCompletionDetails(game);
         }
         game.updatedAt = new Date();
 
@@ -191,4 +191,37 @@ async function saveGame(game: Game): Promise<void>
         { $set: { ...game } },
         { upsert: true }
     );
+}
+
+async function getCompletionDetails(game: Game): Promise<CompletionDetails>
+{
+    const completionDetails: CompletionDetails = {
+        numGuesses: game.guesses.length,
+        completedAt: new Date()
+    };
+
+    if (game.gameMode === GameMode.daily)
+    {
+        return {
+            ...completionDetails,
+            position: await getDailyGamePosition(game)
+        };
+    }
+
+    return completionDetails;
+}
+
+async function getDailyGamePosition(game: DailyGame): Promise<number> 
+{
+    const client = await getMongoClient();
+    const db = client.db(process.env.DB_NAME || "raddle");
+    const collection = db.collection<Game>("games");
+
+    const completedDailyGames = await collection.find({
+        gameMode: GameMode.daily,
+        dailyDate: game.dailyDate,
+        gameState: GameState.complete
+    }).toArray();
+
+    return completedDailyGames.length + 1;
 }

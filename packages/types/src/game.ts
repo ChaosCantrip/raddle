@@ -16,6 +16,25 @@ const arcadeExtension = {
     gameMode: z.literal(GameMode.arcade),
 };
 
+export const arcadeCompletionDetailsSchema = z.object({
+    numGuesses: z.number().int().nonnegative(),
+    completedAt: z.date(),
+});
+
+export const dailyCompletionDetailsSchema = arcadeCompletionDetailsSchema.extend({
+    position: z.number().int().nonnegative()
+});
+
+export const completionDetailsSchema = z.union([dailyCompletionDetailsSchema, arcadeCompletionDetailsSchema]);
+
+const completedDailyExtension = {
+    completionDetails: dailyCompletionDetailsSchema,
+};
+
+const completedArcadeExtension = {
+    completionDetails: arcadeCompletionDetailsSchema,
+};
+
 export const baseGameSchema = z.object({
     id: gameIdSchema,
     gameMode: gameModeSchema,
@@ -28,7 +47,7 @@ export const baseGameSchema = z.object({
 
 export const completedGameSchema = baseGameSchema.extend({
     gameState: z.literal(GameState.complete),
-    completedAt: z.date(),
+    completionDetails: completionDetailsSchema,
 });
 
 export const incompleteGameSchema = baseGameSchema.extend({
@@ -43,8 +62,8 @@ export const abandonedGameSchema = baseGameSchema.extend({
 export const dailyGameSchema = baseGameSchema.extend(dailyExtension);
 export const arcadeGameSchema = baseGameSchema.extend(arcadeExtension);
 
-export const completedDailyGameSchema = completedGameSchema.extend(dailyExtension);
-export const completedArcadeGameSchema = completedGameSchema.extend(arcadeExtension);
+export const completedDailyGameSchema = completedGameSchema.extend(dailyExtension).extend(completedDailyExtension);
+export const completedArcadeGameSchema = completedGameSchema.extend(arcadeExtension).extend(completedArcadeExtension);
 export const incompleteDailyGameSchema = incompleteGameSchema.extend(dailyExtension);
 export const incompleteArcadeGameSchema = incompleteGameSchema.extend(arcadeExtension);
 export const abandonedDailyGameSchema = abandonedGameSchema.extend(dailyExtension);
@@ -60,6 +79,9 @@ export const gameSchema = z.union([
 ]);
 
 export type BaseGame = z.infer<typeof baseGameSchema>;
+export type CompletionDetails = z.infer<typeof completionDetailsSchema>;
+export type ArcadeCompletionDetails = z.infer<typeof arcadeCompletionDetailsSchema>;
+export type DailyCompletionDetails = z.infer<typeof dailyCompletionDetailsSchema>;
 export type CompletedGame = z.infer<typeof completedGameSchema>;
 export type IncompleteGame = z.infer<typeof incompleteGameSchema>;
 export type AbandonedGame = z.infer<typeof abandonedGameSchema>;
