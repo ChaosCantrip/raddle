@@ -4,14 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateLeft, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-import { GameMode, GameState, GridCellState } from "@raddle/types";
-import type { Encounter, Game, Guess } from "@raddle/types";
+import { GameMode, GameState } from "@raddle/types";
+import type { Encounter, Game, GridCellState, Guess } from "@raddle/types";
 import type { MakeGuessRequest } from "@raddle/types/requests";
 
-import { GridTable, GridRow, GridCell, GuessEntryBox } from "@/components";
+import { GuessEntryBox, GuessGridTable } from "@/components";
 
 import styles from "./page.module.css";
-import gridRowStyles from "@/components/GridRow.module.css";
 
 type GuessPair = {
     encounter: Encounter;
@@ -189,31 +188,7 @@ export default function HomePage()
                 <GuessEntryBox encounters={encounters} guesses={guesses} callback={HandleGuessSubmit} />
             </div>
             <div className={styles.gridTableWrapper}>
-                <GridTable>
-                    {
-                        guessPairs.length === 0 &&
-                        <div className={styles.noGuessesMessage}>
-                            <GridRow>
-                                <GridCell state={GridCellState.Empty} />
-                                <GridCell state={GridCellState.Empty} />
-                                <GridCell state={GridCellState.Empty} />
-                                <GridCell state={GridCellState.Empty} />
-                                <GridCell state={GridCellState.Empty} />
-                                <GridCell state={GridCellState.Empty} />
-                            </GridRow>
-                        </div>
-                    }
-                    {guessPairs.map((pair, pairIndex) => (
-                        <GridRow key={pair.id ?? pairIndex} className={shifting && pairIndex > 0 ? gridRowStyles.shiftDown : undefined}>
-                            <GridCell state={pair.cellStates[0] ?? undefined} hideText={screenshotMode}>{pair.encounter.name}</GridCell>
-                            <GridCell state={pair.cellStates[1] ?? undefined} hideText={screenshotMode}>{pair.encounter.activity_type}</GridCell>
-                            <GridCell state={pair.cellStates[2] ?? undefined} hideText={screenshotMode}>{pair.encounter.activity}</GridCell>
-                            <GridCell state={pair.cellStates[3] ?? undefined} hideText={screenshotMode}>{pair.encounter.enemy_types.join(", ")}</GridCell>
-                            <GridCell state={pair.cellStates[4] ?? undefined} hideText={screenshotMode}>{pair.encounter.encounters.join(", ")}</GridCell>
-                            <GridCell state={pair.cellStates[5] ?? undefined} hideText={screenshotMode}>{pair.encounter.expansion}</GridCell>
-                        </GridRow>
-                    ))}
-                </GridTable>
+                <GuessGridTable guessPairs={guessPairs} screenshotMode={screenshotMode} shifting={shifting} noGuessesClassName={styles.noGuessesMessage} />
             </div>
         </div>
     );
