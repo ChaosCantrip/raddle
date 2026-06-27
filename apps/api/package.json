@@ -10,6 +10,7 @@
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
+    "@raddle/common": "*",
     "@raddle/config": "*",
     "@raddle/types": "*",
     "cookie-parser": "^1.4.7",

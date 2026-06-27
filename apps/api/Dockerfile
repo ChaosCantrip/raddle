@@ -40,6 +40,8 @@ ENV NODE_ENV=production
 ENV PORT=3000
 
 COPY --from=prod-deps /app/node_modules ./node_modules
+COPY --from=prod-deps /app/packages/common/package.json ./packages/common/package.json
+COPY --from=prod-deps /app/packages/types/package.json ./packages/types/package.json
 COPY --from=builder /app/packages/common/dist ./packages/common/dist
 COPY --from=builder /app/packages/types/dist ./packages/types/dist
 COPY --from=builder /app/apps/api/dist ./dist
