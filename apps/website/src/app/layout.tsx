@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 
-import { Footer, Header, PageContainer } from "@/components";
+import Header from "@/components/Header"; // Imported separately to avoid turbopack pulling it into a client bundle
+import { Footer, PageContainer } from "@/components";
 
 config.autoAddCss = false;
 

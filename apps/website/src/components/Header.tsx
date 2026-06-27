@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import BannerImage from "@/../public/banner.webp";
+import { getSession } from "@/lib/auth";
 
 import BungieLoginMenu from "./BungieLoginMenu";
 
@@ -9,9 +10,7 @@ import styles from "./Header.module.css";
 
 export default async function Header()
 {
-    // Placeholder sessions
-    // const session = { bungieName: "TestUser" };
-    const session = null
+    const session = await getSession();
 
     return (
         <header className={styles.header}>
