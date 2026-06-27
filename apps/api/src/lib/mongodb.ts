@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 
 let clientPromise: Promise<MongoClient>;
 
-async function GetMongoClient(): Promise<MongoClient> 
+export async function getMongoClient(): Promise<MongoClient> 
 {
     if (!clientPromise) 
     {
@@ -28,5 +28,3 @@ async function GetMongoClient(): Promise<MongoClient>
 
     return clientPromise;
 }
-
-export { GetMongoClient };
