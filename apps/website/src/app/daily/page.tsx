@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faEye, faEyeSlash, faShare } from "@fortawesome/free-solid-svg-icons";
 
-import { GridCellState } from "@raddle/types";
-import type { Encounter, ErrorResult, NonErrorResult, DailyGuessRequest, GuessPair } from "@raddle/types";
+import { GameMode, GameState, GridCellState } from "@raddle/types";
+import type { Encounter, Game, Guess, GuessPair } from "@raddle/types";
 import { getDateString, getDaysSinceBeginning, getTimeUntilNextReset, timeDeltaToString } from "@raddle/common/date";
+import type { MakeGuessRequest } from "@raddle/types/requests";
 
 import { GridTable, GridRow, GridCell, GuessEntryBox } from "@/components";
 import { utils } from "@/lib";
@@ -18,6 +19,10 @@ import styles from "./page.module.css";
 import gridRowStyles from "@/components/GridRow.module.css";
 
 interface DailyState {
+    gameId?: string;
+}
+
+type DailyViewState = {
     guesses: Encounter[];
     guessPairs: GuessPair[];
     guessedCorrectly: boolean;
@@ -43,15 +48,35 @@ export default function HomePage()
         }
     }, [dailyStorageKey]);
 
-    const [guesses, setGuesses] = useState<Encounter[]>(initialDailyState?.guesses ?? []);
-    const [guessPairs, setGuessPairs] = useState<GuessPair[]>(initialDailyState?.guessPairs ?? []);
+    const [gameId, setGameId] = useState<string | undefined>(initialDailyState?.gameId);
+    const [guesses, setGuesses] = useState<Encounter[]>([]);
+    const [guessPairs, setGuessPairs] = useState<GuessPair[]>([]);
     const [shifting, setShifting] = useState(false);
     const [screenshotMode, setScreenshotMode] = useState(false);
-    const [guessedCorrectly, setGuessedCorrectly] = useState(initialDailyState?.guessedCorrectly ?? false);
-    const [demoAnswer, setDemoAnswer] = useState<Encounter | null>(null);
-    const [place, setPlace] = useState<number | null>(initialDailyState?.place ?? null);
+    const [guessedCorrectly, setGuessedCorrectly] = useState(false);
+    const [place, setPlace] = useState<number | null>(null);
     const [timeUntilReset, setTimeUntilReset] = useState<string>("");
     const [sharePopupOpen, setSharePopupOpen] = useState<boolean>(false);
+
+    const applyGameState = useCallback((game: Game, encounterData: Encounter[]) =>
+    {
+        const derivedState = getDailyViewState(game, encounterData);
+        setGuesses(derivedState.guesses);
+        setGuessPairs(derivedState.guessPairs);
+        setGuessedCorrectly(derivedState.guessedCorrectly);
+        setPlace(derivedState.place);
+    }, []);
+
+    const resetDailyState = useCallback(() =>
+    {
+        window.localStorage.removeItem(dailyStorageKey);
+        setGameId(undefined);
+        setGuesses([]);
+        setGuessPairs([]);
+        setGuessedCorrectly(false);
+        setPlace(null);
+        setShifting(false);
+    }, [dailyStorageKey]);
 
     // Load Encounters
     useEffect(() => 
@@ -82,13 +107,38 @@ export default function HomePage()
 
     useEffect(() =>
     {
+        if (!gameId || encounters.length === 0)
+        {
+            return;
+        }
+
+        async function LoadGame(): Promise<void>
+        {
+            const response = await fetch(`/api/games/${gameId}`);
+
+            if (!response.ok)
+            {
+                resetDailyState();
+                return;
+            }
+
+            const game = await response.json() as Game;
+            applyGameState(game, encounters);
+        }
+
+        LoadGame().catch((error: unknown) =>
+        {
+            console.warn("Unable to load daily game:", error);
+            resetDailyState();
+        });
+    }, [applyGameState, encounters, gameId, resetDailyState]);
+
+    useEffect(() =>
+    {
         try
         {
             const state: DailyState = {
-                guesses,
-                guessPairs,
-                guessedCorrectly,
-                place,
+                gameId,
             };
             window.localStorage.setItem(dailyStorageKey, JSON.stringify(state));
         }
@@ -96,21 +146,7 @@ export default function HomePage()
         {
             console.warn("Unable to save daily game state:", err);
         }
-    }, [guesses, guessPairs, guessedCorrectly, place, dailyStorageKey]);
-
-    useEffect(() =>
-    {
-        async function LoadDemoAnswer() 
-        {
-            if (demoAnswer === null && encounters.length > 0)
-            {
-                const randomAnswer = encounters[Math.floor(Math.random() * encounters.length)];
-                setDemoAnswer(randomAnswer);
-            }
-        }
-
-        LoadDemoAnswer();
-    }, [encounters, demoAnswer]);
+    }, [gameId, dailyStorageKey]);
 
     useEffect(() =>
     {
@@ -128,14 +164,13 @@ export default function HomePage()
 
     async function HandleGuessSubmit(guess: Encounter) 
     {
-        setGuesses(prev => [guess, ...prev]);
-        setShifting(true);
-
-        const response_body: DailyGuessRequest = {
-            guess_id: guess.id,
+        const response_body: MakeGuessRequest = {
+            guessId: guess.id,
+            gameMode: GameMode.daily,
+            gameId,
         };
 
-        const response = await fetch("/api/guess/daily", {
+        const response = await fetch("/api/games/guess", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -143,44 +178,21 @@ export default function HomePage()
             body: JSON.stringify(response_body),
         });
 
-        if (!response.ok)         
+        if (!response.ok)
         {
-            const data = await response.json() as ErrorResult;
+            const data = await response.json() as { error?: string };
             console.error("Error submitting guess:", data.error || response.statusText);
             alert("Error submitting guess.");
             return;
         }
 
-        const data = await response.json() as NonErrorResult;
-
-        if (data.result === "correct") 
-        {
-            setPlace(data.place!);
-            HandleCorrectGuess(guess);
-            return;
-        }
-
-        const cellStates: GridCellState[] = [
-            data.comparisons.name,
-            data.comparisons.activity_type,
-            data.comparisons.activity,
-            data.comparisons.enemy_types,
-            data.comparisons.encounters,
-            data.comparisons.expansion,
-        ]
-        
-        setGuessPairs(prev => [{ encounter: guess, cellStates: cellStates, id: Date.now() }, ...prev]);
-        setTimeout(() => setShifting(false), 450);
-    }
-
-    function HandleCorrectGuess(guess: Encounter) 
-    {
-        setGuessPairs(prev => [{ encounter: guess, cellStates: [GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green], id: Date.now() }, ...prev]);
+        const game = await response.json() as Game;
+        setGameId(game.id);
+        applyGameState(game, encounters);
         setShifting(true);
         setTimeout(() => setShifting(false), 450);
-        setGuessedCorrectly(true);
     }
-    
+
     function ToggleScreenshotMode() 
     {
         setScreenshotMode(prev => !prev);
@@ -231,6 +243,69 @@ export default function HomePage()
             <SharePopup open={sharePopupOpen} setOpen={setSharePopupOpen} guessPairs={guessPairs} />
         </div>
     );
+}
+
+function getDailyViewState(game: Game, encounters: Encounter[]): DailyViewState
+{
+    const encounterById = new Map(encounters.map((encounter) => [encounter.id, encounter]));
+    const orderedGuesses = [...game.guesses].reverse();
+
+    const guesses: Encounter[] = [];
+    const guessPairs: GuessPair[] = [];
+
+    orderedGuesses.forEach((guess, index) =>
+    {
+        const encounter = encounterById.get(guess.encounterId);
+
+        if (!encounter)
+        {
+            return;
+        }
+
+        guesses.push(encounter);
+        guessPairs.push({
+            encounter,
+            cellStates: getCellStates(guess),
+            id: Date.parse(guess.createdAt as unknown as string) || index
+        });
+    });
+
+    const guessedCorrectly = game.gameState === GameState.complete;
+
+    return {
+        guesses,
+        guessPairs,
+        guessedCorrectly,
+        place: guessedCorrectly ? getCompletionPosition(game) : null,
+    };
+}
+
+function getCellStates(guess: Guess): GridCellState[]
+{
+    return [
+        guess.comparisonResult.name,
+        guess.comparisonResult.activity_type,
+        guess.comparisonResult.activity,
+        guess.comparisonResult.enemy_types,
+        guess.comparisonResult.encounters,
+        guess.comparisonResult.expansion,
+    ];
+}
+
+function getCompletionPosition(game: Game): number | null
+{
+    if (!("completionDetails" in game))
+    {
+        return null;
+    }
+
+    if (typeof game.completionDetails !== "object" || game.completionDetails === null)
+    {
+        return null;
+    }
+
+    const details = game.completionDetails as { position?: unknown };
+    return typeof details.position === "number" ? details.position : null;
 }
 
 function MainTextBox({ timeUntilReset }: { timeUntilReset: string }) 
