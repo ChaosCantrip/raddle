@@ -2,6 +2,20 @@ import type { NextConfig } from "next";
 
 import packageJson from "./package.json";
 
+const getDevRewrites = () =>
+{
+    if (process.env.NODE_ENV !== "production") 
+    {
+        return [
+            {
+                source: "/api/:path*",
+                destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`
+            }
+        ]
+    }
+    return [];
+}
+
 const nextConfig: NextConfig = {
     output: "standalone",
     env: {
@@ -20,6 +34,10 @@ const nextConfig: NextConfig = {
                 ]
             }
         ];
+    },
+    async rewrites() 
+    {
+        return getDevRewrites();
     },
     transpilePackages: [
         "@raddle/types",
