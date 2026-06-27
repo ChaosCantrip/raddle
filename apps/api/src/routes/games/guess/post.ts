@@ -1,17 +1,15 @@
 import type { Request, Response, Router } from "express";
 import crypto from "crypto";
 
-import { APIError, compareEncounters, generateRandomEncounter, getDailyAnswer, getMongoClient } from "@/lib";
-import { validateRequestBody } from "@/middlewares";
-
 import { HttpStatus, GameState, GameMode } from "@raddle/types";
 import type { CompletedGame, Encounter, EncounterComparisonResult, Game, Guess } from "@raddle/types";
-
 import { MakeGuessRequestSchema } from "@raddle/types/requests";
 import type { MakeGuessRequest } from "@raddle/types/requests";
-
 import { Encounters } from "@raddle/common";
 import { getDateString } from "@raddle/common/date";
+
+import { APIError, compareEncounters, generateRandomEncounter, getDailyAnswer, getMongoClient } from "@/lib";
+import { validateRequestBody } from "@/middlewares";
 
 export function setupPostGuessEndpoint(router: Router)
 {

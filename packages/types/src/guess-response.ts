@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import { encounterComparisonResultSchema } from "./encounter-comparison-result.js";
 
 export const correctResultSchema = z.object({

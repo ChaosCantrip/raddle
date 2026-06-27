@@ -4,9 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateLeft, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-import { GridTable, GridRow, GridCell, GuessEntryBox } from "@/components";
 import { GridCellState } from "@raddle/types";
 import type { Encounter, ArcadeGuessRequest, ErrorResult, NonErrorResult } from "@raddle/types";
+
+import { GridTable, GridRow, GridCell, GuessEntryBox } from "@/components";
 
 import styles from "./page.module.css";
 import gridRowStyles from "@/components/GridRow.module.css";

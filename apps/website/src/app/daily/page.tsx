@@ -5,12 +5,11 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faEye, faEyeSlash, faShare } from "@fortawesome/free-solid-svg-icons";
 
-import { GridTable, GridRow, GridCell, GuessEntryBox } from "@/components";
-
 import { GridCellState } from "@raddle/types";
 import type { Encounter, ErrorResult, NonErrorResult, DailyGuessRequest, GuessPair } from "@raddle/types";
-
 import { getDateString, getDaysSinceBeginning, getTimeUntilNextReset, timeDeltaToString } from "@raddle/common/date";
+
+import { GridTable, GridRow, GridCell, GuessEntryBox } from "@/components";
 import { utils } from "@/lib";
 
 import SharePopup from "./SharePopup";

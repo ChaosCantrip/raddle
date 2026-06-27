@@ -1,8 +1,8 @@
-import styles from "./page.module.css";
 import Link from "next/link";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight } from "@fortawesome/free-solid-svg-icons";
+
+import styles from "./page.module.css";
 
 
 export default function HomePage() 

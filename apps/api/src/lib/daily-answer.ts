@@ -1,8 +1,8 @@
-import { generateRandomEncounter } from "./generate-random-encounter.js";
 import { Encounters } from "@raddle/common";
-
 import type { Encounter } from "@raddle/types";
 import { getDateString } from "@raddle/common/date";
+
+import { generateRandomEncounter } from "./generate-random-encounter.js";
 import { getMongoClient } from "./mongodb.js";
 
 const DB_NAME = process.env.MONGODB_DB_NAME || "raddle";

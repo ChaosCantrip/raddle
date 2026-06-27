@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 import { gridCellStateSchema } from "./grid-cell-state.js";
 
 export const encounterComparisonResultSchema = z.object({
