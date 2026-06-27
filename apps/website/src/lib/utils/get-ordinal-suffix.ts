@@ -1,4 +1,4 @@
-export default function GetOrdinalSuffix(n: number): string
+export function getOrdinalSuffix(n: number): string
 {
     const j = n % 10, k = n % 100;
     if (j === 1 && k !== 11) 

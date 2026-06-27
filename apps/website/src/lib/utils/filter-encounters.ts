@@ -9,7 +9,7 @@ const conditions: Condition[] = [
     (encounter, query) => encounter.search_terms.some(term => term.includes(query))
 ]
 
-function FilterEncounters(inputValue: string, encounters: Encounter[], guesses: Encounter[]) 
+export function filterEncounters(inputValue: string, encounters: Encounter[], guesses: Encounter[]) 
 {
     const query = inputValue.toLowerCase().trim();
 
@@ -28,5 +28,3 @@ function FilterEncounters(inputValue: string, encounters: Encounter[], guesses: 
 
     return unique;
 }
-
-export default FilterEncounters;

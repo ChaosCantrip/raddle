@@ -310,7 +310,7 @@ function CongratulationsBox({ guessCount, place, timeUntilReset, onToggleScreens
         <div className={styles.mainTextBox}>
             <p className={styles.mainText}>Congratulations!</p>
             <p className={styles.subText}>You guessed the Encounter in {guessCount} guess{guessCount !== 1 ? "es" : ""}!</p>
-            <p className={styles.subText}>You were the {place}{utils.GetOrdinalSuffix(place!)} person to guess correctly today!</p>
+            <p className={styles.subText}>You were the {place}{utils.getOrdinalSuffix(place!)} person to guess correctly today!</p>
             <p className={styles.subText}>Check back in {timeUntilReset} for tomorrow&apos;s Encounter!</p>
             <div className={styles.buttons_container}>
                 <Link className={styles.button + " " + styles.arcadeLink} href="/arcade">

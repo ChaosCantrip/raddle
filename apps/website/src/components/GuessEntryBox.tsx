@@ -24,7 +24,7 @@ export default function GuessEntryBox({ encounters, guesses, callback }: GuessEn
     {
         // We suppress ESLint here as the logic is sound
         //eslint-disable-next-line react-hooks/set-state-in-effect
-        setFilteredEncounters(utils.FilterEncounters(inputValue, encounters, guesses));
+        setFilteredEncounters(utils.filterEncounters(inputValue, encounters, guesses));
     }, [inputValue, encounters, guesses]);
 
     function HandleSubmit(encounter: Encounter) 

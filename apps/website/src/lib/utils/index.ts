@@ -1,7 +1,7 @@
-import FilterEncounters from "./filter-encounters";
-import GetOrdinalSuffix from "./get-ordinal-suffix";
+import { filterEncounters} from "./filter-encounters";
+import { getOrdinalSuffix } from "./get-ordinal-suffix";
 
 export const utils = {
-    FilterEncounters: FilterEncounters,
-    GetOrdinalSuffix: GetOrdinalSuffix
+    filterEncounters,
+    getOrdinalSuffix
 }
