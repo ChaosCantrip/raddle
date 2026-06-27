@@ -71,6 +71,7 @@ services:
       MONGODB_PORT: 27017
       MONGODB_PASS: example
       MONGODB_USER: root
+      BUNGIE_CLIENT_ID: ${BUNGIE_CLIENT_ID}
     depends_on:
       - mongo
     networks:
