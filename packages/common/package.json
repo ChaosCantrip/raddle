@@ -11,13 +11,17 @@
   },
   "exports": {
     ".": "./dist/index.js",
-    "./date": "./dist/date/index.js"
+    "./date": "./dist/date/index.js",
+    "./auth": "./dist/auth/index.js"
   },
   "devDependencies": {
     "@raddle/config": "*",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.19.43",
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@raddle/types": "*"
+    "@raddle/types": "*",
+    "jsonwebtoken": "^9.0.3"
   }
 }
