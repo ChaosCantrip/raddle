@@ -1,5 +1,6 @@
-import { Encounters } from "@raddle/common";
 import type { Request, Response, Router } from "express";
+
+import { Encounters } from "@raddle/common";
 
 export function setupGetEncountersEndpoint(router: Router)
 {

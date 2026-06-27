@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
-import Popup from "@/components/Popup";
 import { GridCellState } from "@raddle/types";
 import type { GuessPair } from "@raddle/types";
+
+import Popup from "@/components/Popup";
 import Toast from "@/components/Toast";
 
 import styles from "./SharePopup.module.css";

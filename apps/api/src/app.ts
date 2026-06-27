@@ -1,8 +1,9 @@
 import express from "express";
-import { setupRootRouter } from "./routes/index.js";
 import cookieParser from "cookie-parser";
+
+import { setupRootRouter } from "./routes/index.js";
 import { logRequest } from "./middlewares/index.js";
-import { handleMalformedJSON, handleNotFound, handleUncaughtErrors } from "./error-handlers/index.js";
+import { handleAPIError, handleMalformedJSON, handleNotFound, handleUncaughtErrors } from "./error-handlers/index.js";
 
 export const createApp = () => 
 {
@@ -25,6 +26,7 @@ export const createApp = () =>
     // Error Handlers
     app.use(handleNotFound);
     app.use(handleMalformedJSON);
+    app.use(handleAPIError);
     app.use(handleUncaughtErrors);
 
     return app;

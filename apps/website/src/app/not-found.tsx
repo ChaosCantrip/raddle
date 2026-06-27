@@ -1,7 +1,8 @@
-import styles from "./not-found.module.css";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft } from "@fortawesome/free-solid-svg-icons";
+
+import styles from "./not-found.module.css";
 
 export default function NotFound() 
 {

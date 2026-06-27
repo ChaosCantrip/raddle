@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 
 import type { Encounter } from "@raddle/types";
-import { Utils } from "@/lib";
+
+import { utils } from "@/lib";
 
 import styles from "./GuessEntryBox.module.css";
 
@@ -23,7 +24,7 @@ export default function GuessEntryBox({ encounters, guesses, callback }: GuessEn
     {
         // We suppress ESLint here as the logic is sound
         //eslint-disable-next-line react-hooks/set-state-in-effect
-        setFilteredEncounters(Utils.FilterEncounters(inputValue, encounters, guesses));
+        setFilteredEncounters(utils.FilterEncounters(inputValue, encounters, guesses));
     }, [inputValue, encounters, guesses]);
 
     function HandleSubmit(encounter: Encounter) 

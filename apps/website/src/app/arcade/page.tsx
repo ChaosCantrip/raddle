@@ -4,25 +4,29 @@ import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateLeft, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-import { GridTable, GridRow, GridCell, GuessEntryBox } from "@/components";
-import { GridCellState } from "@raddle/types";
-import type { Encounter, ArcadeGuessRequest, ErrorResult, NonErrorResult } from "@raddle/types";
+import { GameMode, GameState } from "@raddle/types";
+import type { Encounter, Game, GridCellState, Guess } from "@raddle/types";
+import type { MakeGuessRequest } from "@raddle/types/requests";
+
+import { GuessEntryBox, GuessGridTable } from "@/components";
 
 import styles from "./page.module.css";
-import gridRowStyles from "@/components/GridRow.module.css";
 
-interface GuessPair {
+type GuessPair = {
     encounter: Encounter;
     cellStates: GridCellState[];
     id?: number;
 }
 
-interface ArcadeState {
-    answer: Encounter | null;
+type ArcadeState = {
+    gameId?: string;
+}
+
+type GameViewState = {
     guesses: Encounter[];
     guessPairs: GuessPair[];
     guessedCorrectly: boolean;
-}
+};
 
 export default function HomePage() 
 {
@@ -43,12 +47,13 @@ export default function HomePage()
         }
     }, [arcadeStorageKey]);
 
-    const [guesses, setGuesses] = useState<Encounter[]>(initialArcadeState?.guesses ?? []);
-    const [guessPairs, setGuessPairs] = useState<GuessPair[]>(initialArcadeState?.guessPairs ?? []);
+    const [gameId, setGameId] = useState<string | undefined>(initialArcadeState?.gameId);
+
+    const [guesses, setGuesses] = useState<Encounter[]>([]);
+    const [guessPairs, setGuessPairs] = useState<GuessPair[]>([]);
     const [shifting, setShifting] = useState(false);
     const [screenshotMode, setScreenshotMode] = useState(false);
-    const [guessedCorrectly, setGuessedCorrectly] = useState(initialArcadeState?.guessedCorrectly ?? false);
-    const [answer, setAnswer] = useState<Encounter | null>(initialArcadeState?.answer ?? null);
+    const [guessedCorrectly, setGuessedCorrectly] = useState(false);
 
     // Load Encounters
     useEffect(() => 
@@ -79,13 +84,38 @@ export default function HomePage()
 
     useEffect(() =>
     {
+        if (!gameId || encounters.length === 0)
+        {
+            return;
+        }
+
+        async function LoadGame(): Promise<void>
+        {
+            const response = await fetch(`/api/games/${gameId}`);
+
+            if (!response.ok)
+            {
+                ResetGame();
+                return;
+            }
+
+            const game = await response.json() as Game;
+            applyGameState(game, encounters);
+        }
+
+        LoadGame().catch((error: unknown) =>
+        {
+            console.warn("Unable to load arcade game:", error);
+            ResetGame();
+        });
+    }, [encounters, gameId]);
+
+    useEffect(() =>
+    {
         try
         {
             const state: ArcadeState = {
-                answer,
-                guesses,
-                guessPairs,
-                guessedCorrectly,
+                gameId
             };
             window.localStorage.setItem(arcadeStorageKey, JSON.stringify(state));
         }
@@ -93,21 +123,7 @@ export default function HomePage()
         {
             console.warn("Unable to save arcade game state:", err);
         }
-    }, [answer, guesses, guessPairs, guessedCorrectly, arcadeStorageKey]);
-
-    useEffect(() =>
-    {
-        async function LoadAnswer() 
-        {
-            if (answer === null && encounters.length > 0)
-            {
-                const randomAnswer = encounters[Math.floor(Math.random() * encounters.length)];
-                setAnswer(randomAnswer);
-            }
-        }
-
-        LoadAnswer();
-    }, [encounters, answer]);
+    }, [gameId, arcadeStorageKey]);
 
     function ResetGame()
     {
@@ -115,7 +131,8 @@ export default function HomePage()
         setGuesses([]);
         setGuessPairs([]);
         setGuessedCorrectly(false);
-        setAnswer(null);
+        setGameId(undefined);
+        setShifting(false);
     }
 
     function ToggleScreenshotMode() 
@@ -125,15 +142,13 @@ export default function HomePage()
 
     async function HandleGuessSubmit(guess: Encounter) 
     {
-        setGuesses(prev => [guess, ...prev]);
-        setShifting(true);
-
-        const response_body: ArcadeGuessRequest = {
-            guess_id: guess.id,
-            answer_id: answer!.id,
+        const response_body: MakeGuessRequest = {
+            guessId: guess.id,
+            gameMode: GameMode.arcade,
+            gameId: gameId
         };
         
-        const response = await fetch("/api/guess/arcade", {
+        const response = await fetch("/api/games/guess", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -141,39 +156,25 @@ export default function HomePage()
             body: JSON.stringify(response_body),
         });
 
-        if (!response.ok)         
+        if (!response.ok)
         {
-            const data = await response.json() as ErrorResult;
-            throw new Error(`Error submitting guess: ${data.error}`);
+            const data = await response.json() as { error?: string };
+            throw new Error(`Error submitting guess: ${data.error ?? response.statusText}`);
         }
 
-        const data = await response.json() as NonErrorResult;
-
-        if (data.result === "correct") 
-        {
-            HandleCorrectGuess(guess);
-            return;
-        }
-
-        const cellStates: GridCellState[] = [
-            data.comparisons.name,
-            data.comparisons.activity_type,
-            data.comparisons.activity,
-            data.comparisons.enemy_types,
-            data.comparisons.encounters,
-            data.comparisons.expansion,
-        ]
-        
-        setGuessPairs(prev => [{ encounter: guess, cellStates: cellStates, id: Date.now() }, ...prev]);
+        const game = await response.json() as Game;
+        setGameId(game.id);
+        applyGameState(game, encounters);
+        setShifting(true);
         setTimeout(() => setShifting(false), 450);
     }
 
-    function HandleCorrectGuess(guess: Encounter) 
+    function applyGameState(game: Game, encounterData: Encounter[])
     {
-        setGuessPairs(prev => [{ encounter: guess, cellStates: [GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green, GridCellState.Green], id: Date.now() }, ...prev]);
-        setShifting(true);
-        setTimeout(() => setShifting(false), 450);
-        setGuessedCorrectly(true);
+        const derivedState = getGameViewState(game, encounterData);
+        setGuesses(derivedState.guesses);
+        setGuessPairs(derivedState.guessPairs);
+        setGuessedCorrectly(derivedState.guessedCorrectly);
     }
 
     return (
@@ -187,34 +188,54 @@ export default function HomePage()
                 <GuessEntryBox encounters={encounters} guesses={guesses} callback={HandleGuessSubmit} />
             </div>
             <div className={styles.gridTableWrapper}>
-                <GridTable>
-                    {
-                        guessPairs.length === 0 &&
-                        <div className={styles.noGuessesMessage}>
-                            <GridRow>
-                                <GridCell state={GridCellState.Empty} />
-                                <GridCell state={GridCellState.Empty} />
-                                <GridCell state={GridCellState.Empty} />
-                                <GridCell state={GridCellState.Empty} />
-                                <GridCell state={GridCellState.Empty} />
-                                <GridCell state={GridCellState.Empty} />
-                            </GridRow>
-                        </div>
-                    }
-                    {guessPairs.map((pair, pairIndex) => (
-                        <GridRow key={pair.id ?? pairIndex} className={shifting && pairIndex > 0 ? gridRowStyles.shiftDown : undefined}>
-                            <GridCell state={pair.cellStates[0] ?? undefined} hideText={screenshotMode}>{pair.encounter.name}</GridCell>
-                            <GridCell state={pair.cellStates[1] ?? undefined} hideText={screenshotMode}>{pair.encounter.activity_type}</GridCell>
-                            <GridCell state={pair.cellStates[2] ?? undefined} hideText={screenshotMode}>{pair.encounter.activity}</GridCell>
-                            <GridCell state={pair.cellStates[3] ?? undefined} hideText={screenshotMode}>{pair.encounter.enemy_types.join(", ")}</GridCell>
-                            <GridCell state={pair.cellStates[4] ?? undefined} hideText={screenshotMode}>{pair.encounter.encounters.join(", ")}</GridCell>
-                            <GridCell state={pair.cellStates[5] ?? undefined} hideText={screenshotMode}>{pair.encounter.expansion}</GridCell>
-                        </GridRow>
-                    ))}
-                </GridTable>
+                <GuessGridTable guessPairs={guessPairs} screenshotMode={screenshotMode} shifting={shifting} noGuessesClassName={styles.noGuessesMessage} />
             </div>
         </div>
     );
+}
+
+function getGameViewState(game: Game, encounters: Encounter[]): GameViewState
+{
+    const encounterById = new Map(encounters.map((encounter) => [encounter.id, encounter]));
+    const orderedGuesses = [...game.guesses].reverse();
+
+    const guesses: Encounter[] = [];
+    const guessPairs: GuessPair[] = [];
+
+    orderedGuesses.forEach((guess, index) =>
+    {
+        const encounter = encounterById.get(guess.encounterId);
+
+        if (!encounter)
+        {
+            return;
+        }
+
+        guesses.push(encounter);
+        guessPairs.push({
+            encounter,
+            cellStates: getCellStates(guess),
+            id: Date.parse(guess.createdAt as unknown as string) || index
+        });
+    });
+
+    return {
+        guesses,
+        guessPairs,
+        guessedCorrectly: game.gameState === GameState.complete,
+    };
+}
+
+function getCellStates(guess: Guess): GridCellState[]
+{
+    return [
+        guess.comparisonResult.name,
+        guess.comparisonResult.activity_type,
+        guess.comparisonResult.activity,
+        guess.comparisonResult.enemy_types,
+        guess.comparisonResult.encounters,
+        guess.comparisonResult.expansion,
+    ];
 }
 
 function MainTextBox() 

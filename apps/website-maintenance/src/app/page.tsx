@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./page.module.css";
 import { faSquareXTwitter } from "@fortawesome/free-brands-svg-icons";
+
+import styles from "./page.module.css";
 
 
 export default function HomePage() 

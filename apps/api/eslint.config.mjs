@@ -1,5 +1,7 @@
 import { defineConfig } from "eslint/config";
+
 import { baseESLintConfig } from "@raddle/config/eslint";
+
 import raddleApiEslintPlugin from "./eslint-plugins/custom/plugin.js";
 
 const eslintConfig = defineConfig([

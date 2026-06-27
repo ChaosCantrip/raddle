@@ -4,12 +4,13 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc && tsc-alias",
+    "build": "tsc --build --clean && tsc --build && tsc-alias",
     "start": "node dist/server.js",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
   "dependencies": {
+    "@raddle/common": "*",
     "@raddle/config": "*",
     "@raddle/types": "*",
     "cookie-parser": "^1.4.7",

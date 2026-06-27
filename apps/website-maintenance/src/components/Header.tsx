@@ -1,7 +1,9 @@
 import Image from "next/image";
-import BannerImage from "@/../public/banner.webp";
-import styles from "./Header.module.css";
 import Link from "next/link";
+
+import BannerImage from "@/../public/banner.webp";
+
+import styles from "./Header.module.css";
 
 export default function Header()
 {
