@@ -66,7 +66,7 @@ services:
       - "traefik.http.routers.raddle-website.tls.certresolver=letsencrypt"
 
     depends_on:
-      - mongo
+      - api
     networks:
       - raddle-network
       - traefik
