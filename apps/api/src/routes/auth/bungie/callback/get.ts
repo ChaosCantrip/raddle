@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 import { HttpStatus } from "@raddle/types";
 
-import { APIError } from "@/lib";
+import { APIError, upsertUser } from "@/lib";
 
 export function setupGetCallbackEndpoint(router: Router)
 {
@@ -13,6 +13,10 @@ export function setupGetCallbackEndpoint(router: Router)
         const tokenExchangeResponse = await exchangeCodeForAccessToken(code);
         const { accessToken, bungieMembershipId } = await extractTokenData(tokenExchangeResponse);
         const bungieName = await fetchBungieName(accessToken, bungieMembershipId);
+        await upsertUser({
+            membershipId: bungieMembershipId,
+            displayName: bungieName,
+        });
         const sessionJWT = createJWT(bungieName);
 
         setResponseCookies(res, sessionJWT);
