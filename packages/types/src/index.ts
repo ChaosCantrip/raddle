@@ -10,3 +10,4 @@ export * from "./grid-cell-state.js";
 export * from "./guess-pair.js";
 export * from "./guess-response.js";
 export * from "./guess.js";
+export * from "./user.js";

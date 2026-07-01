@@ -25,18 +25,27 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_SERVER: mongo
-      ME_CONFIG_BASICAUTH_USERNAME: admin
-      ME_CONFIG_BASICAUTH_PASSWORD: admin
+      ME_CONFIG_BASICAUTH_USERNAME: ${ME_USER}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${ME_PASSWORD}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+
+      # Router
+      - "traefik.http.routers.raddle-express.rule=Host(`${EXPRESS_URL}`)"
+      - "traefik.http.routers.raddle-express.entrypoints=websecure"
+      - "traefik.http.routers.raddle-express.tls.certresolver=letsencrypt"
     depends_on:
       - mongo
     networks:
       - raddle-network
+      - traefik
 
   website:
     build:
       context: ../../
       dockerfile: apps/website/Dockerfile
-    container_name: website
+    container_name: raddle-website
     ports:
       - "3000:3000"
     environment:
@@ -44,10 +53,23 @@ services:
       MONGODB_PORT: 27017
       MONGODB_PASS: example
       MONGODB_USER: root
+      JWT_SECRET: ${JWT_SECRET}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+
+      # Router
+      - "traefik.http.routers.raddle-website.rule=Host(`${DEV_URL}`)"
+      - "traefik.http.routers.raddle-website.entrypoints=websecure"
+      - "traefik.http.routers.raddle-website.tls.certresolver=letsencrypt"
+
     depends_on:
-      - mongo
+      - api
     networks:
       - raddle-network
+      - traefik
 
   website-maintenance:
     build:
@@ -58,6 +80,7 @@ services:
       - "3001:3000"
     networks:
       - raddle-network
+      - traefik
 
   api:
     build:
@@ -71,14 +94,35 @@ services:
       MONGODB_PORT: 27017
       MONGODB_PASS: example
       MONGODB_USER: root
+      BUNGIE_CLIENT_ID: ${BUNGIE_CLIENT_ID}
+      BUNGIE_API_KEY: ${BUNGIE_API_KEY}
+      BUNGIE_REDIRECT_URI: ${BUNGIE_REDIRECT_URI}
+      WEBSITE_URL: ${WEBSITE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+
+      # Router
+      - "traefik.http.routers.raddle-api.rule=Host(`${DEV_URL}`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.raddle-api.entrypoints=websecure"
+      - "traefik.http.routers.raddle-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.raddle-api.priority=100"
+
+      # Middleware
+      - "traefik.http.middlewares.raddle-api-strip-prefix.stripprefix.prefixes=/api"
+      - "traefik.http.routers.raddle-api.middlewares=raddle-api-strip-prefix"
     depends_on:
       - mongo
     networks:
       - raddle-network
+      - traefik
 
 networks:
   raddle-network:
     name: raddle-network
+  traefik:
+    external: true
 
 volumes:
   mongo_data:
