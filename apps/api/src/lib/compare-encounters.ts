@@ -5,9 +5,9 @@ export function compareEncounters(guess: Encounter, answer: Encounter): Encounte
 {
     return {
         name: compareName(guess.name, answer.name),
-        activity_type: compareActivityType(guess.activity_type, answer.activity_type),
+        activity_type: compareActivityType(guess.activityType, answer.activityType),
         activity: compareActivity(guess.activity, answer.activity),
-        enemy_types: compareEnemyTypes(guess.enemy_types, answer.enemy_types),
+        enemy_types: compareEnemyTypes(guess.enemyTypes, answer.enemyTypes),
         encounters: compareEncounterNumber(guess.encounters, answer.encounters),
         expansion: compareExpansion(guess.expansion, answer.expansion)
     }

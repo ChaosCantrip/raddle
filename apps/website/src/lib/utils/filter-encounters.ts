@@ -5,8 +5,8 @@ type Condition = (encounter: Encounter, query: string) => boolean;
 const conditions: Condition[] = [
     (encounter, query) => encounter.name.toLowerCase().startsWith(query),
     (encounter, query) => encounter.name.toLowerCase().includes(query),
-    (encounter, query) => encounter.search_terms.some(term => term.startsWith(query)),
-    (encounter, query) => encounter.search_terms.some(term => term.includes(query))
+    (encounter, query) => encounter.searchTerms.some(term => term.startsWith(query)),
+    (encounter, query) => encounter.searchTerms.some(term => term.includes(query))
 ]
 
 export function filterEncounters(inputValue: string, encounters: Encounter[], guesses: Encounter[]) 
