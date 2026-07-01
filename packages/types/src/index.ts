@@ -1,6 +1,4 @@
-export * from "./arcade-guess-request.js";
 export * from "./http-status.js";
-export * from "./daily-guess-request.js";
 export * from "./encounter-comparison-result.js";
 export * from "./encounter.js";
 export * from "./game-mode.js";
