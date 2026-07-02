@@ -1,6 +1,13 @@
 import { z } from "zod";
 
-import { encounterComparisonResultSchema } from "./encounter-comparison-result.js";
+const encounterComparisonResultSchema = z.object({
+    name: z.enum(["empty", "grey", "yellow", "green"]),
+    activity_type: z.enum(["empty", "grey", "yellow", "green"]),
+    activity: z.enum(["empty", "grey", "yellow", "green"]),
+    enemy_types: z.enum(["empty", "grey", "yellow", "green"]),
+    encounters: z.enum(["empty", "grey", "yellow", "green"]),
+    expansion: z.enum(["empty", "grey", "yellow", "green"])
+});
 
 export const correctResultSchema = z.object({
     result: z.literal("correct"),
