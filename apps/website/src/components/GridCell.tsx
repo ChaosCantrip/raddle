@@ -8,7 +8,7 @@ type GridCellProps = {
     children?: React.ReactNode;
 }
 
-export default function GridCell({ state = GridCellState.Empty, hideText = false, children }: GridCellProps)
+export default function GridCell({ state = GridCellState.empty, hideText = false, children }: GridCellProps)
 {
     const colourStyle = getColourStyle(state);
 
@@ -23,13 +23,13 @@ function getColourStyle(state: GridCellState)
 {
     switch (state) 
     {
-        case GridCellState.Empty:
+        case GridCellState.empty:
             return styles.empty;
-        case GridCellState.Grey:
+        case GridCellState.grey:
             return styles.grey;
-        case GridCellState.Yellow:
+        case GridCellState.yellow:
             return styles.yellow;
-        case GridCellState.Green:
+        case GridCellState.green:
             return styles.green;
     }
 }

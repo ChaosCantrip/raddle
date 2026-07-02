@@ -39,11 +39,11 @@ export default function SharePopup({ open, setOpen, guessPairs }: SharePopupProp
                 const cellStateEmojis: string[] = [];
                 guessPair.cellStates.forEach((cellState) => 
                 {
-                    if (cellState == GridCellState.Green) 
+                    if (cellState == GridCellState.green) 
                     {
                         cellStateEmojis.push("🟩")
                     }
-                    else if (cellState == GridCellState.Yellow) 
+                    else if (cellState == GridCellState.yellow) 
                     {
                         cellStateEmojis.push("🟨")
                     }

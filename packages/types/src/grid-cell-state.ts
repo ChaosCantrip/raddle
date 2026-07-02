@@ -1,11 +1,8 @@
-import { z } from "zod";
+export const GridCellState = {
+    empty: "empty",
+    grey: "grey",
+    yellow: "yellow",
+    green: "green",
+} as const;
 
-export const gridCellStateSchema = z.enum([
-    "Empty",
-    "Grey",
-    "Yellow",
-    "Green"
-]);
-
-export type GridCellState = z.infer<typeof gridCellStateSchema>;
-export const GridCellState = gridCellStateSchema.enum;
+export type GridCellState = (typeof GridCellState)[keyof typeof GridCellState];

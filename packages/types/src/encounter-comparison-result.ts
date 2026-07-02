@@ -1,6 +1,13 @@
 import { z } from "zod";
 
-import { gridCellStateSchema } from "./grid-cell-state.js";
+import { GridCellState } from "./grid-cell-state.js";
+
+const gridCellStateSchema = z.enum([
+    GridCellState.empty,
+    GridCellState.grey,
+    GridCellState.yellow,
+    GridCellState.green,
+]);
 
 export const encounterComparisonResultSchema = z.object({
     name: gridCellStateSchema,

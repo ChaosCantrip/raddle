@@ -22,12 +22,12 @@ export default function GuessGridTable({ guessPairs, screenshotMode, shifting, n
                 guessPairs.length === 0 &&
                 <div className={noGuessesClassName}>
                     <GridRow>
-                        <GridCell state={GridCellState.Empty} />
-                        <GridCell state={GridCellState.Empty} />
-                        <GridCell state={GridCellState.Empty} />
-                        <GridCell state={GridCellState.Empty} />
-                        <GridCell state={GridCellState.Empty} />
-                        <GridCell state={GridCellState.Empty} />
+                        <GridCell state={GridCellState.empty} />
+                        <GridCell state={GridCellState.empty} />
+                        <GridCell state={GridCellState.empty} />
+                        <GridCell state={GridCellState.empty} />
+                        <GridCell state={GridCellState.empty} />
+                        <GridCell state={GridCellState.empty} />
                     </GridRow>
                 </div>
             }

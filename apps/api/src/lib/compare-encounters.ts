@@ -18,10 +18,10 @@ function compareName(guess: string, answer: string): GridCellState
     // Added for future proofing. I don't know how this would ever change, but... Ah well.
     if (guess === answer) 
     {
-        return GridCellState.Green;
+        return GridCellState.green;
     }
     
-    return GridCellState.Grey;
+    return GridCellState.grey;
 }
 
 function compareEnemyTypes(guess: string[], answer: string[]): GridCellState
@@ -32,14 +32,14 @@ function compareEnemyTypes(guess: string[], answer: string[]): GridCellState
 
     if (intersection.size === answerSet.size && intersection.size === guessSet.size) 
     {
-        return GridCellState.Green;
+        return GridCellState.green;
     } 
     else if (intersection.size > 0) 
     {
-        return GridCellState.Yellow;
+        return GridCellState.yellow;
     }
 
-    return GridCellState.Grey;
+    return GridCellState.grey;
 }
 
 function compareActivityType(guess: string, answer: string): GridCellState
@@ -47,10 +47,10 @@ function compareActivityType(guess: string, answer: string): GridCellState
     // Added for future proofing. I don't know how this would ever change, but... Ah well.
     if (guess === answer) 
     {
-        return GridCellState.Green;
+        return GridCellState.green;
     }
 
-    return GridCellState.Grey;
+    return GridCellState.grey;
 }
 
 function compareActivity(guess: string, answer: string): GridCellState
@@ -58,10 +58,10 @@ function compareActivity(guess: string, answer: string): GridCellState
     // Added for future proofing. I don't know how this would ever change, but... Ah well.
     if (guess === answer) 
     {
-        return GridCellState.Green;
+        return GridCellState.green;
     }
 
-    return GridCellState.Grey;
+    return GridCellState.grey;
 }
 
 function compareExpansion(guess: string, answer: string): GridCellState 
@@ -70,10 +70,10 @@ function compareExpansion(guess: string, answer: string): GridCellState
     
     if (guess === answer) 
     {
-        return GridCellState.Green;
+        return GridCellState.green;
     }
 
-    return GridCellState.Grey;
+    return GridCellState.grey;
 
 }
 
@@ -85,12 +85,12 @@ function compareEncounterNumber(guess: number[], answer: number[]): GridCellStat
 
     if (intersection.size === answerSet.size && intersection.size === guessSet.size) 
     {
-        return GridCellState.Green;
+        return GridCellState.green;
     } 
     else if (intersection.size > 0) 
     {
-        return GridCellState.Yellow;
+        return GridCellState.yellow;
     }
 
-    return GridCellState.Grey;
+    return GridCellState.grey;
 }

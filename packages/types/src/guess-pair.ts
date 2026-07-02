@@ -1,7 +1,14 @@
 import { z } from "zod";
 
 import { encounterSchema } from "./encounter.js";
-import { gridCellStateSchema } from "./grid-cell-state.js";
+import { GridCellState } from "./grid-cell-state.js";
+
+const gridCellStateSchema = z.enum([
+    GridCellState.empty,
+    GridCellState.grey,
+    GridCellState.yellow,
+    GridCellState.green,
+]);
 
 export const guessPairSchema = z.object({
     encounter: encounterSchema,
