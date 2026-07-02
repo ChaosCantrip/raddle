@@ -1,10 +1,7 @@
-import { z } from "zod";
+export const GameState = {
+    complete: "complete",
+    incomplete: "incomplete",
+    abandoned: "abandoned",
+} as const;
 
-export const gameStateSchema = z.enum([
-    "complete",
-    "incomplete",
-    "abandoned"
-]);
-
-export type GameState = z.infer<typeof gameStateSchema>;
-export const GameState = gameStateSchema.enum;
+export type GameState = (typeof GameState)[keyof typeof GameState];

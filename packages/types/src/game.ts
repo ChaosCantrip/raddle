@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-import { encounterIdSchema, gameModeSchema } from "./temp.js";
+import { encounterIdSchema, gameModeSchema, gameStateSchema } from "./temp.js";
 import { GameMode } from "./game-mode.js";
-import { GameState, gameStateSchema } from "./game-state.js";
+import { GameState } from "./game-state.js";
 import { guessSchema } from "./guess.js";
 
 export const gameIdSchema = z.uuid();
