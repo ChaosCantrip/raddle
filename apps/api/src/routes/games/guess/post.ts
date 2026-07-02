@@ -3,18 +3,16 @@ import crypto from "crypto";
 
 import { HttpStatus, GameState, GameMode } from "@raddle/types";
 import type { CompletedGame, CompletionDetails, DailyGame, Encounter, EncounterComparisonResult, Game, Guess } from "@raddle/types";
-import { MakeGuessRequestSchema } from "@raddle/types/requests";
 import type { MakeGuessRequest } from "@raddle/types/requests";
 import { Encounters } from "@raddle/common";
 import { getDateString } from "@raddle/common/date";
 
 import { APIError, compareEncounters, generateRandomEncounter, getDailyAnswer, getMongoClient } from "@/lib";
-import { validateRequestBody } from "@/middlewares";
 
 export function setupPostGuessEndpoint(router: Router)
 {
      
-    router.post("/", validateRequestBody(MakeGuessRequestSchema), async (req: Request , res: Response) => 
+    router.post("/", async (req: Request , res: Response) => 
     {
         // Parse params
         const { gameId, gameMode, guessId } = parseRequestParams(res);

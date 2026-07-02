@@ -1,21 +1,17 @@
 import type { Request, Response, Router } from "express";
-import { z } from "zod";
 
-import { HttpStatus, gameIdSchema } from "@raddle/types";
+import { HttpStatus } from "@raddle/types";
 import type { Game } from "@raddle/types";
 
 import { APIError, getMongoClient } from "@/lib";
-import { validateRequestParams } from "@/middlewares";
 
-const GetGameParamsSchema = z.object({
-    gameId: gameIdSchema,
-});
-
-type GetGameParams = z.infer<typeof GetGameParamsSchema>;
+type GetGameParams = {
+    gameId: string;
+}
 
 export function setupGetGameEndpoint(router: Router)
 {
-    router.get("/:gameId", validateRequestParams(GetGameParamsSchema), async (_req: Request, res: Response) =>
+    router.get("/:gameId", async (_req: Request, res: Response) =>
     {
         const { gameId } = parseRequestParams(res);
         const game = await fetchGameById(gameId);
