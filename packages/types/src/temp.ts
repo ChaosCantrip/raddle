@@ -12,3 +12,5 @@ export const encounterSchema = z.object({
 });
 
 export const encounterIdSchema = z.string();
+
+export const gameModeSchema = z.enum(["daily", "arcade"]);
