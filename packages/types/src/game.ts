@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { encounterIdSchema } from "./encounter.js";
+import { encounterIdSchema } from "./temp.js";
 import { GameMode, gameModeSchema } from "./game-mode.js";
 import { GameState, gameStateSchema } from "./game-state.js";
 import { guessSchema } from "./guess.js";

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { encounterIdSchema } from "./encounter.js";
+import { encounterIdSchema } from "./temp.js";
 
 const encounterComparisonResultSchema = z.object({
     name: z.enum(["empty", "grey", "yellow", "green"]),

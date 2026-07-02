@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { encounterSchema } from "./encounter.js";
+import { encounterSchema } from "./temp.js";
 import { GridCellState } from "./grid-cell-state.js";
 
 const gridCellStateSchema = z.enum([
